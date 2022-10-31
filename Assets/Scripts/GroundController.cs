@@ -6,11 +6,8 @@ using Random = UnityEngine.Random;
 public class GroundController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> segments;
-
     [SerializeField] private List<GameObject> currentSegments;
-
     [SerializeField] private Transform spawnLocation;
-
     [SerializeField] private float cameraPanSpeed = 3.0f;
     private bool _spawning = true;
 
@@ -25,19 +22,9 @@ public class GroundController : MonoBehaviour
         StartCoroutine(SpawnLoop());
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         MoveChildren();
-    }
-
-    private void AddSegment(GameObject seg)
-    {
-        currentSegments.Add(seg);
-    }
-
-    public void RemoveSegment(GameObject seg)
-    {
-        currentSegments.Remove(seg);
     }
 
     private IEnumerator SpawnLoop()
@@ -47,15 +34,25 @@ public class GroundController : MonoBehaviour
             var segToSpawn = segments[Random.Range(0, segments.Count-1)];
             var segment = Instantiate(segToSpawn, spawnLocation.transform.position, segToSpawn.transform.rotation);
             AddSegment(segment);
-            var segLength = segment.GetComponent<GroundSegment>().GetLength();
-            yield return new WaitForSeconds(7.5f * segLength);  
+            yield return new WaitForSeconds(7.5f);  
         }
     }
+
     private void MoveChildren()
     {
         foreach (var child in currentSegments)
         {
-            child.transform.Translate(new Vector3(0,0, -cameraPanSpeed * Time.fixedDeltaTime));
+            child.transform.Translate(new Vector3(0,0, -cameraPanSpeed * Time.deltaTime));
         }
+    }
+    
+    private void AddSegment(GameObject seg)
+    {
+        currentSegments.Add(seg);
+    }
+
+    public void RemoveSegment(GameObject seg)
+    {
+        currentSegments.Remove(seg);
     }
 }
