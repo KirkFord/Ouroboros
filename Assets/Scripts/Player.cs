@@ -4,20 +4,17 @@ public class Player : MonoBehaviour
 {
     private Rigidbody _rb;
     public float playerSpeed = 30.0f;
-<<<<<<< Updated upstream
     [SerializeField] float MaxHealth = 100.0f;
     private float CurrentHealth;
-=======
     private bool _levelOver;//TODO: REMOVE TRUE, ITS FOR DEBUG
     private GroundController _gc;
->>>>>>> Stashed changes
+    
     private void Start()
     {
         _gc = GameObject.Find("GroundController").GetComponent<GroundController>();
         _rb = GetComponent<Rigidbody>();
-<<<<<<< Updated upstream
         CurrentHealth = MaxHealth;
-=======
+
 
         _gc.AllEnemiesKilled += LevelOver;
     }
@@ -28,7 +25,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log("PLAYER ENTER DEADZONE");
         }
->>>>>>> Stashed changes
     }
 
     private void Update()
