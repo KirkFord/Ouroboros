@@ -1,23 +1,36 @@
+using System.Collections;
 using UnityEngine;
 
 public class GroundSegment : MonoBehaviour
 {
-    private GroundController gc;
-    [SerializeField] private int length = 1;
+    private GroundController _gc;
+    private bool moving = true;
+    
     private void Start()
     {
-        gc = GameObject.Find("GROUND").GetComponent<GroundController>();
-        Destroy(gameObject, length * 25);
+        _gc = transform.parent.GetComponent<GroundController>();
+        _gc.AllEnemiesKilled += StopMoving;
+        
+        StartCoroutine(MoveSegment());
     }
 
-    private void OnDestroy()
+    public void Despawn()
     {
-        gc.RemoveSegment(gameObject);
+        _gc.AllEnemiesKilled -= StopMoving;
+        Destroy(gameObject);
     }
 
-    public int GetLength()
+    private IEnumerator MoveSegment()
     {
-        return length;
+        while (moving)
+        {
+            transform.Translate(new Vector3(0,0, -_gc.cameraPanSpeed * Time.deltaTime));
+            yield return null;
+        }
     }
-    
+
+    private void StopMoving()
+    {
+        moving = false;
+    }
 }

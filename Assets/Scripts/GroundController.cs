@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,54 +6,84 @@ using Random = UnityEngine.Random;
 
 public class GroundController : MonoBehaviour
 {
+    public event Action AllEnemiesKilled;
     [SerializeField] private List<GameObject> segments;
-    [SerializeField] private List<GameObject> currentSegments;
-    [SerializeField] private Transform spawnLocation;
-    [SerializeField] private float cameraPanSpeed = 3.0f;
-    private bool _spawning = true;
+    private Queue<GameObject> _currentSegments;
+    public float cameraPanSpeed = 3.0f;
+    [SerializeField] private int segmentsToSpawn = 5; // TODO: DELETE ONCE ENEMIES ARE IMPLEMENTED
+    private GameObject _lastSpawnedSegment;
+    [SerializeField] private GameObject endDoorways;
+    
+    private GameObject _start;
+    [SerializeField] private GameObject end;
+    [SerializeField] private CameraDolly cDolly;
+    
+    
 
     private void Start()
     {
-        for(var i = 0; i <transform.childCount-1; i++)
-        {
-            var child = transform.GetChild(i);
-            if (child.gameObject.layer != 6) continue;
-            currentSegments.Add(child.gameObject);
-        }
+        _currentSegments = new Queue<GameObject>();
+        _start = GameObject.Find("Start");
+        AddSegment(_start);
+        _lastSpawnedSegment = _start;
         StartCoroutine(SpawnLoop());
-    }
-
-    private void Update()
-    {
-        MoveChildren();
     }
 
     private IEnumerator SpawnLoop()
     {
-        while (_spawning)
+        while (segmentsToSpawn > 0)
         {
             var segToSpawn = segments[Random.Range(0, segments.Count-1)];
-            var segment = Instantiate(segToSpawn, spawnLocation.transform.position, segToSpawn.transform.rotation);
+            var segSize = segToSpawn.transform.localScale.z;
+            var spawnSpot = new Vector3(0, 0, _lastSpawnedSegment.transform.position.z + _lastSpawnedSegment.transform.localScale.z/2 + segSize/2);
+
+            var segment = Instantiate(segToSpawn, spawnSpot, segToSpawn.transform.rotation);
+            segmentsToSpawn -= 1;
+            segment.transform.SetParent(transform);
+            _lastSpawnedSegment = segment;
             AddSegment(segment);
-            yield return new WaitForSeconds(7.5f);  
+            yield return new WaitForSeconds(segSize/2);  
         }
+        // TODO: MOVE TO THE GAME MANAGER ONCE TERRAIN GENERATION IS COMPLETE
+        AllEnemiesKilled?.Invoke();
+        LevelComplete();
     }
 
-    private void MoveChildren()
+    private void AddSegment(GameObject seg)
     {
-        foreach (var child in currentSegments)
+        _currentSegments.Enqueue(seg);
+        CheckQueueSize();
+    }
+
+    private GameObject RemoveSegment()
+    {
+        return _currentSegments.Dequeue();
+    }
+
+    private void CheckQueueSize()
+    {
+        //MAX SEGMENTS ALLOWED
+        if (_currentSegments.Count > 5)
         {
-            child.transform.Translate(new Vector3(0,0, -cameraPanSpeed * Time.deltaTime));
+            RemoveSegment().GetComponent<GroundSegment>().Despawn();
         }
     }
     
-    private void AddSegment(GameObject seg)
+
+    private void LevelComplete()
     {
-        currentSegments.Add(seg);
+        MoveEndPlatform();
+        cDolly.FollowPlayer();
     }
 
-    public void RemoveSegment(GameObject seg)
+    private  void MoveEndPlatform()
     {
-        currentSegments.Remove(seg);
+        var segmentLength = _lastSpawnedSegment.transform.localScale.z;
+        var lenOfDoorway = endDoorways.transform.localScale.z;
+        var endSpot = new Vector3(0, 0, _lastSpawnedSegment.transform.position.z + segmentLength/2 + lenOfDoorway/2);
+        end.transform.position = endSpot;
+        end.gameObject.SetActive(true);
     }
+
+    
 }
