@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemiesManager : MonoBehaviour
 {
+    public static EnemiesManager instance = null;
     [SerializeField] private GameObject enemy;
 
     //[SerializeField] private Vector2 spawnArea;
@@ -11,12 +12,23 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] private float spawnTimer;
 
     [SerializeField] private GameObject player;
-
+    
     private float timer;
+
+    [SerializeField] public int EnemiesSpawned;
+
+    [SerializeField] public int EnemiesMaxOnScreen;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -32,13 +44,20 @@ public class EnemiesManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
+        if (EnemiesSpawned >= EnemiesMaxOnScreen)
+        {
+            return;
+        }
+        
         Vector3 position = GenerateRandomPosition();
 
         position += player.transform.position;
-        
+
         GameObject newEnemy = Instantiate(enemy);
         newEnemy.transform.position = position;
         newEnemy.GetComponent<Enemy>().SetTarget(player);
+
+        EnemiesSpawned += 1;
     }
 
     private Vector3 GenerateRandomPosition()
