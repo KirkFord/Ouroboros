@@ -14,14 +14,14 @@ public class Player : MonoBehaviour
     
     private void Start()
     {
-        CurrentHealth = MaxHealth;
+        if (SceneManager.GetActiveScene().name != "HealingRoom") {
+            _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            _gm.AllEnemiesKilled += LevelOver;
+        } else {
+            _levelOver = true;
+        }
         _rb = GetComponent<Rigidbody>();
-        _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        _rb = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
-
-
-        _gm.AllEnemiesKilled += LevelOver;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,8 +63,12 @@ public class Player : MonoBehaviour
         }
         Debug.Log("player taking damage");
     }
-    
-    
-    
 
+    public void Heal(float healAmt) {
+        CurrentHealth += healAmt;
+        if (CurrentHealth >= MaxHealth) {
+            CurrentHealth = MaxHealth;
+        }
+        Debug.Log("Healing player by " + healAmt + "; New HP: " + CurrentHealth);
+    }
 }

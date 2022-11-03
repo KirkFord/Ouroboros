@@ -180,6 +180,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6796dc0850bff614b9dd56e0b61dff41, type: 3}
+--- !u!1 &139647323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139647325}
+  - component: {fileID: 139647324}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &139647324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139647323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d40f1356e212b4fb0525006ca7fbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesRemaining: 10
+  terrainMoveSpeed: 3
+--- !u!4 &139647325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139647323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.063055, y: -2.0717049, z: -8.710578}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &188896968 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8185021108150545224, guid: 18802a404190ede468c6d8d31f70854d, type: 3}
+  m_PrefabInstance: {fileID: 1789219195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bf4890838b2ff43861db93de1b51ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &366107972
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +249,7 @@ GameObject:
   - component: {fileID: 366107975}
   - component: {fileID: 366107974}
   - component: {fileID: 366107973}
+  - component: {fileID: 366107977}
   m_Layer: 0
   m_Name: CampFire
   m_TagString: Untagged
@@ -277,6 +335,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &366107977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366107972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb8b56ecf4ecd041a7ea020e4b24b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 188896968}
 --- !u!1001 &1051005509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -500,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8185021108150545230, guid: 18802a404190ede468c6d8d31f70854d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.9
+      value: -17.98
       objectReference: {fileID: 0}
     - target: {fileID: 8185021108150545230, guid: 18802a404190ede468c6d8d31f70854d, type: 3}
       propertyPath: m_LocalRotation.w

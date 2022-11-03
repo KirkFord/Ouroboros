@@ -12,9 +12,11 @@ public class GroundSegment : MonoBehaviour
     {
 
         _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        _gm.AllEnemiesKilled += StopMoving;
+        if (SceneManager.GetActiveScene().name != "HealingRoom") {
+            _gm.AllEnemiesKilled += StopMoving;
         
-        StartCoroutine(MoveSegment());
+            StartCoroutine(MoveSegment());
+        }
     }
 
     public void Despawn()
