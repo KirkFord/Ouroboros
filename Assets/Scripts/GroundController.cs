@@ -13,7 +13,9 @@ public class GroundController : MonoBehaviour
     [SerializeField] private int segmentsToSpawn = 5; // TODO: DELETE ONCE ENEMIES ARE IMPLEMENTED
     private GameObject _lastSpawnedSegment;
     [SerializeField] private GameObject endDoorways;
-    
+
+    [SerializeField] private List<GameObject> doorList;
+
     private GameObject _start;
     [SerializeField] private GameObject end;
     [SerializeField] private CameraDolly cDolly;
@@ -33,7 +35,7 @@ public class GroundController : MonoBehaviour
     {
         while (segmentsToSpawn > 0)
         {
-            var segToSpawn = segments[Random.Range(0, segments.Count-1)];
+            var segToSpawn = segments[Random.Range(0, segments.Count)];
             var segSize = segToSpawn.transform.localScale.z;
             var spawnSpot = new Vector3(0, 0, _lastSpawnedSegment.transform.position.z + _lastSpawnedSegment.transform.localScale.z/2 + segSize/2);
 
@@ -44,7 +46,7 @@ public class GroundController : MonoBehaviour
             AddSegment(segment);
             yield return new WaitForSeconds(segSize/2);  
         }
-        // TODO: MOVE TO THE GAME MANAGER ONCE TERRAIN GENERATION IS COMPLETE
+        // TODO: MOVE EVENT TO THE GAME MANAGER ONCE TERRAIN GENERATION IS COMPLETE
         AllEnemiesKilled?.Invoke();
         LevelComplete();
     }
@@ -72,18 +74,25 @@ public class GroundController : MonoBehaviour
 
     private void LevelComplete()
     {
-        MoveEndPlatform();
+        SummonEndPlatform();
         cDolly.FollowPlayer();
     }
 
-    private  void MoveEndPlatform()
+    private  void SummonEndPlatform()
     {
         var segmentLength = _lastSpawnedSegment.transform.localScale.z;
         var lenOfDoorway = endDoorways.transform.localScale.z;
         var endSpot = new Vector3(0, 0, _lastSpawnedSegment.transform.position.z + segmentLength/2 + lenOfDoorway/2);
         end.transform.position = endSpot;
         end.gameObject.SetActive(true);
-    }
 
-    
+        var leftDoorSlot = end.transform.GetChild(0);
+        var rightDoorSlot = end.transform.GetChild(1);
+
+        var leftDoor = doorList[Random.Range(0, doorList.Count)];
+        doorList.Remove(leftDoor);
+        var rightDoor = doorList[Random.Range(0, doorList.Count)];
+        Instantiate(leftDoor, leftDoorSlot.transform.position, leftDoor.transform.rotation);
+        Instantiate(rightDoor, rightDoorSlot.transform.position, rightDoor.transform.rotation);
+    }
 }

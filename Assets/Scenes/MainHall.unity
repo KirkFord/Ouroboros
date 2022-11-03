@@ -363,6 +363,10 @@ MonoBehaviour:
   cameraPanSpeed: 2
   segmentsToSpawn: 1
   endDoorways: {fileID: 8921374375384107974, guid: bbba2cbb199ddad4c8cdaf399a278fcf, type: 3}
+  doorList:
+  - {fileID: 1231801022770347599, guid: d643379dba91d3e4ebeb639a4dbfa736, type: 3}
+  - {fileID: 2458914672472877649, guid: 8518071bfd49a7743bbf1726cbb0ba19, type: 3}
+  - {fileID: 7077197399821876070, guid: 3a1f128532d1b5849b67ae329aeb8c6a, type: 3}
   end: {fileID: 703819007}
   cDolly: {fileID: 201834986}
 --- !u!1 &651360598
@@ -494,6 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
+  MaxHealth: 100
 --- !u!1 &703819007 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8921374375384107974, guid: bbba2cbb199ddad4c8cdaf399a278fcf, type: 3}
@@ -591,7 +596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: -0.01375391, y: -0.9058277, z: 0.42239434, w: -0.029495358}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -0.079, y: 4.453, z: 1.216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

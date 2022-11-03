@@ -4,7 +4,7 @@ using UnityEngine;
 public class GroundSegment : MonoBehaviour
 {
     private GroundController _gc;
-    private bool moving = true;
+    private bool _moving = true;
     
     private void Start()
     {
@@ -22,7 +22,7 @@ public class GroundSegment : MonoBehaviour
 
     private IEnumerator MoveSegment()
     {
-        while (moving)
+        while (_moving)
         {
             transform.Translate(new Vector3(0,0, -_gc.cameraPanSpeed * Time.deltaTime));
             yield return null;
@@ -31,6 +31,6 @@ public class GroundSegment : MonoBehaviour
 
     private void StopMoving()
     {
-        moving = false;
+        _moving = false;
     }
 }
