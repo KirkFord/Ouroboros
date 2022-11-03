@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -11,12 +13,14 @@ public class Player : MonoBehaviour
     
     private void Start()
     {
-        _gc = GameObject.Find("GroundController").GetComponent<GroundController>();
-        _rb = GetComponent<Rigidbody>();
+        if (SceneManager.GetActiveScene().name != "HealingRoom") {
+            _gc = GameObject.Find("GroundController").GetComponent<GroundController>();
+            _gc.AllEnemiesKilled += LevelOver;
+        } else {
+            _levelOver = true;
+        }
         CurrentHealth = MaxHealth;
-
-
-        _gc.AllEnemiesKilled += LevelOver;
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void OnTriggerEnter(Collider other)

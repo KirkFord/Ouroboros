@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GroundSegment : MonoBehaviour
 {
@@ -8,10 +10,12 @@ public class GroundSegment : MonoBehaviour
     
     private void Start()
     {
-        _gc = transform.parent.GetComponent<GroundController>();
-        _gc.AllEnemiesKilled += StopMoving;
-        
-        StartCoroutine(MoveSegment());
+        if (SceneManager.GetActiveScene().name != "HealingRoom") {
+            _gc = transform.parent.GetComponent<GroundController>();
+            _gc.AllEnemiesKilled += StopMoving;
+            
+            StartCoroutine(MoveSegment());    
+        }
     }
 
     public void Despawn()
