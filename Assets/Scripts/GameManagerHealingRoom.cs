@@ -8,24 +8,28 @@ public class GameManagerHealingRoom : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject leftFrame;
     [SerializeField] private GameObject rightFrame;
+    private int i = 0;
+
     
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
-    {
-        switchToMainScene();
+    {   
+        if (isInDoorFrame(player) && i == 0) {
+            i = 1;
+            setMainScene();
+        } else if (i == 1) {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("MainHall"));        
+        }
     }
 
-    private void switchToMainScene() {        
-        if (isInDoorFrame(player)) {
-            Debug.Log("SceneManager.GetSceneByName(MainHall): " + SceneManager.GetSceneByName("MainHall").name);
-            SceneManager.LoadScene("MainHall");
-        }
+    private void setMainScene() {
+        SceneManager.LoadScene("MainHall");
     }
 
     private bool isInDoorFrame(GameObject go) {
