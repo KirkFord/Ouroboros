@@ -4,23 +4,24 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    private GameManager _gm;
     private Rigidbody _rb;
     public float playerSpeed = 30.0f;
     [SerializeField] float MaxHealth = 100.0f;
     private float CurrentHealth;
-    private bool _levelOver;//TODO: REMOVE TRUE, ITS FOR DEBUG
+    private bool _levelOver;
     private GroundController _gc;
     
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name != "HealingRoom") {
-            _gc = GameObject.Find("GroundController").GetComponent<GroundController>();
-            _gc.AllEnemiesKilled += LevelOver;
-        } else {
-            _levelOver = true;
-        }
         CurrentHealth = MaxHealth;
         _rb = GetComponent<Rigidbody>();
+        _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _rb = GetComponent<Rigidbody>();
+        CurrentHealth = MaxHealth;
+
+
+        _gm.AllEnemiesKilled += LevelOver;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -5,22 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class GroundSegment : MonoBehaviour
 {
-    private GroundController _gc;
+    private GameManager _gm;
     private bool _moving = true;
     
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name != "HealingRoom") {
-            _gc = transform.parent.GetComponent<GroundController>();
-            _gc.AllEnemiesKilled += StopMoving;
-            
-            StartCoroutine(MoveSegment());    
-        }
+
+        _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _gm.AllEnemiesKilled += StopMoving;
+        
+        StartCoroutine(MoveSegment());
     }
 
     public void Despawn()
     {
-        _gc.AllEnemiesKilled -= StopMoving;
+        _gm.AllEnemiesKilled -= StopMoving;
         Destroy(gameObject);
     }
 
@@ -28,7 +27,7 @@ public class GroundSegment : MonoBehaviour
     {
         while (_moving)
         {
-            transform.Translate(new Vector3(0,0, -_gc.cameraPanSpeed * Time.deltaTime));
+            transform.Translate(new Vector3(0,0, -_gm.terrainMoveSpeed * Time.deltaTime));
             yield return null;
         }
     }
