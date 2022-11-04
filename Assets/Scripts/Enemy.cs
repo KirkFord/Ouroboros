@@ -43,10 +43,10 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("attacking");
+        //Debug.Log("attacking");
     }
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         Debug.Log("enemy taking damage");
         CurrentHealth -= damage;

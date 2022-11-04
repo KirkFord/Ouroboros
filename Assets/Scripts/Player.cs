@@ -12,6 +12,13 @@ public class Player : MonoBehaviour
     private bool _levelOver;
     private GroundController _gc;
     
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+        CurrentHealth = MaxHealth;
+    }
+
+
     private void Start()
     {
         if (SceneManager.GetActiveScene().name != "HealingRoom") {
@@ -20,8 +27,7 @@ public class Player : MonoBehaviour
         } else {
             _levelOver = true;
         }
-        _rb = GetComponent<Rigidbody>();
-        CurrentHealth = MaxHealth;
+        
     }
 
     private void OnTriggerEnter(Collider other)
