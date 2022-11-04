@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] float MaxHealth = 100.0f;
     private float CurrentHealth;
     private Rigidbody rgbd;
+    public GameObject LootObject;
+    private bool collected;
+
     private void Awake()
     {
         rgbd = GetComponent<Rigidbody>();
@@ -51,6 +54,12 @@ public class Enemy : MonoBehaviour
         {
             Destroy(this.GameObject());
             EnemiesManager.instance.EnemiesSpawned -= 1;
+
+            int randomNumber = UnityEngine.Random.Range(1,3);
+            if(randomNumber == 1)
+            {
+                var loot = Instantiate(LootObject, transform.position, Quaternion.identity);
+            }
         }
     }
 }
