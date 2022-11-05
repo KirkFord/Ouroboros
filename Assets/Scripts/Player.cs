@@ -17,8 +17,7 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
     }
-
-
+    
     private void Start()
     {
         if (SceneManager.GetActiveScene().name == "MainHall") {
@@ -72,11 +71,12 @@ public class Player : MonoBehaviour
     {
         _levelOver = true;
     }
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
+            _gm.ResetRun();
             Debug.Log("this dude is dead");
         }
         Debug.Log("player taking damage");

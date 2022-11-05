@@ -42,10 +42,14 @@ public class GameManager : MonoBehaviour
             case "MainHall":
                 LoadMainHall();
                 break;
-            
-            case "HealingRoom":
-                break;
         }
+    }
+
+    public void ResetRun()
+    {
+        _loops = 0;
+        _eM.EnemiesSpawned = 0;
+        SceneManager.LoadScene("MainHall");
     }
 
     private void LoadManagers()

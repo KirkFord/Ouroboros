@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
-        //Debug.Log("attacking");
+        player.GetComponent<Player>().TakeDamage(20f);
     }
 
     public void TakeDamage(float damage)

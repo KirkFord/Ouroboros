@@ -246,7 +246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447879985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.31, z: 4.76}
+  m_LocalPosition: {x: 0, y: -1.31, z: 9.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -276,7 +276,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 25, y: 1, z: 4.35}
+  m_Size: {x: 25, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &536442203
 GameObject:
@@ -402,6 +402,7 @@ MonoBehaviour:
   - {fileID: 7077197399821876070, guid: 3a1f128532d1b5849b67ae329aeb8c6a, type: 3}
   end: {fileID: 703819007}
   cDolly: {fileID: 201834986}
+  _levelComplete: 0
 --- !u!1 &703819007 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8921374375384107974, guid: bbba2cbb199ddad4c8cdaf399a278fcf, type: 3}
