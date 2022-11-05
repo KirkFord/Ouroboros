@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 public class EnemiesManager : MonoBehaviour
 {
-    public EnemiesManager instance;
+    public static EnemiesManager instance;
     [SerializeField] private GameObject enemy;
     public event Action EnemyKilled;
 

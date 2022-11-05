@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _eM = GameObject.Find("EnemiesManager").GetComponent<EnemiesManager>().instance;
+        _eM = EnemiesManager.instance;
     }
 
     private void OnEnable()

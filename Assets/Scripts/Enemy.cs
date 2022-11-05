@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), GameObject.Find("MaxDistance").GetComponent<Collider>(), true);
-        _eM = GameObject.Find("EnemiesManager").GetComponent<EnemiesManager>().instance;
+        _eM = EnemiesManager.instance;
         player = GameObject.Find("Player");
         rgbd = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
