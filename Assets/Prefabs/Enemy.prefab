@@ -128,6 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba02605b2d653347b91effa0b3acae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1
   MaxHealth: 100
   LootObject: {fileID: 1488104876672236656, guid: 7ddbe7375c9bd1949a95a5c93d30a566, type: 3}

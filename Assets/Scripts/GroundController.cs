@@ -22,7 +22,7 @@ public class GroundController : MonoBehaviour
 
     private void Start()
     {
-        _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _gm = GameManager.Instance;
         _gm.AllEnemiesKilled += LevelComplete;
         _currentSegments = new Queue<GameObject>();
         _start = GameObject.Find("Start");

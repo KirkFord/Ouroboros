@@ -10,13 +10,14 @@ public class GameManager : MonoBehaviour
     private GroundController _gc;
     private EnemiesManager _eM;
     public event Action AllEnemiesKilled;
-    [SerializeField]private int enemiesRemaining = 10;
+    private int _enemiesRemaining;
     public float terrainMoveSpeed = 3.0f;
 
-    private int loops = 0;
+    private int _loops;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
         if (Instance == null)
         {
             Instance = this;
@@ -27,24 +28,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        _eM = EnemiesManager.instance;
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        _eM.EnemyKilled += EnemyDied;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        _eM.EnemyKilled -= EnemyDied;
-    }
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Loaded " + scene.name);
+        
         switch (scene.name)
         {
             case "MainHall":
@@ -53,28 +40,32 @@ public class GameManager : MonoBehaviour
             
             case "HealingRoom":
                 break;
-            
-            
         }
     }
 
     private void LoadMainHall()
     {
-        loops += 1;
-        _eM.EnemiesSpawned = 10 * loops;
+        if (_eM == null)
+        {
+            _eM = EnemiesManager.instance;
+            _eM.EnemyKilled += EnemyDied;
+            _eM.SetUpNextLevel(_enemiesRemaining); 
+        } 
+        
+        _loops += 1;
+        _enemiesRemaining = 10 * _loops;
+        _eM.SetUpNextLevel(_enemiesRemaining); 
         StartCoroutine(CheckEnemiesRemaining());
-        
-        
-    }
-
-    private IEnumerator CheckEnemiesRemaining()
-    {
-        while (enemiesRemaining > 0) yield return null;
-        AllEnemiesKilled?.Invoke();
     }
 
     private void EnemyDied()
     {
-        
+        _enemiesRemaining -= 1;
+    }
+
+    private IEnumerator CheckEnemiesRemaining()
+    {
+        while (_enemiesRemaining > 0) yield return null;
+        AllEnemiesKilled?.Invoke();
     }
 }

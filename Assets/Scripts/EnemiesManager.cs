@@ -8,17 +8,18 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] private GameObject enemy;
     public event Action EnemyKilled;
 
+    public int enemiesToSpawn;
+
     //[SerializeField] private Vector2 spawnArea;
 
     [SerializeField] private float spawnTimer;
 
-    [SerializeField] private GameObject player;
-    
     private float timer;
 
     [SerializeField] public int EnemiesSpawned;
 
     [SerializeField] public int EnemiesMaxOnScreen;
+    private GameManager _gM;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -36,29 +37,34 @@ public class EnemiesManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        timer -= Time.deltaTime;
-        if (timer < 0f)
-        {
-            SpawnEnemy();
-            timer = spawnTimer;
-        }
+        SpawnEnemy();
+    }
+
+    public void SetUpNextLevel(int enemiesInlevel)
+    {
+        enemiesToSpawn = enemiesInlevel;
+    }
+
+    public void SetUpManager()
+    {
+        _gM = GameManager.Instance;
     }
 
     private void SpawnEnemy()
     {
-        if (EnemiesSpawned >= EnemiesMaxOnScreen)
-        {
-            return;
-        }
-        
-        Vector3 position = GenerateRandomPosition();
+        if (enemiesToSpawn <= 0) return;
+        timer -= Time.deltaTime;
+        if (!(timer < 0f)) return;
+        if (EnemiesSpawned >= EnemiesMaxOnScreen) return;
 
-        position += player.transform.position;
+        Vector3 position = GenerateRandomPosition();
 
         GameObject newEnemy = Instantiate(enemy);
         newEnemy.transform.position = position;
 
         EnemiesSpawned += 1;
+        enemiesToSpawn -= 1;
+        timer = spawnTimer;
     }
 
     private static Vector3 GenerateRandomPosition()

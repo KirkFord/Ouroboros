@@ -20,16 +20,20 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), GameObject.Find("MaxDistance").GetComponent<Collider>(), true);
-        _eM = EnemiesManager.instance;
         player = GameObject.Find("Player");
         rgbd = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
     }
+
+    private void Start()
+    {
+        _eM = EnemiesManager.instance;
+    }
+
     private void LateUpdate()
     {
-        Vector3 direction = (player.transform.position - transform.position).normalized;
+        Vector3 direction = (player.transform.position - transform.position);
         rgbd.velocity = direction * speed;
-        
     }
     
 

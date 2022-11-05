@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         if (SceneManager.GetActiveScene().name != "HealingRoom") {
-            _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            _gm = GameManager.Instance;
             _gm.AllEnemiesKilled += LevelOver;
         } else {
             _levelOver = true;
