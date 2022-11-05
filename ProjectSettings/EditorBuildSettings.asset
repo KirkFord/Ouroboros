@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/HealingRoom.unity
+    path: Assets/Scenes/oldhealingroom.unity
     guid: 6cb68767fd527844ea709c1a7288037e
   - enabled: 1
     path: Assets/Scenes/MainHall.unity
