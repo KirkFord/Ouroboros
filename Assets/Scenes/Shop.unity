@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: ffd54389cd1775246b57eada3b64f9cb, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 2e60622fbc441674a8454e161e380ae1, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -267,7 +267,6 @@ GameObject:
   - component: {fileID: 170202058}
   - component: {fileID: 170202057}
   - component: {fileID: 170202056}
-  - component: {fileID: 170202055}
   m_Layer: 6
   m_Name: wall3
   m_TagString: GroundSegment
@@ -275,18 +274,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &170202055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170202054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0817d556bdf1540828355cf7ee1bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &170202056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -377,7 +364,6 @@ GameObject:
   - component: {fileID: 199516992}
   - component: {fileID: 199516991}
   - component: {fileID: 199516990}
-  - component: {fileID: 199516989}
   m_Layer: 6
   m_Name: wall
   m_TagString: GroundSegment
@@ -385,18 +371,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &199516989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199516988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0817d556bdf1540828355cf7ee1bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &199516990
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -585,7 +559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb8b56ecf4ecd041a7ea020e4b24b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!1001 &481311928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -743,7 +716,6 @@ GameObject:
   - component: {fileID: 1529676072}
   - component: {fileID: 1529676071}
   - component: {fileID: 1529676070}
-  - component: {fileID: 1529676069}
   m_Layer: 6
   m_Name: wall2
   m_TagString: GroundSegment
@@ -751,18 +723,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1529676069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529676068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0817d556bdf1540828355cf7ee1bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1529676070
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1061,7 +1021,6 @@ GameObject:
   - component: {fileID: 1997319907}
   - component: {fileID: 1997319906}
   - component: {fileID: 1997319905}
-  - component: {fileID: 1997319904}
   m_Layer: 6
   m_Name: wall4
   m_TagString: GroundSegment
@@ -1069,18 +1028,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1997319904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997319903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0817d556bdf1540828355cf7ee1bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1997319905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1335,7 +1282,6 @@ GameObject:
   - component: {fileID: 7318671409190522158}
   - component: {fileID: 6017611580202527945}
   - component: {fileID: 1312170450726492323}
-  - component: {fileID: 8905383781332409787}
   m_Layer: 6
   m_Name: HealRoom_Floor
   m_TagString: GroundSegment
@@ -1351,15 +1297,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6242075687930569581}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &8905383781332409787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6242075687930569581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0817d556bdf1540828355cf7ee1bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

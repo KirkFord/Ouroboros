@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe825c42692e0b94d9197f6b9a62384f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToChangeTo: 
+  sceneToChangeTo: Puzzle
 --- !u!1 &5907932809332413302
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class GroundController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> segments;
     private Queue<GameObject> _currentSegments;
-    private GameObject _lastSpawnedSegment;
+    [SerializeField]private GameObject _lastSpawnedSegment;
     [SerializeField] private GameObject endDoorways;
 
     [SerializeField] private List<GameObject> doorList;
@@ -16,19 +17,25 @@ public class GroundController : MonoBehaviour
     [SerializeField] private GameObject end;
     [SerializeField] private CameraDolly cDolly;
     private GameManager _gm;
-    private bool _levelComplete;
+    [SerializeField]private bool _levelComplete;
     
     
 
     private void Start()
     {
         _gm = GameManager.Instance;
-        _gm.AllEnemiesKilled += LevelComplete;
+        
         _currentSegments = new Queue<GameObject>();
         _start = GameObject.Find("Start");
+        _gm.AllEnemiesKilled += LevelComplete;
         AddSegment(_start);
         _lastSpawnedSegment = _start;
         StartCoroutine(SpawnLoop());
+    }
+
+    private void OnDestroy()
+    {
+        _gm.AllEnemiesKilled -= LevelComplete;
     }
 
     private IEnumerator SpawnLoop()

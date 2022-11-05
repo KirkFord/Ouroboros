@@ -21,10 +21,11 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name != "HealingRoom") {
+        if (SceneManager.GetActiveScene().name == "MainHall") {
             _gm = GameManager.Instance;
             _gm.AllEnemiesKilled += LevelOver;
-        } else {
+        } 
+        else {
             _levelOver = true;
         }
         

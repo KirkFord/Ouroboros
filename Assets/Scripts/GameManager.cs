@@ -10,14 +10,13 @@ public class GameManager : MonoBehaviour
     private GroundController _gc;
     private EnemiesManager _eM;
     public event Action AllEnemiesKilled;
-    private int _enemiesRemaining;
+    [SerializeField] private int _enemiesRemaining;
     public float terrainMoveSpeed = 3.0f;
 
     private int _loops;
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        
         if (Instance == null)
         {
             Instance = this;
@@ -26,6 +25,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -34,6 +35,10 @@ public class GameManager : MonoBehaviour
         
         switch (scene.name)
         {
+            case "LOADMANAGERS":
+                LoadManagers();
+                break;
+            
             case "MainHall":
                 LoadMainHall();
                 break;
@@ -43,15 +48,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void LoadManagers()
+    {
+        _eM = EnemiesManager.instance;
+        _eM.SetUpManager();
+        _eM.EnemyKilled += EnemyDied;
+    }
+
     private void LoadMainHall()
     {
-        if (_eM == null)
-        {
-            _eM = EnemiesManager.instance;
-            _eM.EnemyKilled += EnemyDied;
-            _eM.SetUpNextLevel(_enemiesRemaining); 
-        } 
-        
         _loops += 1;
         _enemiesRemaining = 10 * _loops;
         _eM.SetUpNextLevel(_enemiesRemaining); 

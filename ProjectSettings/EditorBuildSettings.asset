@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Healingroom.unity
-    guid: 6cb68767fd527844ea709c1a7288037e
+    path: Assets/Scenes/LOADMANAGERS.unity
+    guid: b4e23df8813f9d04eb96ddb26e348075
   - enabled: 1
     path: Assets/Scenes/MainHall.unity
     guid: 7c3fd29eb32b7c040af00caddc88bc20
+  - enabled: 1
+    path: Assets/Scenes/Heal.unity
+    guid: 6cb68767fd527844ea709c1a7288037e
+  - enabled: 1
+    path: Assets/Scenes/Puzzle.unity
+    guid: 38a37847b5020474d8dff891a52517a2
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 3dfe0168adabc3540813a71bdbeab2e9
   m_configObjects: {}

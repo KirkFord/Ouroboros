@@ -10,7 +10,6 @@ public class GroundSegment : MonoBehaviour
     
     private void Start()
     {
-
         _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         if (SceneManager.GetActiveScene().name != "HealingRoom") {
             _gm.AllEnemiesKilled += StopMoving;
