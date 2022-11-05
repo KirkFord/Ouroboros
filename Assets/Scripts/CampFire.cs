@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CampFire : MonoBehaviour
@@ -10,23 +8,15 @@ public class CampFire : MonoBehaviour
     private float lastHealTime = 0.0f;
     private float healRange = 4.0f;
     
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
+        Heal();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        heal();
-    }
-
-    private void heal() {
-        if (Vector3.Distance(transform.position, player.transform.position) < healRange &&
-            Time.time > lastHealTime + healInterval) {
-                player.Heal(healAmt);
-                lastHealTime = Time.time;
-            }
+    private void Heal() {
+        if (Vector3.Distance(transform.position, player.transform.position) < healRange && Time.time > lastHealTime + healInterval) {
+            player.Heal(healAmt);
+            lastHealTime = Time.time;
+        }
     }
 }

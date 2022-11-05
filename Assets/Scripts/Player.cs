@@ -32,6 +32,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Door"))
+        {
+            other.gameObject.GetComponent<Door>().TeleportPlayer();
+        }
+
         if (other.gameObject.name == "DEADZONE")
         {
             Debug.Log("PLAYER ENTER DEADZONE");

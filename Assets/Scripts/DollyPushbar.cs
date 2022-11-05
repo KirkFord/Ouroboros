@@ -11,6 +11,9 @@ public class DollyPushbar : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        _cD.CheckMovement();
+        if (other.CompareTag("Player"))
+        {
+            _cD.CheckMovement();  
+        }
     }
 }

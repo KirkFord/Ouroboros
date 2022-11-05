@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemiesManager : MonoBehaviour
 {
-    public static EnemiesManager instance = null;
+    public EnemiesManager instance;
     [SerializeField] private GameObject enemy;
+    public event Action EnemyKilled;
 
     //[SerializeField] private Vector2 spawnArea;
 
@@ -19,8 +20,9 @@ public class EnemiesManager : MonoBehaviour
 
     [SerializeField] public int EnemiesMaxOnScreen;
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         if (instance == null)
         {
             instance = this;
@@ -32,7 +34,7 @@ public class EnemiesManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         timer -= Time.deltaTime;
         if (timer < 0f)
@@ -55,18 +57,19 @@ public class EnemiesManager : MonoBehaviour
 
         GameObject newEnemy = Instantiate(enemy);
         newEnemy.transform.position = position;
-        newEnemy.GetComponent<Enemy>().SetTarget(player);
 
         EnemiesSpawned += 1;
     }
 
-    private Vector3 GenerateRandomPosition()
+    private static Vector3 GenerateRandomPosition()
     {
-        Vector3 position = new Vector3();
-        position.x = Random.Range(-12, 12);
-        position.z = 30f;
-        position.y = 0f;
-
+        var position = new Vector3(Random.Range(-10, 10), 1f,30f);
         return position;
+    }
+
+    public void EnemyDied()
+    {
+        EnemiesSpawned -= 1;
+        EnemyKilled?.Invoke();
     }
 }

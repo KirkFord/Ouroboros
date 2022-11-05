@@ -7,35 +7,35 @@ using UnityEngine.Timeline;
 
 public class Enemy : MonoBehaviour
 {
-    private Transform targetDestination;
-    private GameObject targetGameObject;
+    private GameObject player;
     [SerializeField] private float speed;
     [SerializeField] float MaxHealth = 100.0f;
     private float CurrentHealth;
     private Rigidbody rgbd;
     public GameObject LootObject;
     private bool collected;
+    private EnemiesManager _eM;
+    
 
     private void Awake()
     {
+        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), GameObject.Find("MaxDistance").GetComponent<Collider>(), true);
+        _eM = GameObject.Find("EnemiesManager").GetComponent<EnemiesManager>().instance;
+        player = GameObject.Find("Player");
         rgbd = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
     }
-
-    public void SetTarget(GameObject target)
+    private void LateUpdate()
     {
-        targetGameObject = target;
-        targetDestination = target.transform;
-    }
-    private void FixedUpdate()
-    {
-        Vector3 direction = (targetDestination.position - transform.position).normalized;
+        Vector3 direction = (player.transform.position - transform.position).normalized;
         rgbd.velocity = direction * speed;
+        
     }
+    
 
     private void OnCollisionStay(Collision collisionInfo)
     {
-        if (collisionInfo.gameObject == targetGameObject)
+        if (collisionInfo.gameObject.name == "Player")
         {
             Attack();
         }
@@ -53,12 +53,12 @@ public class Enemy : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             Destroy(this.GameObject());
-            EnemiesManager.instance.EnemiesSpawned -= 1;
+            _eM.EnemyDied();
 
             int randomNumber = UnityEngine.Random.Range(1,3);
             if(randomNumber == 1)
             {
-                var loot = Instantiate(LootObject, transform.position, Quaternion.identity);
+                var loot = Instantiate(LootObject, transform.position, LootObject.transform.rotation);
             }
         }
     }
