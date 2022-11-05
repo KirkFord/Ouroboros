@@ -6,7 +6,7 @@ public class Weapon_Slash : MonoBehaviour
     private int _slashCooldown = 20;
     [SerializeField] private GameObject projectile;
 
-    private void Update()
+    private void FixedUpdate()
     {
         Snap();
 
@@ -17,7 +17,7 @@ public class Weapon_Slash : MonoBehaviour
         else
         {
             Slash();
-            _slashCooldown = 250;
+            _slashCooldown = 75;
         }
     }
     
