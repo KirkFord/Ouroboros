@@ -8,13 +8,14 @@ using UnityEngine.Timeline;
 public class Enemy : MonoBehaviour
 {
     private GameObject player;
-    [SerializeField] private float speed;
-    [SerializeField] float MaxHealth = 100.0f;
+    [SerializeField] private float MaxHealth = 100.0f;
+    [SerializeField] private float MoveSpeed = 1.0f;
     private float CurrentHealth;
     private Rigidbody rgbd;
     public GameObject LootObject;
     private bool collected;
     private EnemiesManager _eM;
+    private GameManager _gM;
     
 
     private void Awake()
@@ -28,12 +29,13 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _eM = EnemiesManager.instance;
+        _gM = GameManager.Instance;
     }
 
     private void LateUpdate()
     {
-        Vector3 direction = (player.transform.position - transform.position);
-        rgbd.velocity = direction * speed;
+        transform.position =
+            Vector3.MoveTowards(transform.position, player.transform.position, MoveSpeed * Time.deltaTime);
     }
     
 
