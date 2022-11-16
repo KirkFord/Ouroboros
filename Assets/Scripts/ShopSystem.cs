@@ -48,15 +48,16 @@ public class ShopSystem : MonoBehaviour
         player.DisableMovement();
         HideInteractText();
         _isShopOpen = true;
+        player.gameObject.SetActive(false);
     }
 
     private void CloseShop()
     {
+        player.gameObject.SetActive(true);
         _isShopOpen = false;
         cameraAnim.SetBool(ShopView, false);
         player.EnableMovement();
         ShowInteractText();
-        
     }
 
     private void ShowInteractText()
