@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     private GroundController _gc;
     private bool _canMove = true;
     private bool _canAttack;
+    private Animator animator;
+    [SerializeField] float rotateSpeed;
 
     public event Action EnteredShopZone;
     public event Action LeftShopZone;
@@ -35,7 +37,7 @@ public class Player : MonoBehaviour
         else {
             _levelOver = true;
         }
-        
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -84,12 +86,27 @@ public class Player : MonoBehaviour
         var horizontalInput = Input.GetAxis("Horizontal");
         var verticalInput = Input.GetAxis("Vertical");
 
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            animator.SetBool("isMoving",true);
+        }
+        else if (horizontalInput == 0 && verticalInput == 0)
+        {
+            animator.SetBool("isMoving",false);
+        }
+
         // if this {var=5} elif !this {var=10} -> this ? var=5 : var=10
         // only works when assigning a variable
         _rb.velocity = !_levelOver ? 
             new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed - 3.0f) 
             : 
             new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed);
+        if (_rb.velocity != Vector3.zero)
+        {
+            //transform.forward = _rb.velocity;
+            Quaternion toRotation = Quaternion.LookRotation(_rb.velocity, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+        }
     }
 
     private void LevelOver()
@@ -102,10 +119,17 @@ public class Player : MonoBehaviour
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
-            _gm.ResetRun();
+            DisableMovement();
+            animator.SetBool("isDead",true);
+            Invoke("Death",1.33f);
             Debug.Log("this dude is dead");
         }
         Debug.Log("player taking damage");
+    }
+
+    public void Death()
+    {
+        _gm.ResetRun();
     }
 
     public void Heal(float healAmt) {
