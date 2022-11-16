@@ -1,9 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ShopSystem : MonoBehaviour
 {
-    [SerializeField] private Text interactText;
+    private InteractionManager _iM;
     private bool _isInShopZone;
     
     [SerializeField] private Player player;
@@ -17,6 +16,7 @@ public class ShopSystem : MonoBehaviour
     {
         player.EnteredShopZone += EnteredZone;
         player.LeftShopZone += LeftZone;
+        _iM = InteractionManager.Instance;
     }
 
     private void OnDestroy()
@@ -29,13 +29,11 @@ public class ShopSystem : MonoBehaviour
     {
         if (_isInShopZone && Input.GetKeyDown(KeyCode.F) && !_isShopOpen)
         {
-            Debug.Log("HI");
             OpenShop();
         }
 
         else if (_isShopOpen && Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("BYE");
             CloseShop();   
         }
         
@@ -46,7 +44,7 @@ public class ShopSystem : MonoBehaviour
         shopKeepAnim.Play("Wave",0,0);
         cameraAnim.SetBool(ShopView, true);
         player.DisableMovement();
-        HideInteractText();
+        _iM.HideInteractText();
         _isShopOpen = true;
         player.gameObject.SetActive(false);
     }
@@ -57,30 +55,19 @@ public class ShopSystem : MonoBehaviour
         _isShopOpen = false;
         cameraAnim.SetBool(ShopView, false);
         player.EnableMovement();
-        ShowInteractText();
-    }
-
-    private void ShowInteractText()
-    {
-        interactText.text = "Press [F] to open the Shop.";
-        interactText.enabled = true;
-    }
-
-    private void HideInteractText()
-    {
-        interactText.enabled = false;
+        _iM.ShowInteractText("Press [F] to open the shop");
     }
 
     private void EnteredZone()
     {
         if (_isShopOpen) return;
         _isInShopZone = true;
-        ShowInteractText();
+        _iM.ShowInteractText("Press [F] to open the shop");
     }
 
     private void LeftZone()
     {
         _isInShopZone = false;
-        HideInteractText();
+        _iM.HideInteractText();
     }
 }
