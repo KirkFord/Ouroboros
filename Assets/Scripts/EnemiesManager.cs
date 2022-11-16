@@ -5,7 +5,10 @@ using Random = UnityEngine.Random;
 public class EnemiesManager : MonoBehaviour
 {
     public static EnemiesManager instance;
-    [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject enemy1;
+    [SerializeField] private GameObject enemy2;
+    [SerializeField] private GameObject enemy3;
+    [SerializeField] private GameObject enemy4;
     public event Action EnemyKilled;
 
     public int enemiesToSpawn;
@@ -57,9 +60,28 @@ public class EnemiesManager : MonoBehaviour
         if (!(timer < 0f)) return;
         if (EnemiesSpawned >= EnemiesMaxOnScreen) return;
 
+        var picked = Random.Range(0, 4);
         Vector3 position = GenerateRandomPosition();
 
-        GameObject newEnemy = Instantiate(enemy);
+        GameObject newEnemy = null;
+        switch (picked)
+        {
+            case 0:
+                newEnemy = Instantiate(enemy1);
+                break;
+            case 1:
+                newEnemy = Instantiate(enemy2);
+                break;
+            case 2:
+                newEnemy = Instantiate(enemy3);
+                break;
+            case 3:
+                newEnemy = Instantiate(enemy4);
+                break;
+
+        }
+        
+        //GameObject newEnemy = Instantiate(enemy);
         newEnemy.transform.position = position;
 
         EnemiesSpawned += 1;

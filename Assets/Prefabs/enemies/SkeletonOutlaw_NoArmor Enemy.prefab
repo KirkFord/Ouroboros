@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 573985263391921989}
   - component: {fileID: 2442139614722689537}
   m_Layer: 0
-  m_Name: SkeletonOutlaw_NoArmor - LOD1
+  m_Name: SkeletonOutlaw_NoArmor Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  MoveSpeed: 1
+  MoveSpeed: 6
   LootObject: {fileID: 0}
   deathEffect: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
 --- !u!54 &2442139614722689537
