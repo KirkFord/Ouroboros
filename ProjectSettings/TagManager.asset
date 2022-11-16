@@ -9,6 +9,9 @@ TagManager:
   - Deadzone
   - Door
   - MaxDistance
+  - ShopKeeperInteractZone
+  - DoorInteractZone
+  - Pickup
   layers:
   - Default
   - TransparentFX

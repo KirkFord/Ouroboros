@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,13 @@ public class Player : MonoBehaviour
     private float CurrentHealth;
     private bool _levelOver;
     private GroundController _gc;
+    private bool _canMove = true;
+    private bool _canAttack;
+
+    public event Action EnteredShopZone;
+    public event Action LeftShopZone;
+    public event Action EnteredDoorZone;
+    public event Action LeftDoorZone;
     
     private void Awake()
     {
@@ -32,9 +40,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Door"))
+        if (other.gameObject.CompareTag("DoorInteractZone"))
         {
-            other.gameObject.GetComponent<Door>().TeleportPlayer();
+            EnteredDoorZone?.Invoke();
+        }
+        if (other.gameObject.CompareTag("ShopKeeperInteractZone"))
+        {
+            EnteredShopZone?.Invoke();
         }
 
         if (other.gameObject.name == "DEADZONE")
@@ -49,6 +61,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("DoorInteractZone"))
+        {
+            LeftDoorZone?.Invoke();
+        }
+        if (other.CompareTag("ShopKeeperInteractZone"))
+        {
+            LeftShopZone?.Invoke();
+        }
+    }
+
     private void Update()
     {
         Move();
@@ -56,6 +80,7 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
+        if (!_canMove) return;
         var horizontalInput = Input.GetAxis("Horizontal");
         var verticalInput = Input.GetAxis("Vertical");
 
@@ -70,6 +95,7 @@ public class Player : MonoBehaviour
     private void LevelOver()
     {
         _levelOver = true;
+        _canAttack = false;
     }
     public void TakeDamage(float damage)
     {
@@ -88,5 +114,15 @@ public class Player : MonoBehaviour
             CurrentHealth = MaxHealth;
         }
         Debug.Log("Healing player by " + healAmt + "; New HP: " + CurrentHealth);
+    }
+
+    public void EnableMovement()
+    {
+        _canMove = true;
+    }
+    public void DisableMovement()
+    {
+        _canMove = false;
+        _rb.velocity = new Vector3(0, 0, 0);
     }
 }
