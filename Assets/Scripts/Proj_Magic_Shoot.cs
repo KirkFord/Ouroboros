@@ -6,6 +6,7 @@ public class Proj_Magic_Shoot : MonoBehaviour
 {
     private GameObject target;
     private bool hasBeenMade = false;
+    private float moveSpeed = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,16 @@ public class Proj_Magic_Shoot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(hasBeenMade)
+        {
+            Move();
+        }
+    }
 
+    void Move()
+    {
+        transform.LookAt(target.transform);
+        transform.position += transform.forward * moveSpeed * Time.deltaTime;
     }
 
     public void Created(GameObject passTarget)

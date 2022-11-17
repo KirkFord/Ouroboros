@@ -5,7 +5,7 @@ using UnityEngine;
 public class Proj_Slash : MonoBehaviour
 {
     [SerializeField] private float _damage = 500f;
-    [SerializeField] private float lifeTime = 0.5f;
+    [SerializeField] private float lifeTime = 2.0f;
     //[SerializeField] private GameObject player;
 
     // Start is called before the first frame update
