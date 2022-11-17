@@ -7,7 +7,7 @@ public class Weapon_Magic_Shoot : MonoBehaviour
     private int _shootCooldown = 20;
     [SerializeField] private GameObject projectile;
     private GameObject target;
-    [SerializeField] private float range = 20.0f;
+    [SerializeField] private float range = 100.0f;
 
     // Start is called before the first frame update
     void Start()
