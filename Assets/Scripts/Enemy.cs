@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     private bool collected;
     private EnemiesManager _eM;
     private GameManager _gM;
+    private Animator animator;
+    private bool stopMoving;
+    [SerializeField] private GameObject deathEffect;
     
 
     private void Awake()
@@ -30,12 +33,18 @@ public class Enemy : MonoBehaviour
     {
         _eM = EnemiesManager.instance;
         _gM = GameManager.Instance;
+        animator = GetComponent<Animator>();
     }
 
     private void LateUpdate()
     {
-        transform.position =
-            Vector3.MoveTowards(transform.position, player.transform.position, MoveSpeed * Time.deltaTime);
+        if (stopMoving == false)
+        {
+            transform.position =
+                Vector3.MoveTowards(transform.position, player.transform.position, MoveSpeed * Time.deltaTime);
+            transform.LookAt(player.transform);
+        }
+
     }
     
 
@@ -58,8 +67,9 @@ public class Enemy : MonoBehaviour
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
-            Destroy(this.GameObject());
-            _eM.EnemyDied();
+            stopMoving = true;
+            animator.SetBool("isDead",true);
+            Invoke("Death",1.33f);
 
             int randomNumber = UnityEngine.Random.Range(1,3);
             if(randomNumber == 1)
@@ -67,5 +77,14 @@ public class Enemy : MonoBehaviour
                 var loot = Instantiate(LootObject, transform.position, LootObject.transform.rotation);
             }
         }
+    }
+
+    public void Death()
+    {
+        Destroy(this.GameObject());
+        _eM.EnemyDied();
+        GameObject ded = Instantiate(deathEffect,transform.position,transform.rotation);
+        Destroy(ded,1.5f);
+
     }
 }

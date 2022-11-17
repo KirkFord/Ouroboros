@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,15 @@ public class Player : MonoBehaviour
     private float CurrentHealth;
     private bool _levelOver;
     private GroundController _gc;
+    private bool _canMove = true;
+    private bool _canAttack;
+    private Animator animator;
+    [SerializeField] float rotateSpeed;
+
+    public event Action EnteredShopZone;
+    public event Action LeftShopZone;
+    public event Action EnteredDoorZone;
+    public event Action LeftDoorZone;
     
     private void Awake()
     {
@@ -27,14 +37,18 @@ public class Player : MonoBehaviour
         else {
             _levelOver = true;
         }
-        
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Door"))
+        if (other.gameObject.CompareTag("DoorInteractZone"))
         {
-            other.gameObject.GetComponent<Door>().TeleportPlayer();
+            EnteredDoorZone?.Invoke();
+        }
+        if (other.gameObject.CompareTag("ShopKeeperInteractZone"))
+        {
+            EnteredShopZone?.Invoke();
         }
 
         if (other.gameObject.name == "DEADZONE")
@@ -49,6 +63,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("DoorInteractZone"))
+        {
+            LeftDoorZone?.Invoke();
+        }
+        if (other.CompareTag("ShopKeeperInteractZone"))
+        {
+            LeftShopZone?.Invoke();
+        }
+    }
+
     private void Update()
     {
         Move();
@@ -56,8 +82,18 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
+        if (!_canMove) return;
         var horizontalInput = Input.GetAxis("Horizontal");
         var verticalInput = Input.GetAxis("Vertical");
+
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            animator.SetBool("isMoving",true);
+        }
+        else if (horizontalInput == 0 && verticalInput == 0)
+        {
+            animator.SetBool("isMoving",false);
+        }
 
         // if this {var=5} elif !this {var=10} -> this ? var=5 : var=10
         // only works when assigning a variable
@@ -65,21 +101,35 @@ public class Player : MonoBehaviour
             new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed - 3.0f) 
             : 
             new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed);
+        if (_rb.velocity != Vector3.zero)
+        {
+            //transform.forward = _rb.velocity;
+            Quaternion toRotation = Quaternion.LookRotation(_rb.velocity, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+        }
     }
 
     private void LevelOver()
     {
         _levelOver = true;
+        _canAttack = false;
     }
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
-            _gm.ResetRun();
+            DisableMovement();
+            animator.SetBool("isDead",true);
+            Invoke("Death",1.33f);
             Debug.Log("this dude is dead");
         }
         Debug.Log("player taking damage");
+    }
+
+    public void Death()
+    {
+        _gm.ResetRun();
     }
 
     public void Heal(float healAmt) {
@@ -88,5 +138,15 @@ public class Player : MonoBehaviour
             CurrentHealth = MaxHealth;
         }
         Debug.Log("Healing player by " + healAmt + "; New HP: " + CurrentHealth);
+    }
+
+    public void EnableMovement()
+    {
+        _canMove = true;
+    }
+    public void DisableMovement()
+    {
+        _canMove = false;
+        _rb.velocity = new Vector3(0, 0, 0);
     }
 }
