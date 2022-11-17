@@ -365,7 +365,7 @@ Transform:
   - {fileID: 834377147}
   - {fileID: 869361446}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &69510015
 PrefabInstance:
@@ -1676,7 +1676,7 @@ Transform:
   - {fileID: 1839422991}
   - {fileID: 1743933056}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &662895081
 PrefabInstance:
@@ -2808,7 +2808,7 @@ Transform:
   - {fileID: 996976933}
   - {fileID: 69510016}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1029600842
 PrefabInstance:
@@ -2902,7 +2902,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -0.926, y: -60.377, z: -0.235}
 --- !u!1001 &1117512140
 PrefabInstance:
@@ -3055,7 +3055,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -0.926, y: -60.377, z: -0.235}
 --- !u!95 &1203404450
 Animator:
@@ -4237,7 +4237,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 43.831, y: 0.516, z: 0}
 --- !u!1001 &1712478251
 PrefabInstance:
@@ -4521,7 +4521,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1790677036
 PrefabInstance:
@@ -5125,7 +5125,7 @@ Transform:
   m_Children:
   - {fileID: 1904945393}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1963906564
 MonoBehaviour:
