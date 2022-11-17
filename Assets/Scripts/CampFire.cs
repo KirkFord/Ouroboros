@@ -6,7 +6,8 @@ public class CampFire : MonoBehaviour
     private float healAmt = 5.0f;
     private float healInterval = 1.0f; // in seconds
     private float lastHealTime = 0.0f;
-    private float healRange = 4.0f;
+    private float healRange = 6.0f;
+    [SerializeField] private Door door;
 
     private void Start()
     {
@@ -19,9 +20,17 @@ public class CampFire : MonoBehaviour
     }
 
     private void Heal() {
-        if (Vector3.Distance(transform.position, player.transform.position) < healRange && Time.time > lastHealTime + healInterval) {
+        if (Vector3.Distance(transform.position, player.transform.position) < healRange && 
+            Time.time > lastHealTime + healInterval) {
             player.Heal(healAmt);
             lastHealTime = Time.time;
         }
     }
+
+        private void OnTriggerEnter(Collider other) {
+            if (other.CompareTag("Player")) {
+                Debug.Log("Healer collided with player");
+                door.OpenDoor();
+            }
+        }
 }
