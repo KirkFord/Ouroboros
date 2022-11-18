@@ -381,6 +381,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 34636936646bab64fb61023e7f3410ba, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 34636936646bab64fb61023e7f3410ba, type: 3}
       propertyPath: m_Name
       value: Skull (1)
@@ -926,6 +930,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 69a7edade3532ac41a5500bd7987aaec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 69a7edade3532ac41a5500bd7987aaec, type: 3}
       propertyPath: m_Name
       value: Plate_Small (1)
@@ -1015,6 +1023,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 32184c617bf8b624d8d54af843ec427c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 32184c617bf8b624d8d54af843ec427c, type: 3}
       propertyPath: m_Name
       value: Book_Big_DeepRed
@@ -1994,7 +2006,7 @@ BoxCollider:
   m_GameObject: {fileID: 234339573}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2843,6 +2855,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 86eb514168a2b5343a94c3b241459305, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 86eb514168a2b5343a94c3b241459305, type: 3}
       propertyPath: m_Name
       value: Book_Green
@@ -3305,6 +3321,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: b08e173721554e44285d4e3ab0acda13, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b08e173721554e44285d4e3ab0acda13, type: 3}
       propertyPath: m_Name
       value: Bone
@@ -5107,6 +5127,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 8842cdd23cd83c14c9425c0ae07507c7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8842cdd23cd83c14c9425c0ae07507c7, type: 3}
       propertyPath: m_Name
       value: Book_DeepRed (1)
@@ -5406,6 +5430,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 1b73a1dd76adf8c47b44e5557a53568f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1b73a1dd76adf8c47b44e5557a53568f, type: 3}
       propertyPath: m_Name
       value: Key_Silver
@@ -5497,6 +5525,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 34636936646bab64fb61023e7f3410ba, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 34636936646bab64fb61023e7f3410ba, type: 3}
       propertyPath: m_Name
       value: Skull (3)
@@ -6030,6 +6062,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 4009cba106d20f748ab650a274328adc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4009cba106d20f748ab650a274328adc, type: 3}
       propertyPath: m_Name
       value: Key_Rusty
@@ -6471,6 +6507,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fd8f5bc11b0289948b50da67132110ce, type: 3}
       propertyPath: m_Name
       value: Meat
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: fd8f5bc11b0289948b50da67132110ce, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd8f5bc11b0289948b50da67132110ce, type: 3}
@@ -6960,6 +7000,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 69a7edade3532ac41a5500bd7987aaec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 69a7edade3532ac41a5500bd7987aaec, type: 3}
       propertyPath: m_Name
       value: Plate_Small
@@ -7268,6 +7312,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: ac8910006b2a62947a9342d2b6ddfa2a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ac8910006b2a62947a9342d2b6ddfa2a, type: 3}
       propertyPath: m_Name
       value: Scroll_Open
@@ -7716,6 +7764,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 34636936646bab64fb61023e7f3410ba, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 34636936646bab64fb61023e7f3410ba, type: 3}
       propertyPath: m_Name
       value: Skull
@@ -8076,6 +8128,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 5ea2f20c59b62c94cb5613b2b9d46328, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 5ea2f20c59b62c94cb5613b2b9d46328, type: 3}
       propertyPath: m_Name
       value: Plate
@@ -8323,6 +8379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drinkinghorn
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: bff0d08e50f52a145bc100bcf4c67b33, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bff0d08e50f52a145bc100bcf4c67b33, type: 3}
 --- !u!1001 &1320787861
@@ -8479,6 +8539,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 764ac3d453b8da24d91a0894ffdc6655, type: 3}
       propertyPath: m_Name
       value: Bottle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 764ac3d453b8da24d91a0894ffdc6655, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764ac3d453b8da24d91a0894ffdc6655, type: 3}
@@ -8804,6 +8868,10 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8266949716707160794, guid: 34534f9a2d6df1c4f8dee201f8d50aaa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8266949716707160795, guid: 34534f9a2d6df1c4f8dee201f8d50aaa, type: 3}
       propertyPath: m_Name
       value: Candlestick_Triple
@@ -9030,6 +9098,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1014744021}
     m_Modifications:
+    - target: {fileID: 6822879176331142233, guid: 559f839e0f294cf499731ff6070352ac, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6822879176331142234, guid: 559f839e0f294cf499731ff6070352ac, type: 3}
       propertyPath: m_Name
       value: Shelf_Wall
@@ -9913,6 +9985,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 0f9577e3d59f81a45a567d9e256f092c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 0f9577e3d59f81a45a567d9e256f092c, type: 3}
       propertyPath: m_Name
       value: Scroll_Stack
@@ -10300,6 +10376,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 34636936646bab64fb61023e7f3410ba, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 34636936646bab64fb61023e7f3410ba, type: 3}
       propertyPath: m_Name
       value: Skull (2)
@@ -10699,6 +10779,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 8842cdd23cd83c14c9425c0ae07507c7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8842cdd23cd83c14c9425c0ae07507c7, type: 3}
       propertyPath: m_Name
       value: Book_DeepRed
@@ -10905,6 +10989,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 122018831a92b5f49a92b2094a4062d0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 122018831a92b5f49a92b2094a4062d0, type: 3}
       propertyPath: m_Name
       value: Knife
@@ -11399,6 +11487,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 053045d0926c27f46b1a625fbb577e49, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 053045d0926c27f46b1a625fbb577e49, type: 3}
       propertyPath: m_Name
       value: Fork
@@ -11534,6 +11626,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 6f4b9214b0fbf6749a2aa0d49b616c45, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 6f4b9214b0fbf6749a2aa0d49b616c45, type: 3}
       propertyPath: m_Name
       value: Book_Open
@@ -12345,6 +12441,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: ca50010b0ae6b8f4c94725ca828dc68f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ca50010b0ae6b8f4c94725ca828dc68f, type: 3}
       propertyPath: m_Name
       value: Book_Big_Red
@@ -12707,6 +12807,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 2e41661bbaacdea4dbb88e6b20ca88d3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2e41661bbaacdea4dbb88e6b20ca88d3, type: 3}
       propertyPath: m_Name
       value: Quill
@@ -12937,6 +13041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mug
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 882cf729cef5a2e4ab2a057cb8072a5d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 882cf729cef5a2e4ab2a057cb8072a5d, type: 3}
 --- !u!4 &1997134934 stripped
@@ -13121,6 +13229,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1841830113}
     m_Modifications:
+    - target: {fileID: -6860895033569716450, guid: 69a7edade3532ac41a5500bd7987aaec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 69a7edade3532ac41a5500bd7987aaec, type: 3}
       propertyPath: m_Name
       value: Plate_Small (2)
