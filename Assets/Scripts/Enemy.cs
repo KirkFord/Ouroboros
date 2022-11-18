@@ -7,7 +7,7 @@ using UnityEngine.Timeline;
 
 public class Enemy : MonoBehaviour
 {
-    private GameObject player;
+    private Player player;
     [SerializeField] private float MaxHealth = 100.0f;
     [SerializeField] private float MoveSpeed = 1.0f;
     private float CurrentHealth;
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), GameObject.Find("MaxDistance").GetComponent<Collider>(), true);
-        player = GameObject.Find("Player");
+        player = Player.Instance;
         rgbd = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
     }

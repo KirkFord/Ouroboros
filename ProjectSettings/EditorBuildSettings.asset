@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LOADMANAGERS.unity
     guid: b4e23df8813f9d04eb96ddb26e348075
   - enabled: 1
+    path: Assets/Scenes/LOADPLAYER.unity
+    guid: 3150aa7ddce97864dacc2afefe130e14
+  - enabled: 1
     path: Assets/Scenes/MainHall.unity
     guid: 7c3fd29eb32b7c040af00caddc88bc20
   - enabled: 1
