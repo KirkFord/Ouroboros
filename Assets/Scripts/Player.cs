@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     private GameManager _gm;
     private Rigidbody _rb;
-    public float playerSpeed = 30.0f;
+    public float playerSpeed = 10.0f;
     [SerializeField] float MaxHealth = 100.0f;
     private float CurrentHealth;
     private bool _levelOver;
