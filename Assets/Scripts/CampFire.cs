@@ -27,10 +27,10 @@ public class CampFire : MonoBehaviour
         }
     }
 
-        private void OnTriggerEnter(Collider other) {
-            if (other.CompareTag("Player")) {
-                Debug.Log("Healer collided with player");
-                door.OpenDoor();
-            }
-        }
+        // private void OnTriggerEnter(Collider other) {
+        //     if (other.CompareTag("Player")) {
+        //         Debug.Log("Healer collided with player");
+        //         door.OpenDoor();
+        //     }
+        // }
 }
