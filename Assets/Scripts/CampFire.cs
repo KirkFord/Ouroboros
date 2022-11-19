@@ -11,7 +11,7 @@ public class CampFire : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = Player.Instance;
     }
 
     private void Update()

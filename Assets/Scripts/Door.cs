@@ -4,26 +4,19 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private Animator door = null;
     private bool opened = false;
-    private enum Level
-    {
-        LoadManagersLevel = 0,
-        MainLevel = 1,
-        HealLevel = 2,
-        PuzzleLevel = 3,
-        ShopLevel = 4
-    }
 
     private LevelChanger _lC;
     private InteractionManager _iM;
     private Player _player;
     private bool _playerInZone;
     [SerializeField] private Level sceneToChangeTo;
+    private bool alreadyTeleporting;
 
     private void Start()
     {
         _lC = LevelChanger.Instance;
         _iM = InteractionManager.Instance;
-        _player = GameObject.Find("Player").GetComponent<Player>();
+        _player = Player.Instance;
         _player.EnteredDoorZone += PlayerEnteredZone;
         _player.LeftDoorZone += PlayerLeftZone;
     }
@@ -31,8 +24,10 @@ public class Door : MonoBehaviour
     private void Update()
     {
         if (!Input.GetKeyDown(KeyCode.F) || !_playerInZone) return;
+        if (alreadyTeleporting) return;
         _iM.HideInteractText();
-        _lC.FadeToLevel((int)sceneToChangeTo);
+        TeleportPlayer();
+        alreadyTeleporting = true;
     }
 
     private void PlayerEnteredZone()
@@ -47,8 +42,8 @@ public class Door : MonoBehaviour
         _playerInZone = false;
     }
 
-    public void TeleportPlayer() {
-        _lC.FadeToLevel((int)sceneToChangeTo);
+    private void TeleportPlayer() {
+        _lC.FadeToLevel(sceneToChangeTo);
     }
 
     public void OpenDoor() {

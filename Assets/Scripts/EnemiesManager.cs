@@ -37,6 +37,11 @@ public class EnemiesManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _gM = GameManager.Instance;
+    }
+
     // Update is called once per frame
     private void Update()
     {
@@ -46,11 +51,6 @@ public class EnemiesManager : MonoBehaviour
     public void SetUpNextLevel(int enemiesInlevel)
     {
         enemiesToSpawn = enemiesInlevel;
-    }
-
-    public void SetUpManager()
-    {
-        _gM = GameManager.Instance;
     }
 
     private void SpawnEnemy()

@@ -481,7 +481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   MoveSpeed: 3
-  LootObject: {fileID: 0}
+  LootObject: {fileID: 1488104876672236656, guid: 7ddbe7375c9bd1949a95a5c93d30a566, type: 3}
   deathEffect: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
 --- !u!1 &7957435080908073453
 GameObject:

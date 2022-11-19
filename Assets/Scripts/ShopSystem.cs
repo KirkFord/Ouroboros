@@ -5,7 +5,7 @@ public class ShopSystem : MonoBehaviour
     private InteractionManager _iM;
     private bool _isInShopZone;
     
-    [SerializeField] private Player player;
+    private Player _player;
     [SerializeField] private Animator shopKeepAnim;
     [SerializeField] private Animator cameraAnim;
 
@@ -14,15 +14,16 @@ public class ShopSystem : MonoBehaviour
 
     private void Start()
     {
-        player.EnteredShopZone += EnteredZone;
-        player.LeftShopZone += LeftZone;
+        _player = Player.Instance;
+        _player.EnteredShopZone += EnteredZone;
+        _player.LeftShopZone += LeftZone;
         _iM = InteractionManager.Instance;
     }
 
     private void OnDestroy()
     {
-        player.EnteredShopZone -= EnteredZone;
-        player.LeftShopZone -= LeftZone;
+        _player.EnteredShopZone -= EnteredZone;
+        _player.LeftShopZone -= LeftZone;
     }
 
     private void Update()
@@ -43,18 +44,18 @@ public class ShopSystem : MonoBehaviour
     {
         shopKeepAnim.Play("Wave",0,0);
         cameraAnim.SetBool(ShopView, true);
-        player.DisableMovement();
+        _player.DisableMovement();
         _iM.HideInteractText();
         _isShopOpen = true;
-        player.gameObject.SetActive(false);
+        _player.gameObject.SetActive(false);
     }
 
     private void CloseShop()
     {
-        player.gameObject.SetActive(true);
+        _player.gameObject.SetActive(true);
         _isShopOpen = false;
         cameraAnim.SetBool(ShopView, false);
-        player.EnableMovement();
+        _player.EnableMovement();
         _iM.ShowInteractText("Press [F] to open the shop");
     }
 

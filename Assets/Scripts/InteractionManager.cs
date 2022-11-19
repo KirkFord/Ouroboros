@@ -7,7 +7,6 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private Text interactText;
     private void Awake()
     {
-        
         if (Instance == null)
         {
             Instance = this;
