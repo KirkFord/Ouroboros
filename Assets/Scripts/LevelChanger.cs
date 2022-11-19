@@ -53,4 +53,9 @@ public class LevelChanger : MonoBehaviour
     {
         SceneManager.LoadScene((int)_levelToLoad);
     }
+
+    public Level GetLevel() 
+    {
+        return (Level)SceneManager.GetActiveScene().buildIndex;
+    } 
 }

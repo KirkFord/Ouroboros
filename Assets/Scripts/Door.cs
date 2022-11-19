@@ -43,7 +43,12 @@ public class Door : MonoBehaviour
     }
 
     private void TeleportPlayer() {
-        _lC.FadeToLevel(sceneToChangeTo);
+        if (_lC.GetLevel() == Level.HealLevel) {
+            OpenDoor();
+        }
+        _lC.FadeToLevel(
+            sceneToChangeTo
+            );
     }
 
     public void OpenDoor() {
