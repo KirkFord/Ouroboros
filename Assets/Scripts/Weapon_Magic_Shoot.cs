@@ -67,5 +67,6 @@ public class Weapon_Magic_Shoot : MonoBehaviour
         GameObject newProj = Instantiate(projectile, transform.position, transform.rotation);
         Proj_Magic_Shoot myscript = newProj.GetComponent<Proj_Magic_Shoot>();
         myscript.Created(target);
+        FXManager.PlaySound(FXManager.Sound.PlayerBolt);
     }
 }

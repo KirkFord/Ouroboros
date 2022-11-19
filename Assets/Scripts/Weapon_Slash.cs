@@ -31,5 +31,6 @@ public class Weapon_Slash : MonoBehaviour
     {
         GameObject slashObj = Instantiate(projectile, transform.position, transform.rotation);
         slashObj.transform.parent = this.transform;
+        FXManager.PlaySound(FXManager.Sound.PlayerSlash);
     }
 }
