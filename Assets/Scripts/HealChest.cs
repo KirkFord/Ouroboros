@@ -6,7 +6,7 @@ public class ChestHealButton : MonoBehaviour
 {
    private CampFire campfire;
 
-   private void ChestHeal() {
-    campfire.Heal();
-   }
+   //private void ChestHeal() {
+    //campfire.Heal();
+   //}
 }

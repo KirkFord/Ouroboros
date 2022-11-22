@@ -11,17 +11,17 @@ public class SoundAssets : MonoBehaviour
     {
         get
         {
-            if (_i == null) _i = (Instantiate(Resources.Load("FXAssets")) as GameObject).GetComponent<SoundAssets>();
+            if (_i == null) _i = (Instantiate(Resources.Load("FXAssets")) as GameObject)?.GetComponent<SoundAssets>();
                 return _i;
         }
     }
 
     public SoundAudioClip[] FXArray;
 
-    [System.Serializable]
+    [Serializable]
     public class SoundAudioClip
     {
-        public FXManager.Sound sound;
+        public BGM.Sound sound;
         public AudioClip audioClip;
     }
     

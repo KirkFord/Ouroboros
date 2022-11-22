@@ -8,11 +8,12 @@ public class Weapon_Magic_Shoot : MonoBehaviour
     [SerializeField] private GameObject projectile;
     private GameObject target;
     [SerializeField] private float range = 100.0f;
+    private BGM bgm;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        bgm = BGM.instance;
     }
 
     // Update is called once per frame
@@ -67,6 +68,6 @@ public class Weapon_Magic_Shoot : MonoBehaviour
         GameObject newProj = Instantiate(projectile, transform.position, transform.rotation);
         Proj_Magic_Shoot myscript = newProj.GetComponent<Proj_Magic_Shoot>();
         myscript.Created(target);
-        FXManager.PlaySound(FXManager.Sound.PlayerBolt);
+        bgm.PlaySound(BGM.Sound.PlayerBolt);
     }
 }
