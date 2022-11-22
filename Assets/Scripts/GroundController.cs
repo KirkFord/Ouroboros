@@ -8,11 +8,10 @@ public class GroundController : MonoBehaviour
     [SerializeField] private List<GameObject> segments;
     private Queue<GameObject> _currentSegments;
     [SerializeField]private GameObject _lastSpawnedSegment;
-    [SerializeField] private GameObject endDoorways;
 
     [SerializeField] private List<GameObject> doorList;
 
-    private GameObject _start;
+    [SerializeField] private GameObject _start;
     [SerializeField] private GameObject end;
     [SerializeField] private CameraDolly cDolly;
     private GameManager _gm;
@@ -25,7 +24,6 @@ public class GroundController : MonoBehaviour
         _gm = GameManager.Instance;
         
         _currentSegments = new Queue<GameObject>();
-        _start = GameObject.Find("Start");
         _gm.AllEnemiesKilled += LevelComplete;
         AddSegment(_start);
         _lastSpawnedSegment = _start;
@@ -84,10 +82,11 @@ public class GroundController : MonoBehaviour
     private  void SummonEndPlatform()
     {
         var segmentLength = _lastSpawnedSegment.transform.localScale.z;
-        var lenOfDoorway = endDoorways.transform.localScale.z;
+        var lenOfDoorway = end.transform.localScale.z;
         var endSpot = new Vector3(0, 0, _lastSpawnedSegment.transform.position.z + segmentLength/2 + lenOfDoorway/2);
-        end.transform.position = endSpot;
-        end.gameObject.SetActive(true);
+        var endPlatform = Instantiate(end, endSpot, end.transform.rotation);
+        cDolly.SetEnd(endPlatform);
+
 
         // var leftDoorSlot = end.transform.GetChild(0);
         // var rightDoorSlot = end.transform.GetChild(1);

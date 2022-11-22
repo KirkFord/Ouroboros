@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
     private GameManager _gm;
     private Rigidbody _rb;
-    public float playerSpeed = 30.0f;
+    public float playerSpeed = 10.0f;
     [SerializeField] float MaxHealth = 100.0f;
     private float CurrentHealth;
     private bool _levelOver;
@@ -23,7 +24,17 @@ public class Player : MonoBehaviour
     public event Action LeftDoorZone;
     
     private void Awake()
-    {
+    { 
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        } 
+        DontDestroyOnLoad(gameObject);
+        
         _rb = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
     }

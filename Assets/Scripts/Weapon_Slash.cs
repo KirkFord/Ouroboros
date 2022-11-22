@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,12 @@ public class Weapon_Slash : MonoBehaviour
 {
     private int _slashCooldown = 20;
     [SerializeField] private GameObject projectile;
+    private BGM bgm;
+
+    private void Start()
+    {
+        bgm = BGM.instance;
+    }
 
     private void FixedUpdate()
     {
@@ -31,5 +38,6 @@ public class Weapon_Slash : MonoBehaviour
     {
         GameObject slashObj = Instantiate(projectile, transform.position, transform.rotation);
         slashObj.transform.parent = this.transform;
+        bgm.PlaySound(BGM.Sound.PlayerSlash);
     }
 }

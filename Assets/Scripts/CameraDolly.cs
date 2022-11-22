@@ -1,20 +1,15 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CameraDolly : MonoBehaviour
 {
     private double _finalCameraPos;
     private bool _followingPlayer;
-   
-    [Tooltip("The End Platform Object in the Scene (MAKE SURE IT IS DISABLED)")]
-    [SerializeField] private GameObject end;
-    
-    [Tooltip("The wall that is disabled in the end prefab")]
-    [SerializeField] private GameObject endWall;
+    private GameObject _end;
+    private GameObject _endWall;
 
     private bool _cameraStopped;
-
+    
     public void CheckMovement()
     {
         if (!_followingPlayer) return;
@@ -23,7 +18,7 @@ public class CameraDolly : MonoBehaviour
     }
     public void FollowPlayer()
     {
-        _finalCameraPos = Math.Floor(end.transform.position.z);
+        _finalCameraPos = Math.Floor(_end.transform.position.z);
         _followingPlayer = true;
     }
 
@@ -35,8 +30,13 @@ public class CameraDolly : MonoBehaviour
                 return;
             case false:
                 _cameraStopped = true;
-                endWall.SetActive(true);
+                _endWall.SetActive(true);
                 break;
         }
+    }
+    public void SetEnd(GameObject endPlatform)
+    {
+        _end = endPlatform;
+        _endWall = _end.transform.GetChild(0).gameObject;
     }
 }

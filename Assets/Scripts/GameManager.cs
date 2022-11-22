@@ -29,19 +29,17 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    private void Start()
+    {
+        _eM = EnemiesManager.instance;
+        _eM.EnemyKilled += EnemyDied;
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Loaded " + scene.name);
-        
-        switch (scene.name)
+        if (scene.name == "MainHall")
         {
-            case "LOADMANAGERS":
-                LoadManagers();
-                break;
-            
-            case "MainHall":
-                LoadMainHall();
-                break;
+            LoadMainHall();
         }
     }
 
@@ -50,13 +48,6 @@ public class GameManager : MonoBehaviour
         _loops = 0;
         _eM.EnemiesSpawned = 0;
         SceneManager.LoadScene("MainHall");
-    }
-
-    private void LoadManagers()
-    {
-        _eM = EnemiesManager.instance;
-        _eM.SetUpManager();
-        _eM.EnemyKilled += EnemyDied;
     }
 
     private void LoadMainHall()
