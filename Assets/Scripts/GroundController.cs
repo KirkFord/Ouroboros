@@ -14,6 +14,11 @@ public class GroundController : MonoBehaviour
     [SerializeField] private CameraDolly cDolly;
     private GameManager _gm;
     [SerializeField]private bool _levelComplete;
+    
+    
+    
+    
+    
 
 
 
@@ -79,14 +84,8 @@ public class GroundController : MonoBehaviour
         var endPlatform = Instantiate(end, endSpot, end.transform.rotation);
         cDolly.SetEnd(endPlatform.gameObject);
 
-
-        // var leftDoorSlot = end.transform.GetChild(0);
-        // var rightDoorSlot = end.transform.GetChild(1);
-        //
-        // var leftDoor = doorList[Random.Range(0, doorList.Count)];
-        // doorList.Remove(leftDoor);
-        // var rightDoor = doorList[Random.Range(0, doorList.Count)];
-        // Instantiate(leftDoor, leftDoorSlot.transform.position, leftDoor.transform.rotation);
-        // Instantiate(rightDoor, rightDoorSlot.transform.position, rightDoor.transform.rotation);
+        
+        
+        
     }
 }
