@@ -24,6 +24,7 @@ public class BGM : MonoBehaviour
         PlayerBolt,
         PlayerWeapon3,
         PlayerWeapon4,
+        MenuSelectFX,
     }
 
  
@@ -77,6 +78,11 @@ public class BGM : MonoBehaviour
             case "Puzzle":
                 Audio.enabled = false;
                 Audio.clip = MusicClips[4];
+                Audio.enabled = true;
+                break;
+            case "StartScreen":
+                Audio.enabled = false;
+                Audio.clip = MusicClips[7];
                 Audio.enabled = true;
                 break;
             // default:
