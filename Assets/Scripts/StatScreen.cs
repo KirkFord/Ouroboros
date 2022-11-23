@@ -1,28 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StatScreen : MonoBehaviour
 {
     public GameObject StatUI;
-    // private void Awake()
-    // {
-    //     if (Instance == null)
-    //     {
-    //         Instance = this;
-    //     }
-    //     else if (Instance != this)
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    //     DontDestroyOnLoad(gameObject);
-    // }
+    public TMP_Text enemies;
+    public TMP_Text timeSpent;
     public void showStats()
     {
         StatUI.SetActive(true);
+        enemies.text = "number of enemies killed: " + GameManager.Instance.enemiesKilled.ToString();
+        timeSpent.text = "Time spent in run: " + GameManager.Instance.minutes + "m " + GameManager.Instance.seconds +
+                         "s";
+
         // Time.timeScale = 0f;
-        
+
     }
     public void LoadMenu(){
         BGM.instance.PlaySound(BGM.Sound.MenuSelectFX);

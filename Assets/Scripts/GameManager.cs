@@ -15,6 +15,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float terrainMoveSpeedNormal = 3.0f;
     public GameOverScreen GameOver;
     private int _loops;
+    public int enemiesKilled;
+    public float timeStart;
+    public float timeEnd;
+    public float timeElapsed;
+    public int minutes;
+    public int seconds;
+    
     private void Awake()
     {
         
@@ -34,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         _eM = EnemiesManager.instance;
         _eM.EnemyKilled += EnemyDied;
+        enemiesKilled = 0;
         //GameOver = GameOverScreen.Instance;
     }
 
@@ -92,6 +100,12 @@ public class GameManager : MonoBehaviour
     {
         GameOver.dead();
     }
-    
+
+    public void CalculateTime()
+    {
+        timeElapsed = timeEnd - timeStart;
+        minutes = (int)timeElapsed / 60;
+        seconds = (int)timeElapsed % 60;
+    }
 }
 

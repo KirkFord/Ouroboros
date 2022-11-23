@@ -112,6 +112,7 @@ public class EnemiesManager : MonoBehaviour
 
     public void EnemyDied()
     {
+        _gM.enemiesKilled += 1;
         EnemiesSpawned -= 1;
         EnemyKilled?.Invoke();
     }

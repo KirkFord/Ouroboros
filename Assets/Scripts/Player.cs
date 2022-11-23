@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
         bgm = BGM.instance;
         DiedOnce = false;
         canAttack = true;
+        _gm.timeStart = Time.time;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -147,6 +148,8 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
+        _gm.timeEnd = Time.time;
+        _gm.CalculateTime();
         bgm.GameOverSwitch();
         _gm.ShowGameOver();
         //_gm.ResetRun();
