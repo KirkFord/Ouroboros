@@ -69,7 +69,7 @@ public class EnemiesManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        if (canSpawn) return;
+        if (!canSpawn) return;
         if (enemiesToSpawn <= 0) return;
         timer -= Time.deltaTime;
         if (!(timer < 0f)) return;
