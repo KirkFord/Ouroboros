@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
         // if this {var=5} elif !this {var=10} -> this ? var=5 : var=10
         // only works when assigning a variable
         _rb.velocity = !_levelOver ? 
-            new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed - 3.0f) 
+            new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed - _gm.terrainMoveSpeed) 
             : 
             new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed);
         if (_rb.velocity != Vector3.zero)

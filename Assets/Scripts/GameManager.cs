@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +13,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _enemiesRemaining;
     public float terrainMoveSpeed = 3.0f;
     [SerializeField] private float terrainMoveSpeedNormal = 3.0f;
-    [SerializeField] private float terrainMoveSpeedSpedUp = 6.0f;
 
     private int _loops;
     private void Awake()
@@ -79,8 +77,8 @@ public class GameManager : MonoBehaviour
     
     public void TerrainSpeedIncrease()
     {
-        if (Math.Abs(terrainMoveSpeed - terrainMoveSpeedSpedUp) < 0) return;
-        terrainMoveSpeed = terrainMoveSpeedSpedUp;
+        if (Math.Abs(terrainMoveSpeed - _player.playerSpeed) < 0) return;
+        terrainMoveSpeed = _player.playerSpeed;
     }
     
     public void TerrainSpeedDecrease()
