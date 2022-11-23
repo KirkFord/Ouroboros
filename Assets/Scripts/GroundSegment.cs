@@ -1,38 +1,34 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class GroundSegment : MonoBehaviour
 {
-    private GameManager _gm;
+    private GameManager _gM;
+    private GroundController _gC;
     private bool _moving = true;
-    
+
     private void Start()
     {
-        _gm = GameManager.Instance;
-        if (SceneManager.GetActiveScene().name != "HealingRoom") {
-            _gm.AllEnemiesKilled += StopMoving;
-        
-            StartCoroutine(MoveSegment());
-        }
+        _gM = GameManager.Instance;
+        _gC = GameObject.Find("GroundController").GetComponent<GroundController>();
+        _gM.AllEnemiesKilled += StopMoving;
     }
-
-    public void Despawn()
+    public void OnDestroy()
     {
-        _gm.AllEnemiesKilled -= StopMoving;
-        Destroy(gameObject);
+        _gM.AllEnemiesKilled -= StopMoving;
     }
 
-    private IEnumerator MoveSegment()
+    private void Update()
     {
-        while (_moving)
-        {
-            transform.Translate(new Vector3(0,0, -_gm.terrainMoveSpeed * Time.deltaTime));
-            yield return null;
-        }
+        if (!_moving) return;
+        transform.Translate(new Vector3(0,0, -_gM.terrainMoveSpeed * Time.deltaTime));
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.gameObject.CompareTag("GroundSegmentSpawningZone")) return;
+        _gC.SpawnSegment();
+    }
     private void StopMoving()
     {
         _moving = false;

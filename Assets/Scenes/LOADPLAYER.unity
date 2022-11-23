@@ -175,6 +175,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7830585158699879136, guid: b4a1a36a9586d814787b2058c11ad06a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830585158699879137, guid: b4a1a36a9586d814787b2058c11ad06a, type: 3}
+      propertyPath: m_Size.y
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830585158699879137, guid: b4a1a36a9586d814787b2058c11ad06a, type: 3}
+      propertyPath: m_Center.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830585158699879137, guid: b4a1a36a9586d814787b2058c11ad06a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8071792931903222472, guid: b4a1a36a9586d814787b2058c11ad06a, type: 3}
       propertyPath: m_RootOrder
       value: 0

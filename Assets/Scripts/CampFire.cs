@@ -19,7 +19,7 @@ public class CampFire : MonoBehaviour
         Heal();
     }
 
-    private void Heal() {
+    public void Heal() {
         if (Vector3.Distance(transform.position, player.transform.position) < healRange && 
             Time.time > lastHealTime + healInterval) {
             player.Heal(healAmt);
