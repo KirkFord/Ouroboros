@@ -144,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6829303111755242972, guid: 1628bf39650227e488767978760acd99, type: 3}
       propertyPath: MusicClips.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6829303111755242972, guid: 1628bf39650227e488767978760acd99, type: 3}
       propertyPath: MusicClips.Array.data[5]
@@ -154,6 +154,10 @@ PrefabInstance:
       propertyPath: MusicClips.Array.data[6]
       value: 
       objectReference: {fileID: 8300000, guid: 03e2bee8e19ba8c48a921823ed590feb, type: 3}
+    - target: {fileID: 6829303111755242972, guid: 1628bf39650227e488767978760acd99, type: 3}
+      propertyPath: MusicClips.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 60cf4b0d491ff8d4a8b4edc2932afdf5, type: 3}
     - target: {fileID: 6829303111755242973, guid: 1628bf39650227e488767978760acd99, type: 3}
       propertyPath: m_Name
       value: BackgroundMusicManager
@@ -204,7 +208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6829303111755242975, guid: 1628bf39650227e488767978760acd99, type: 3}
       propertyPath: m_Volume
-      value: 0.168
+      value: 0.185
       objectReference: {fileID: 0}
     - target: {fileID: 6829303111755242975, guid: 1628bf39650227e488767978760acd99, type: 3}
       propertyPath: m_audioClip
@@ -441,6 +445,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 414981779971215938, guid: 881c59d9b0ab3aa40a21b7d72b597cd9, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 1179389358}
     - target: {fileID: 4822651286118088193, guid: 881c59d9b0ab3aa40a21b7d72b597cd9, type: 3}
       propertyPath: StatUI
       value: 

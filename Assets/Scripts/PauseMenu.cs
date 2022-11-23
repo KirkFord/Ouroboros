@@ -20,6 +20,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Resume () {
+        BGM.instance.PlaySound(BGM.Sound.PauseMenuFX);
+        BGM.instance.Audio.UnPause();
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -27,17 +29,23 @@ public class PauseMenu : MonoBehaviour
     }
 
     void Pause () {
+        BGM.instance.PlaySound(BGM.Sound.PauseMenuFX);
+        BGM.instance.Audio.Pause();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
     public void LoadMenu(){
+        BGM.instance.PlaySound(BGM.Sound.MenuSelectFX);
+        GameIsPaused = false;
+        pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene("StartScreen");
     }
 
     public void QuitGame(){
+        BGM.instance.PlaySound(BGM.Sound.MenuSelectFX);
         Debug.Log("Quitting game...");
         Application.Quit();
     }
