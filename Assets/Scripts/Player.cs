@@ -86,6 +86,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // if (_levelOver) return;
+        transform.Translate(new Vector3(0,0, -_gm.terrainMoveSpeed * Time.deltaTime));
+    }
+
     private void FixedUpdate()
     {
         Move();
@@ -105,13 +111,9 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isMoving",false);
         }
+        
+        _rb.velocity = new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed);
 
-        // if this {var=5} elif !this {var=10} -> this ? var=5 : var=10
-        // only works when assigning a variable
-        _rb.velocity = !_levelOver ? 
-            new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed - _gm.terrainMoveSpeed) 
-            : 
-            new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed);
         if (_rb.velocity != Vector3.zero)
         {
             //transform.forward = _rb.velocity;
