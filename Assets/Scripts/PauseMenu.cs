@@ -21,7 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume () {
         BGM.instance.PlaySound(BGM.Sound.PauseMenuFX);
-        BGM.instance.Audio.UnPause();
+        BGM.instance.MusicAudioSource.UnPause();
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause () {
         BGM.instance.PlaySound(BGM.Sound.PauseMenuFX);
-        BGM.instance.Audio.Pause();
+        BGM.instance.MusicAudioSource.Pause();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;

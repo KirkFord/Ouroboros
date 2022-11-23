@@ -9,7 +9,8 @@ public enum Level
     MainLevel = 2,
     HealLevel = 3,
     PuzzleLevel = 4,
-    ShopLevel = 5
+    ShopLevel = 5,
+    StartScreen = 6
 }
 
 public class LevelChanger : MonoBehaviour

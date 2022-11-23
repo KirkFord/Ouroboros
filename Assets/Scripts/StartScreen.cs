@@ -1,0 +1,149 @@
+using System;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
+
+public class StartScreen : MonoBehaviour
+{
+    private LevelChanger _lc;
+    private BGM _bgm;
+
+    [SerializeField] private Camera mainCam;
+    [SerializeField] private Transform cameraStartPosition;
+    [SerializeField] private Animator mainCameraAnimator;
+    [SerializeField] private GameObject startObject;
+
+    [Header("SETTINGS")]
+    [SerializeField] private GameObject settingsObject;
+
+    [Header("Video")] 
+    [SerializeField] private Toggle fullscreenToggle;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+    
+    [Header("Sound")]
+    [SerializeField] private Slider musicVolumeSlider;
+    [SerializeField] private Slider fxVolumeSlider;
+    private bool _isFullscreen;
+    private Resolution _currentResolution;
+
+
+
+    private void Start()
+    {
+        _currentResolution = Screen.currentResolution;
+        _bgm = BGM.instance;
+        _lc = LevelChanger.Instance;
+        mainCam.transform.position = cameraStartPosition.position;
+        mainCam.transform.rotation = cameraStartPosition.rotation;
+
+        fxVolumeSlider.value = _bgm.fxvolume;
+        musicVolumeSlider.value = _bgm.MusicAudioSource.volume;
+        
+        startObject.SetActive(true);
+        settingsObject.SetActive(false);
+    }
+
+    public void StartButtonPressed()
+    {
+        startObject.SetActive(false);
+        settingsObject.SetActive(false);
+        mainCameraAnimator.Play("CameraToDoor");
+        Debug.Log("Start Button Pressed");
+    }
+
+    public void SettingsButtonPressed()
+    {
+        mainCameraAnimator.Play("MainToSettings");
+        Debug.Log("Settings Button Pressed");
+    }
+
+    public void ExitButtonPressed()
+    {
+        ExitGame();
+    }
+
+    public void StartGame()
+    {
+        _lc.FadeToLevel(Level.LoadPlayerLevel);
+    }
+
+    public void ToggleFullscreen()
+    {
+        _isFullscreen = !_isFullscreen;
+        ResetResolution();
+    }
+
+    public void ResolutionChanged()
+    {
+        switch (resolutionDropdown.value)
+        {
+            case 0:
+                _currentResolution.width = 1920;
+                _currentResolution.height = 1080;
+                ResetResolution();
+                break;
+            
+            case 1:
+                _currentResolution.width = 1600;
+                _currentResolution.height = 900;
+                ResetResolution();
+                break;
+            
+            case 2:
+                _currentResolution.width = 1280;
+                _currentResolution.height = 720;
+                ResetResolution();
+                break;
+        }
+    }
+
+    public void FxVolumeChanged()
+    {
+        _bgm.fxvolume = fxVolumeSlider.value;
+    }
+
+    public void MusicVolumeChanged()
+    {
+        _bgm.MusicAudioSource.volume = musicVolumeSlider.value;
+    }
+
+    public void ExitSettings()
+    {
+        mainCameraAnimator.Play("SettingsToMain");
+    }
+
+    public void ArrivedAtSettings()
+    {
+        settingsObject.SetActive(true);
+    }
+
+    public void ArrivedAtMain()
+    {
+        startObject.SetActive(true);
+    }
+    
+    public void LeavingSettings()
+    {
+        settingsObject.SetActive(false);
+    }
+
+    public void LeavingMain()
+    {
+        startObject.SetActive(false);
+    }
+    private void ResetResolution()
+    {
+        Debug.Log("Setting Resolution to: " +_currentResolution.width + "x" + _currentResolution.height);
+        Debug.Log(_isFullscreen ? "Game is in Fullscreen" : "Game is in Windowed");
+        Screen.SetResolution(_currentResolution.width, _currentResolution.height, _isFullscreen);
+    }
+    private static void ExitGame()
+    {
+        Application.Quit();
+    }
+
+
+    
+    
+}
