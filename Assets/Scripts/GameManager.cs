@@ -15,6 +15,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float terrainMoveSpeedNormal = 3.0f;
     public GameOverScreen GameOver;
     private int _loops;
+    public int enemiesKilled;
+    public float timeStart;
+    public float timeEnd;
+    public float timeElapsed;
+    public int minutes;
+    public int seconds;
+    
     private void Awake()
     {
         
@@ -34,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         _eM = EnemiesManager.instance;
         _eM.EnemyKilled += EnemyDied;
+        enemiesKilled = 0;
         //GameOver = GameOverScreen.Instance;
     }
 
@@ -54,11 +62,26 @@ public class GameManager : MonoBehaviour
     {
         _loops = 0;
         _eM.EnemiesSpawned = 0;
-        SceneManager.LoadScene("MainHall");
+        enemiesKilled = 0;
+        timeStart = Time.time;
+        timeEnd = 0;
+        timeElapsed = 0;
+        minutes = 0; 
+        seconds = 0;
+        if (_player == null)
+        {
+            return;
+        }
+        _player.ResetRun();
+
+
+        //SceneManager.LoadScene("MainHall");
     }
 
     private void LoadMainHall()
     {
+        _player.canAttack = true;
+        InteractionManager.Instance.HideInteractText();
         _loops += 1;
         _enemiesRemaining = 10 * _loops;
         _eM.SetUpNextLevel(_enemiesRemaining); 
@@ -92,6 +115,12 @@ public class GameManager : MonoBehaviour
     {
         GameOver.dead();
     }
-    
+
+    public void CalculateTime()
+    {
+        timeElapsed = timeEnd - timeStart;
+        minutes = (int)timeElapsed / 60;
+        seconds = (int)timeElapsed % 60;
+    }
 }
 

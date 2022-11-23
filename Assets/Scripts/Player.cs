@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
     }
-    
     private void Start()
     {
         //_levelOver = true;
@@ -52,6 +51,7 @@ public class Player : MonoBehaviour
         bgm = BGM.instance;
         DiedOnce = false;
         canAttack = true;
+        _gm.timeStart = Time.time;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -88,13 +88,7 @@ public class Player : MonoBehaviour
             LeftShopZone?.Invoke();
         }
     }
-
-    private void Update()
-    {
-        // if (_levelOver) return;
-        transform.Translate(new Vector3(0,0, -_gm.terrainMoveSpeed * Time.deltaTime));
-    }
-
+    
     private void FixedUpdate()
     {
         Move();
@@ -114,8 +108,16 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isMoving",false);
         }
-        
-        _rb.velocity = new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed);
+
+        if (_levelOver)
+        {
+            _rb.velocity = new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed);
+        }
+        else
+        {
+            _rb.velocity = new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed - _gm.terrainMoveSpeed);
+        }
+
 
         if (_rb.velocity != Vector3.zero)
         {
@@ -147,6 +149,8 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
+        _gm.timeEnd = Time.time;
+        _gm.CalculateTime();
         bgm.GameOverSwitch();
         _gm.ShowGameOver();
         //_gm.ResetRun();
@@ -168,5 +172,16 @@ public class Player : MonoBehaviour
     {
         _canMove = false;
         _rb.velocity = new Vector3(0, 0, 0);
+    }
+
+    public void ResetRun()
+    {
+        animator.SetBool("isDead",false);
+        EnableMovement();
+        DiedOnce = false;
+        canAttack = true;
+        _levelOver = false;
+        CurrentHealth = MaxHealth;
+
     }
 }

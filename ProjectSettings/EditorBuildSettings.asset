@@ -18,15 +18,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Heal.unity
     guid: 6cb68767fd527844ea709c1a7288037e
   - enabled: 1
-    path: Assets/Scenes/Puzzle.unity
-    guid: 38a37847b5020474d8dff891a52517a2
+    path: Assets/Scenes/Puzzle1.unity
+    guid: 052289919d994d24fadbd04163a6238e
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 3dfe0168adabc3540813a71bdbeab2e9
   - enabled: 1
-    path: Assets/Scenes/PauseMenu.unity
-    guid: b72ab6bc1b3636b4ead1bc7bbb31355b
-  - enabled: 1
     path: Assets/Scenes/StartScreen.unity
     guid: 23ff55ce50f1b614a89f7e44de48f7ab
+  - enabled: 1
+    path: Assets/Scenes/Puzzle2.unity
+    guid: fab7aaf234daa9147bf0880cc7d394da
   m_configObjects: {}
