@@ -7,17 +7,15 @@ public class GroundController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> segments;
     private Queue<GameObject> _currentSegments;
-    [SerializeField]private GameObject _lastSpawnedSegment;
-
-    [SerializeField] private List<GameObject> doorList;
+    [SerializeField] private GameObject _lastSpawnedSegment;
 
     [SerializeField] private GameObject _start;
     [SerializeField] private GameObject end;
     [SerializeField] private CameraDolly cDolly;
     private GameManager _gm;
     [SerializeField]private bool _levelComplete;
-    
-    
+
+
 
     private void Start()
     {
@@ -27,7 +25,6 @@ public class GroundController : MonoBehaviour
         _gm.AllEnemiesKilled += LevelComplete;
         AddSegment(_start);
         _lastSpawnedSegment = _start;
-        StartCoroutine(SpawnLoop());
     }
 
     private void OnDestroy()
@@ -35,25 +32,20 @@ public class GroundController : MonoBehaviour
         _gm.AllEnemiesKilled -= LevelComplete;
     }
 
-    private IEnumerator SpawnLoop()
+    public void SpawnSegment()
     {
-        while (!_levelComplete)
-        {
-            var segToSpawn = segments[Random.Range(0, segments.Count)];
-            var segSize = segToSpawn.transform.localScale.z;
-            var spawnSpot = new Vector3(0, 0, _lastSpawnedSegment.transform.position.z + _lastSpawnedSegment.transform.localScale.z/2 + segSize/2);
-
-            var segment = Instantiate(segToSpawn, spawnSpot, segToSpawn.transform.rotation);
-            segment.transform.SetParent(transform);
-            _lastSpawnedSegment = segment;
-            AddSegment(segment);
-            yield return new WaitForSeconds(segSize/_gm.terrainMoveSpeed);  
-        }
+        var segToSpawn = segments[Random.Range(0, segments.Count)];
+        var segSize = segToSpawn.transform.localScale.z;
+        var spawnSpot = new Vector3(0, 0, _lastSpawnedSegment.transform.position.z + _lastSpawnedSegment.transform.localScale.z/2 + segSize/2);
+        var segment = Instantiate(segToSpawn, spawnSpot, segToSpawn.transform.rotation);
+        segment.transform.SetParent(transform);
+        AddSegment(segment);
     }
 
     private void AddSegment(GameObject seg)
     {
         _currentSegments.Enqueue(seg);
+        _lastSpawnedSegment = seg;
         CheckQueueSize();
     }
 
@@ -67,7 +59,7 @@ public class GroundController : MonoBehaviour
         //MAX SEGMENTS ALLOWED
         if (_currentSegments.Count > 8)
         {
-            RemoveSegment().GetComponent<GroundSegment>().Despawn();
+            Destroy(RemoveSegment());
         }
     }
     
@@ -85,7 +77,7 @@ public class GroundController : MonoBehaviour
         var lenOfDoorway = end.transform.localScale.z;
         var endSpot = new Vector3(0, 0, _lastSpawnedSegment.transform.position.z + segmentLength/2 + lenOfDoorway/2);
         var endPlatform = Instantiate(end, endSpot, end.transform.rotation);
-        cDolly.SetEnd(endPlatform);
+        cDolly.SetEnd(endPlatform.gameObject);
 
 
         // var leftDoorSlot = end.transform.GetChild(0);

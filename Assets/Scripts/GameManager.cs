@@ -1,17 +1,18 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private Player _player;
     private GroundController _gc;
     private EnemiesManager _eM;
     public event Action AllEnemiesKilled;
     [SerializeField] private int _enemiesRemaining;
     public float terrainMoveSpeed = 3.0f;
+    [SerializeField] private float terrainMoveSpeedNormal = 3.0f;
 
     private int _loops;
     private void Awake()
@@ -37,9 +38,14 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "MainHall")
+        switch (scene.name)
         {
-            LoadMainHall();
+            case "LOADPLAYER":
+                _player = Player.Instance;
+                break;
+            case "MainHall":
+                LoadMainHall();
+                break;
         }
     }
 
@@ -62,10 +68,24 @@ public class GameManager : MonoBehaviour
     {
         _enemiesRemaining -= 1;
     }
-
+    
     private IEnumerator CheckEnemiesRemaining()
     {
         while (_enemiesRemaining > 0) yield return null;
         AllEnemiesKilled?.Invoke();
     }
+    
+    public void TerrainSpeedIncrease()
+    {
+        if (Math.Abs(terrainMoveSpeed - _player.playerSpeed) < 0) return;
+        terrainMoveSpeed = _player.playerSpeed;
+    }
+    
+    public void TerrainSpeedDecrease()
+    {
+        if (Math.Abs(terrainMoveSpeed - terrainMoveSpeedNormal) < 0) return;
+        terrainMoveSpeed = terrainMoveSpeedNormal;
+    }
+    
 }
+

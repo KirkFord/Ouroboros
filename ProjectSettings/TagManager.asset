@@ -12,6 +12,7 @@ TagManager:
   - ShopKeeperInteractZone
   - DoorInteractZone
   - Pickup
+  - GroundSegmentSpawningZone
   layers:
   - Default
   - TransparentFX

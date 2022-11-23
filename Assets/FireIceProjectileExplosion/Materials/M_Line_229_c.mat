@@ -144,7 +144,11 @@ Material:
     - _Tint_01: {r: 1.7411011, g: 1.7411011, b: 1.7411011, a: 0}
     - _Tint_02: {r: 6.4222345, g: 6.4222345, b: 6.4222345, a: 0}
   m_BuildTextureStacks: []
+<<<<<<< HEAD
 --- !u!114 &2699635426478984938
+=======
+--- !u!114 &7876489374117992473
+>>>>>>> a75ab9b3d78b541c4a2b78bf5ceaf646a13a86b1
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

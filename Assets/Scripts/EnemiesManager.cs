@@ -11,6 +11,8 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] private GameObject enemy4;
     public event Action EnemyKilled;
 
+    private bool canSpawn;
+
     public int enemiesToSpawn;
 
     //[SerializeField] private Vector2 spawnArea;
@@ -40,6 +42,12 @@ public class EnemiesManager : MonoBehaviour
     private void Start()
     {
         _gM = GameManager.Instance;
+        _gM.AllEnemiesKilled += LevelEnded;
+    }
+
+    private void OnDestroy()
+    {
+        _gM.AllEnemiesKilled -= LevelEnded;
     }
 
     // Update is called once per frame
@@ -51,10 +59,17 @@ public class EnemiesManager : MonoBehaviour
     public void SetUpNextLevel(int enemiesInlevel)
     {
         enemiesToSpawn = enemiesInlevel;
+        canSpawn = true;
+    }
+
+    private void LevelEnded()
+    {
+        canSpawn = false;
     }
 
     private void SpawnEnemy()
     {
+        if (!canSpawn) return;
         if (enemiesToSpawn <= 0) return;
         timer -= Time.deltaTime;
         if (!(timer < 0f)) return;
