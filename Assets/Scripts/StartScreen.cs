@@ -8,6 +8,7 @@ public class StartScreen : MonoBehaviour
 {
     private LevelChanger _lc;
     private BGM _bgm;
+    private GameManager _gm;
 
     [SerializeField] private Camera mainCam;
     [SerializeField] private Transform cameraStartPosition;
@@ -34,6 +35,7 @@ public class StartScreen : MonoBehaviour
         _currentResolution = Screen.currentResolution;
         _bgm = BGM.instance;
         _lc = LevelChanger.Instance;
+        _gm = GameManager.Instance;
         mainCam.transform.position = cameraStartPosition.position;
         mainCam.transform.rotation = cameraStartPosition.rotation;
 
@@ -46,6 +48,7 @@ public class StartScreen : MonoBehaviour
 
     public void StartButtonPressed()
     {
+        _bgm.PlaySound(BGM.Sound.MenuSelectFX);
         startObject.SetActive(false);
         settingsObject.SetActive(false);
         mainCameraAnimator.Play("CameraToDoor");
@@ -54,17 +57,20 @@ public class StartScreen : MonoBehaviour
 
     public void SettingsButtonPressed()
     {
+        _bgm.PlaySound(BGM.Sound.MenuSelectFX);
         mainCameraAnimator.Play("MainToSettings");
         Debug.Log("Settings Button Pressed");
     }
 
     public void ExitButtonPressed()
     {
+        _bgm.PlaySound(BGM.Sound.MenuSelectFX);
         ExitGame();
     }
 
     public void StartGame()
     {
+        _gm.ResetRun();
         _lc.FadeToLevel(Level.LoadPlayerLevel);
     }
 
@@ -110,6 +116,7 @@ public class StartScreen : MonoBehaviour
 
     public void ExitSettings()
     {
+        _bgm.PlaySound(BGM.Sound.MenuSelectFX);
         mainCameraAnimator.Play("SettingsToMain");
     }
 
@@ -143,6 +150,10 @@ public class StartScreen : MonoBehaviour
         Application.Quit();
     }
 
+    public void PlayTestSound()
+    {
+        _bgm.PlaySound(BGM.Sound.PlayerSlash);
+    }
 
     
     

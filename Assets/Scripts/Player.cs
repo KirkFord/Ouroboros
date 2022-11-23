@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
     }
-    
     private void Start()
     {
         //_levelOver = true;
@@ -173,5 +172,16 @@ public class Player : MonoBehaviour
     {
         _canMove = false;
         _rb.velocity = new Vector3(0, 0, 0);
+    }
+
+    public void ResetRun()
+    {
+        animator.SetBool("isDead",false);
+        EnableMovement();
+        DiedOnce = false;
+        canAttack = true;
+        _levelOver = false;
+        CurrentHealth = MaxHealth;
+
     }
 }

@@ -857,8 +857,9 @@ MonoBehaviour:
   playerSpeed: 10
   MaxHealth: 100
   CurrentHealth: 0
-  rotateSpeed: 720
-  collider1: {fileID: 7830585158699879137}
+  canAttack: 0
+  rotateSpeed: 0
+  DiedOnce: 0
 --- !u!1 &8071792931903516330
 GameObject:
   m_ObjectHideFlags: 0
