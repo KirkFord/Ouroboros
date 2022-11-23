@@ -44,15 +44,11 @@ public class Player : MonoBehaviour
     
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "MainHall") {
-            _gm = GameManager.Instance;
-            _gm.AllEnemiesKilled += LevelOver;
-        } 
-        else {
-            _levelOver = true;
-            canAttack = false;
-        }
+        //_levelOver = true;
+        //canAttack = false;
         animator = GetComponent<Animator>();
+        _gm = GameManager.Instance;
+        _gm.AllEnemiesKilled += LevelOver;
         bgm = BGM.instance;
         DiedOnce = false;
         canAttack = true;

@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     {
         _eM = EnemiesManager.instance;
         _eM.EnemyKilled += EnemyDied;
-        GameOver = GameOverScreen.Instance;
+        //GameOver = GameOverScreen.Instance;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

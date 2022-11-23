@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverScreen : MonoBehaviour
+public class StatScreen : MonoBehaviour
 {
-    //public static bool GamePaused = false;
-    public GameObject GameOverUI;
-    
+    public GameObject StatUI;
     // private void Awake()
     // {
     //     if (Instance == null)
@@ -20,13 +18,14 @@ public class GameOverScreen : MonoBehaviour
     //     }
     //     DontDestroyOnLoad(gameObject);
     // }
-    public void dead()
+    public void showStats()
     {
-        GameOverUI.SetActive(true);
+        StatUI.SetActive(true);
         // Time.timeScale = 0f;
+        
     }
-    public void LoadStats(){
-        GameOverUI.SetActive(false);
-        //Time.timeScale = 1f;
+    public void LoadMenu(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("StartScreen");
     }
 }
