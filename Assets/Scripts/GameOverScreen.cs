@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
+    //public BGM bgm;
+    public StatScreen stats;
     //public static bool GamePaused = false;
     public GameObject GameOverUI;
     
@@ -27,6 +29,8 @@ public class GameOverScreen : MonoBehaviour
     }
     public void LoadStats(){
         GameOverUI.SetActive(false);
+        BGM.instance.StatsSwitch();
+        stats.showStats();
         //Time.timeScale = 1f;
     }
 }
