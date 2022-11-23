@@ -28,6 +28,7 @@ public class GameOverScreen : MonoBehaviour
         // Time.timeScale = 0f;
     }
     public void LoadStats(){
+        BGM.instance.PlaySound(BGM.Sound.MenuSelectFX);
         GameOverUI.SetActive(false);
         BGM.instance.StatsSwitch();
         stats.showStats();

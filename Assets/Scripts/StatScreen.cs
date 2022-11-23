@@ -25,6 +25,7 @@ public class StatScreen : MonoBehaviour
         
     }
     public void LoadMenu(){
+        BGM.instance.PlaySound(BGM.Sound.MenuSelectFX);
         StatUI.SetActive(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene("StartScreen");

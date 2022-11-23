@@ -25,6 +25,7 @@ public class BGM : MonoBehaviour
         PlayerWeapon3,
         PlayerWeapon4,
         MenuSelectFX,
+        PauseMenuFX,
     }
 
  
