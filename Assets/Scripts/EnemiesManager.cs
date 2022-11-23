@@ -115,4 +115,11 @@ public class EnemiesManager : MonoBehaviour
         EnemiesSpawned -= 1;
         EnemyKilled?.Invoke();
     }
+    // private void killAllChildren()
+    // {
+    //     foreach (Transform child in this.gameObject)
+    //     {
+    //         Destroy(child.gameObject);
+    //     }
+    // }
 }

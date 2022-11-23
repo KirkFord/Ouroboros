@@ -13,6 +13,7 @@ TagManager:
   - DoorInteractZone
   - Pickup
   - GroundSegmentSpawningZone
+  - Magnet
   layers:
   - Default
   - TransparentFX

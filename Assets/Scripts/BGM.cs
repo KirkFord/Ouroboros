@@ -92,6 +92,24 @@ public class BGM : MonoBehaviour
         // }
     }
     // Start is called before the first frame update
+
+    public void GameOverSwitch()
+    {
+        Audio.enabled = false;
+        Audio.loop = false;
+        Audio.clip = MusicClips[5];
+        Audio.enabled = true;
+    }
+
+    public void StatsSwitch()
+    {
+        Audio.enabled = false;
+        Audio.loop = true;
+        Audio.clip = MusicClips[6];
+        Audio.enabled = true;
+    }
+    
+    
     public void PlaySound(Sound sound)
     {
         GameObject soundGameObject = new GameObject("Sound");

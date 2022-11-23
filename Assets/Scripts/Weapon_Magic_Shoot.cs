@@ -19,6 +19,10 @@ public class Weapon_Magic_Shoot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!Player.Instance.canAttack)
+        {
+            return;
+        }
         if (_shootCooldown > 0)
         {
             _shootCooldown -= 1;

@@ -10,13 +10,16 @@ public class Player : MonoBehaviour
     private Rigidbody _rb;
     public float playerSpeed = 10.0f;
     [SerializeField] float MaxHealth = 100.0f;
-    private float CurrentHealth;
+    public float CurrentHealth;
     private bool _levelOver;
     private GroundController _gc;
     private bool _canMove = true;
-    private bool _canAttack;
+    public bool canAttack;
     private Animator animator;
     [SerializeField] float rotateSpeed;
+    private BGM bgm;
+    public bool DiedOnce;
+
 
     public event Action EnteredShopZone;
     public event Action LeftShopZone;
@@ -47,8 +50,12 @@ public class Player : MonoBehaviour
         } 
         else {
             _levelOver = true;
+            canAttack = false;
         }
         animator = GetComponent<Animator>();
+        bgm = BGM.instance;
+        DiedOnce = false;
+        canAttack = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -125,14 +132,16 @@ public class Player : MonoBehaviour
     private void LevelOver()
     {
         _levelOver = true;
-        _canAttack = false;
+        canAttack = false;
     }
-    public void TakeDamage(float damage)
+    public void PlayerTakeDamage(float damage)
     {
         CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
+        if (CurrentHealth <= 0 && DiedOnce == false)
         {
+            DiedOnce = true;
             DisableMovement();
+            canAttack = false;
             animator.SetBool("isDead",true);
             Invoke("Death",1.33f);
             Debug.Log("this dude is dead");
@@ -142,7 +151,9 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
-        _gm.ResetRun();
+        bgm.GameOverSwitch();
+        _gm.ShowGameOver();
+        //_gm.ResetRun();
     }
 
     public void Heal(float healAmt) {

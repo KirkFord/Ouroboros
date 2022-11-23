@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 3896217744476514588}
   m_Layer: 0
   m_Name: pull
-  m_TagString: Untagged
+  m_TagString: Magnet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -856,7 +856,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 10
   MaxHealth: 100
+  CurrentHealth: 0
   rotateSpeed: 720
+  collider1: {fileID: 7830585158699879137}
 --- !u!1 &8071792931903516330
 GameObject:
   m_ObjectHideFlags: 0

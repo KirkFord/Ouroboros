@@ -15,6 +15,10 @@ public class Weapon_Slash : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!Player.Instance.canAttack)
+        {
+            return;
+        }
         Snap();
 
         if (_slashCooldown > 0)

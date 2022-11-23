@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
     private Rigidbody rgbd;
     public GameObject LootObject;
     private bool collected;
+    [SerializeField] private float damageToPlayer = 5.0f;
+    [SerializeField] private float damageRate = 0.5f;
+    [SerializeField] private float damageTime;
     private EnemiesManager _eM;
     private GameManager _gM;
     private Animator animator;
@@ -47,18 +50,28 @@ public class Enemy : MonoBehaviour
     }
     
     
-    private void OnCollisionStay(Collision collisionInfo)
+    // private void OnCollisionStay(Collision collisionInfo)
+    // {
+    //     if (collisionInfo.gameObject.name == "Player")
+    //     {
+    //         Attack();
+    //     }
+    // }
+    private void OnTriggerStay(Collider other)
     {
-        if (collisionInfo.gameObject.name == "Player")
+        if (other.transform.tag == "Player" && Time.time > damageTime)
         {
-            Attack();
+            other.transform.GetComponent<Player>().PlayerTakeDamage(damageToPlayer);
+            damageTime = Time.time + damageRate;
         }
     }
     
-    private void Attack()
-    {
-        player.GetComponent<Player>().TakeDamage(20f);
-    }
+    
+    // private void Attack()
+    // {
+    //     player.GetComponent<Player>().TakeDamage(20f);
+    //     Debug.Log("attacking the player");
+    // }
 
     public void TakeDamage(float damage)
     {

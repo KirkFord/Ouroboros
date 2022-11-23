@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _enemiesRemaining;
     public float terrainMoveSpeed = 3.0f;
     [SerializeField] private float terrainMoveSpeedNormal = 3.0f;
-
+    public GameOverScreen GameOver;
     private int _loops;
     private void Awake()
     {
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         _eM = EnemiesManager.instance;
         _eM.EnemyKilled += EnemyDied;
+        GameOver = GameOverScreen.Instance;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -85,6 +86,11 @@ public class GameManager : MonoBehaviour
     {
         if (Math.Abs(terrainMoveSpeed - terrainMoveSpeedNormal) < 0) return;
         terrainMoveSpeed = terrainMoveSpeedNormal;
+    }
+
+    public void ShowGameOver()
+    {
+        GameOver.dead();
     }
     
 }

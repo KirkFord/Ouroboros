@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9736059fba8f8b14c9eecb3ac44d2431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 579461437335077481, guid: c39e898f725f640429721c29a940d898, type: 3}
+  enemy1: {fileID: 0}
+  enemy2: {fileID: 0}
+  enemy3: {fileID: 0}
+  enemy4: {fileID: 0}
+  dummy: {fileID: 0}
   enemiesToSpawn: 0
   spawnTimer: 0.1
   EnemiesSpawned: 0
