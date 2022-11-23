@@ -7,7 +7,7 @@ public class Proj_Magic_Shoot : MonoBehaviour
     private GameObject target;
     private bool hasBeenMade = false;
     private float moveSpeed = 5.0f;
-    [SerializeField] private float damage = 10.0f;
+    [SerializeField] private float damage = 20.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -44,5 +44,10 @@ public class Proj_Magic_Shoot : MonoBehaviour
             other.GetComponent<Enemy>().TakeDamage(damage);
             Destroy(this.gameObject);
         }
+    }
+
+    public void IncreaseDamage(float d) {
+        
+        this.damage += d;
     }
 }
