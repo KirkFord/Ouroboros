@@ -102,8 +102,8 @@ public class GroundController : MonoBehaviour
 
         possibleLevels.Remove(leftSelection);
         var rightSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
-        Debug.Log("Left Selection: "+ leftSelection);
-        Debug.Log("Right Selection: "+ rightSelection);
+        //Debug.Log("Left Selection: "+ leftSelection);
+        //Debug.Log("Right Selection: "+ rightSelection);
         
         
         leftDoor.SetDoorPath(leftSelection);
