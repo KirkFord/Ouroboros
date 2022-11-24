@@ -89,6 +89,8 @@ public class Enemy : MonoBehaviour
         {
             _diedOnce = true;
             stopMoving = true;
+            //<BoxCollider>().isTrigger = false;
+            damageToPlayer = 0f;
             animator.SetBool("isDead",true);
             Invoke("Death",1.33f);
 
