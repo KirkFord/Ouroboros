@@ -18,9 +18,7 @@ public class DollyPushbar : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Colliding with " + other.name);
         if (other.name != "Player" || !_cD.followingPlayer) return;
-        Debug.Log("Player Hitting Pushbar");
         _cD.CheckMovement();
     }
 
