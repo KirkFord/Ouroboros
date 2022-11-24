@@ -66,12 +66,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("PLAYER ENTER DEADZONE");
         }
-        if (other.transform.CompareTag("Pickup") && other.GetComponent<Collider>().GetType() == typeof(CapsuleCollider))
-        {
-            //add some points or something
-            //GetComponent<Player>().PlayerAddPoints();
-            Destroy(other.gameObject);
-        }
+        
     }
 
     private void OnTriggerExit(Collider other)
