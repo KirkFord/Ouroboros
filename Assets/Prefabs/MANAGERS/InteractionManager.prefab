@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7275080198019867247}
   - component: {fileID: 7275080198019867246}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InteractionManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
 --- !u!1001 &485579432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -237,6 +237,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7275080198019867247}
     m_Modifications:
+    - target: {fileID: 3370102374419847320, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102374461053493, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102374554760774, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102374555432811, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102374555432822, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102375069788113, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102375291237576, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102375378404174, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3370102375582852512, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -321,9 +353,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3370102375582852517, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102375582852517, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3370102375582852519, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102375582852519, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102375617439331, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102376315319168, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102376491433659, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edfb1ed750e5f0b4585302b41253a225, type: 3}
@@ -617,6 +673,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatUI: {fileID: 0}
+  enemies: {fileID: 0}
+  timeSpent: {fileID: 0}
 --- !u!224 &5543653078250067838 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2394570923160569453, guid: 89397a143e8ea9f49b13951e018fa0fc, type: 3}

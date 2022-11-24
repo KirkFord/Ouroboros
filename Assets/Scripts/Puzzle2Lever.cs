@@ -6,10 +6,12 @@ public class Puzzle2Lever : MonoBehaviour
 {
     [SerializeField] private int leverNum = 0;
     private bool playerIn = false;
+    private bool textShowing = false;
+    private InteractionManager _iM;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _iM = InteractionManager.Instance;
     }
 
     // Update is called once per frame
@@ -23,19 +25,25 @@ public class Puzzle2Lever : MonoBehaviour
                 PlayerInteracts();
             }
         }
+
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {
+            _iM.ShowInteractText("Press [F] to Interact");
             playerIn = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        playerIn = false;
+        if (other.transform.tag == "Player")
+        {
+            _iM.HideInteractText();
+            playerIn = false;
+        }
     }
 
     void PlayerInteracts()
@@ -43,4 +51,5 @@ public class Puzzle2Lever : MonoBehaviour
         Puzzle2 puzzleScript = this.transform.parent.GetComponent<Puzzle2>();
         puzzleScript.ActivateLever(leverNum);
     }
+
 }

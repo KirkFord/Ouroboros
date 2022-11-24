@@ -523,11 +523,19 @@ PrefabInstance:
       objectReference: {fileID: 1719365773}
     - target: {fileID: 3370102374873924172, guid: 881c59d9b0ab3aa40a21b7d72b597cd9, type: 3}
       propertyPath: m_OverrideSorting
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3370102374873924172, guid: 881c59d9b0ab3aa40a21b7d72b597cd9, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102374873924174, guid: 881c59d9b0ab3aa40a21b7d72b597cd9, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370102375789477643, guid: 881c59d9b0ab3aa40a21b7d72b597cd9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3370102375789477644, guid: 881c59d9b0ab3aa40a21b7d72b597cd9, type: 3}
       propertyPath: pauseMenuUI
@@ -637,7 +645,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3370102374873924145, guid: 881c59d9b0ab3aa40a21b7d72b597cd9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 881c59d9b0ab3aa40a21b7d72b597cd9, type: 3}
 --- !u!114 &1188808084 stripped
 MonoBehaviour:

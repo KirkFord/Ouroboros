@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     private BGM bgm;
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape) && !SceneManager.GetActiveScene().name.Equals("StartScreen"))
         {
@@ -18,12 +19,15 @@ public class PauseMenu : MonoBehaviour
             else {
                 Pause();
             }
+            
         }
+        
     }
 
     public void Start()
     {
         bgm = BGM.instance;
+        
     }
 
     public void Resume () {
@@ -41,6 +45,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        
     }
 
     public void LoadMenu(){
@@ -51,6 +56,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameManager.Instance.ShutPlayerUp();
         SceneManager.LoadScene("StartScreen");
+        
     }
 
     public void QuitGame(){
@@ -58,4 +64,5 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Quitting game...");
         Application.Quit();
     }
+    
 }

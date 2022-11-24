@@ -36,8 +36,8 @@ public class BadTile : MonoBehaviour
     {
         var explosionObj = Instantiate(explosion, transform.position, transform.rotation);
         Destroy(explosionObj, 1.5f);
-        player.transform.position = gotoBeginning;
         Instantiate(blocker, transform.position, transform.rotation);
+        player.transform.position = gotoBeginning;
         Destroy(gameObject);
     }
 }
