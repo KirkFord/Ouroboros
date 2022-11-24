@@ -8,7 +8,7 @@ public class Proj_Magic_Shoot : MonoBehaviour
     private GameObject target;
     private bool hasBeenMade = false;
     private float moveSpeed = 5.0f;
-    [SerializeField] private float damage = 20.0f;
+    [SerializeField] private float damage = 5000.0f;
     private GameManager _gm;
     private Player _player;
 
@@ -34,7 +34,7 @@ public class Proj_Magic_Shoot : MonoBehaviour
                                     // move relative to the ground
         if (Math.Abs(_gm.terrainMoveSpeed - _player.playerSpeed) < 0.01) {
             zSpeedAdjustment = _player.playerSpeed - 3;
-            Debug.Log("Adjusting wand projectile speed: " + zSpeedAdjustment);
+            //Debug.Log("Adjusting wand projectile speed: " + zSpeedAdjustment);
         }
         if (target == null) {
             Destroy(this.gameObject);
