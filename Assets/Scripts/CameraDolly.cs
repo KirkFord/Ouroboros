@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraDolly : MonoBehaviour
@@ -10,7 +11,6 @@ public class CameraDolly : MonoBehaviour
     private GameObject _endWall;
 
     [SerializeField] private bool _cameraStopped;
-
     public void CheckMovement()
     {
         //Debug.Log("Checking Player Movement");
