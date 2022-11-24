@@ -17,9 +17,21 @@ public class Puzzle2Lever : MonoBehaviour
         
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            if (Input.GetKeyUp(KeyCode.F))
+            {
+                Debug.Log("Lever Pressed!");
+                PlayerInteracts();
+            }
+        }
+    }
+
     void PlayerInteracts()
     {
         Puzzle2 puzzleScript = this.transform.parent.GetComponent<Puzzle2>();
-        puzzleScript.ActivateLever(1);
+        puzzleScript.ActivateLever(leverNum);
     }
 }

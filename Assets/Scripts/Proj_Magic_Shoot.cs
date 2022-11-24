@@ -26,7 +26,11 @@ public class Proj_Magic_Shoot : MonoBehaviour
 
     void Move()
     {
-        if (target == null) return;
+        if (target == null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         transform.LookAt(target.transform);
         transform.position += transform.forward * moveSpeed * Time.deltaTime;
     }
