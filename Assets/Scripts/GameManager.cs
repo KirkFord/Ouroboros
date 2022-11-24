@@ -122,5 +122,9 @@ public class GameManager : MonoBehaviour
         minutes = (int)timeElapsed / 60;
         seconds = (int)timeElapsed % 60;
     }
+
+    public int GetLoops() {
+        return _loops;
+    }
 }
 
