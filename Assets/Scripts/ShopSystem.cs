@@ -94,6 +94,7 @@ public class ShopSystem : MonoBehaviour
             projSlash.IncreaseDamage(10);
             _cm.RemoveCoins(cost);
         }
+        _iM.UpdateCoins();
     }
 
     public void IncreaseWandDamageHandler() {
@@ -102,5 +103,6 @@ public class ShopSystem : MonoBehaviour
             projWand.IncreaseDamage(15);
         }
         _cm.RemoveCoins(cost);
+        _iM.UpdateCoins();
     }
 }
