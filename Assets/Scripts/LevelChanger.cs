@@ -41,7 +41,9 @@ public class LevelChanger : MonoBehaviour
         const int loadPlayer = (int)Level.LoadPlayerLevel;
         if (scene.buildIndex is loadManagers or loadPlayer) return; 
         //if the loaded scene is the manager scene
-        anim.Play("Fade_In");
+        if (anim != null) {
+            anim.Play("Fade_In");
+        }
     }
     
     public void FadeToLevel(Level levelName)

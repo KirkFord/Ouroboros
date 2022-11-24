@@ -93,16 +93,16 @@ public class ShopSystem : MonoBehaviour
         if (_cm.GetCoins() > cost) {
             projSlash.IncreaseDamage(10);
             _cm.RemoveCoins(cost);
+            _iM.UpdateCoins();
         }
-        _iM.UpdateCoins();
     }
 
     public void IncreaseWandDamageHandler() {
         int cost = 3 + _gm.GetLoops();
         if (_cm.GetCoins() > cost) {
             projWand.IncreaseDamage(15);
+            _cm.RemoveCoins(cost);
+            _iM.UpdateCoins();
         }
-        _cm.RemoveCoins(cost);
-        _iM.UpdateCoins();
     }
 }
