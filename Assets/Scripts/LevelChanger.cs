@@ -37,7 +37,7 @@ public class LevelChanger : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Loading Scene: " + scene.name);
+        //Debug.Log("Loading Scene: " + scene.name);
         const int loadManagers = (int)Level.LoadManagersLevel;
         const int loadPlayer = (int)Level.LoadPlayerLevel;
         if (scene.buildIndex is loadManagers or loadPlayer) return; 

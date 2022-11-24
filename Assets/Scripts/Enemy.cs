@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody rgbd;
     public GameObject LootObject;
     private bool collected;
+    private bool _diedOnce;
     [SerializeField] private float damageToPlayer = 5.0f;
     [SerializeField] private float damageRate = 0.5f;
     [SerializeField] private float damageTime;
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
         _eM = EnemiesManager.instance;
         _gM = GameManager.Instance;
         animator = GetComponent<Animator>();
+        _diedOnce = false;
     }
 
     private void LateUpdate()
@@ -83,8 +85,9 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("enemy taking damage");
         CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
+        if (CurrentHealth <= 0 && !_diedOnce)
         {
+            _diedOnce = true;
             stopMoving = true;
             animator.SetBool("isDead",true);
             Invoke("Death",1.33f);

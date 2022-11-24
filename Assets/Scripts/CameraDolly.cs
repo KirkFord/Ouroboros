@@ -13,7 +13,7 @@ public class CameraDolly : MonoBehaviour
 
     public void CheckMovement()
     {
-        Debug.Log("Checking Player Movement");
+        //Debug.Log("Checking Player Movement");
         if (transform.position.z >= _finalCameraPos) CameraReachedEnd();
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(0,2,(float)_finalCameraPos),0.2f);
     }
