@@ -40,7 +40,7 @@ public class InteractionManager : MonoBehaviour
     }
 
     public void UpdateCoins() {
-        coins.text = "Coins : " + _cm.GetCoins();
+        coins.text = "Coins: " + _cm.GetCoins();
     }
 
     public void UpdateHealthBar() {

@@ -64,9 +64,19 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.name == "DEADZONE")
         {
+            //CurrentHealth--;
             Debug.Log("PLAYER ENTER DEADZONE");
         }
         
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.name == "DEADZONE")
+        {
+            PlayerTakeDamage(1f);
+            Debug.Log("PLAYER ENTER DEADZONE");
+        }
     }
 
     private void OnTriggerExit(Collider other)
