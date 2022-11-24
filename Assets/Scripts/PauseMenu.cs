@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape) && !SceneManager.GetActiveScene().name.Equals("StartScreen") )
+        if (Input.GetKeyDown(KeyCode.Escape) && !SceneManager.GetActiveScene().name.Equals("StartScreen"))
         {
             if (GameIsPaused){
                 Resume();
@@ -44,10 +44,12 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void LoadMenu(){
+        Debug.Log("PRESSING A FUCKING BUTTON");
         bgm.PlaySound(BGM.Sound.MenuSelectFX);
         GameIsPaused = false;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        GameManager.Instance.ShutPlayerUp();
         SceneManager.LoadScene("StartScreen");
     }
 

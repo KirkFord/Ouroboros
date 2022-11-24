@@ -45,10 +45,10 @@ public class EnemiesManager : MonoBehaviour
         _gM.AllEnemiesKilled += LevelEnded;
     }
 
-    private void OnDestroy()
-    {
-        _gM.AllEnemiesKilled -= LevelEnded;
-    }
+    // private void OnDestroy()
+    // {
+    //     _gM.AllEnemiesKilled -= LevelEnded;
+    // }
 
     // Update is called once per frame
     private void Update()
