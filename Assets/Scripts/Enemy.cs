@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 public class Enemy : MonoBehaviour
 {
@@ -45,11 +42,11 @@ public class Enemy : MonoBehaviour
             transform.position =
                 Vector3.MoveTowards(transform.position, player.transform.position, MoveSpeed * Time.deltaTime);
             transform.LookAt(player.transform);
+            rgbd.velocity = new Vector3(0, 0, -_gM.terrainMoveSpeed);
         }
 
     }
-    
-    
+
     // private void OnCollisionStay(Collision collisionInfo)
     // {
     //     if (collisionInfo.gameObject.name == "Player")
@@ -57,6 +54,15 @@ public class Enemy : MonoBehaviour
     //         Attack();
     //     }
     // }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Deadzone"))
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 38f);
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.transform.tag == "Player" && Time.time > damageTime)
