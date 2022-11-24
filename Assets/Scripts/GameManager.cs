@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        TerrainSpeedDecrease();
         _player.ResetRun();
 
 
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadMainHall()
     {
+        _player.levelOver = false;
         _player.canAttack = true;
         InteractionManager.Instance.HideInteractText();
         _loops += 1;
