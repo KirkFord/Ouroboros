@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    private BGM bgm;
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     void Update() {
@@ -19,9 +21,14 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        bgm = BGM.instance;
+    }
+
     public void Resume () {
-        BGM.instance.PlaySound(BGM.Sound.PauseMenuFX);
-        BGM.instance.MusicAudioSource.UnPause();
+        bgm.PlaySound(BGM.Sound.PauseMenuFX);
+        bgm.MusicAudioSource.UnPause();
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -29,15 +36,15 @@ public class PauseMenu : MonoBehaviour
     }
 
     void Pause () {
-        BGM.instance.PlaySound(BGM.Sound.PauseMenuFX);
-        BGM.instance.MusicAudioSource.Pause();
+        bgm.PlaySound(BGM.Sound.PauseMenuFX);
+        bgm.MusicAudioSource.Pause();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
     public void LoadMenu(){
-        BGM.instance.PlaySound(BGM.Sound.MenuSelectFX);
+        bgm.PlaySound(BGM.Sound.MenuSelectFX);
         GameIsPaused = false;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -45,7 +52,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void QuitGame(){
-        BGM.instance.PlaySound(BGM.Sound.MenuSelectFX);
+        bgm.PlaySound(BGM.Sound.MenuSelectFX);
         Debug.Log("Quitting game...");
         Application.Quit();
     }

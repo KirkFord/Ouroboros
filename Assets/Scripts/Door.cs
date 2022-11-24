@@ -57,4 +57,9 @@ public class Door : MonoBehaviour
             opened = true;
         }
     }
+
+    public void SetDoorPath(Level level)
+    {
+        sceneToChangeTo = level;
+    }
 }

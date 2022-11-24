@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -11,16 +10,13 @@ public class GroundController : MonoBehaviour
 
     [SerializeField] private GameObject _start;
     [SerializeField] private GameObject end;
+
+    [SerializeField] private Door leftDoor;
+    [SerializeField] private Door rightDoor;
+    
     [SerializeField] private CameraDolly cDolly;
     private GameManager _gm;
     [SerializeField]private bool _levelComplete;
-    
-    
-    
-    
-    
-
-
 
     private void Start()
     {
@@ -81,11 +77,36 @@ public class GroundController : MonoBehaviour
         var segmentLength = _lastSpawnedSegment.transform.localScale.z;
         var lenOfDoorway = end.transform.localScale.z;
         var endSpot = new Vector3(0, 0, _lastSpawnedSegment.transform.position.z + segmentLength/2 + lenOfDoorway/2);
-        var endPlatform = Instantiate(end, endSpot, end.transform.rotation);
-        cDolly.SetEnd(endPlatform.gameObject);
+        end.transform.position = endSpot;
+        //var endPlatform = Instantiate(end, endSpot, end.transform.rotation);
+        cDolly.SetEnd(end);
 
+        var possibleLevels = new List<Level>
+        {
+            Level.HealLevel,
+            Level.PuzzleLevel1,
+            Level.PuzzleLevel2,
+            Level.ShopLevel
+        };
+
+        var leftSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
+        switch (leftSelection)
+        {
+            case Level.PuzzleLevel2:
+                possibleLevels.Remove(Level.PuzzleLevel1);
+                break;
+            case Level.PuzzleLevel1:
+                possibleLevels.Remove(Level.PuzzleLevel2);
+                break;
+        }
+
+        possibleLevels.Remove(leftSelection);
+        var rightSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
+        Debug.Log("Left Selection: "+ leftSelection);
+        Debug.Log("Right Selection: "+ rightSelection);
         
         
-        
+        leftDoor.SetDoorPath(leftSelection);
+        rightDoor.SetDoorPath(rightSelection);
     }
 }

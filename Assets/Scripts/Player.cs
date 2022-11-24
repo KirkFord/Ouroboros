@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float playerSpeed = 10.0f;
     [SerializeField] float MaxHealth = 100.0f;
     public float CurrentHealth;
-    [SerializeField] private bool _levelOver;
+    public bool levelOver;
     private GroundController _gc;
     private bool _canMove = true;
     public bool canAttack;
@@ -108,15 +108,9 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isMoving",false);
         }
+        
+        _rb.velocity = levelOver ? new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed) : new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed - _gm.terrainMoveSpeed);
 
-        if (_levelOver)
-        {
-            _rb.velocity = new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed);
-        }
-        else
-        {
-            _rb.velocity = new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed - _gm.terrainMoveSpeed);
-        }
 
 
         if (_rb.velocity != Vector3.zero)
@@ -129,7 +123,7 @@ public class Player : MonoBehaviour
 
     private void LevelOver()
     {
-        _levelOver = true;
+        levelOver = true;
         canAttack = false;
     }
     public void PlayerTakeDamage(float damage)
@@ -180,7 +174,7 @@ public class Player : MonoBehaviour
         EnableMovement();
         DiedOnce = false;
         canAttack = true;
-        _levelOver = false;
+        levelOver = false;
         CurrentHealth = MaxHealth;
 
     }
