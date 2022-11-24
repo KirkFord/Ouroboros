@@ -30,6 +30,7 @@ public class Puzzle2 : MonoBehaviour
         GenerateColors();
     }
 
+
     void InitialColors()
     {
         cubes[0] = current1;
@@ -78,6 +79,60 @@ public class Puzzle2 : MonoBehaviour
 
     public void ActivateLever(int leverNum)
     {
+        // Proper logic
 
+        switch(leverNum)
+        {
+            case 1:
+                colors[0] += 1;
+                colors[1] += 1;
+                colors[2] += 1;
+                colors[3] += 1;
+                break;
+
+            case 2:
+                colors[1] += 1;
+                colors[2] += 1;
+                break;
+
+            case 3:
+                colors[1] += 1;
+                colors[2] += 1;
+                colors[3] += 1;
+                break;
+
+            case 4:
+                colors[1] += 1;
+                break;
+        }
+        RotateColors();
+
+        if(CompareColors())
+        {
+            Debug.Log("Puzzle Success!!");
+        }
+    }
+
+    void RotateColors()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (colors[i] >= 5)
+            {
+                colors[i] = 1;
+            }
+        }
+    }
+
+    bool CompareColors()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (colors[i] != colors[i + 4])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
