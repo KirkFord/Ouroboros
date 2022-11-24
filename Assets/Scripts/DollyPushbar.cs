@@ -10,7 +10,7 @@ public class DollyPushbar : MonoBehaviour
     {
         _gM = GameManager.Instance;
         _cD = transform.parent.GetComponent<CameraDolly>();
-        _followingPlayer = _cD.followingPlayer;
+        _followingPlayer = false;
         _gM.AllEnemiesKilled += ToggleFollowPlayer;
     }
     private void OnDestroy()
@@ -31,7 +31,8 @@ public class DollyPushbar : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("Player") || !_followingPlayer) return;
+        
+        if (other.gameObject.name != "Player" || !_followingPlayer) return;
         Debug.Log("Player Hitting Pushbar");
         _cD.CheckMovement();
     }
