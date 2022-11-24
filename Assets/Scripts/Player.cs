@@ -23,9 +23,7 @@ public class Player : MonoBehaviour
 
     public event Action EnteredShopZone;
     public event Action LeftShopZone;
-    public event Action EnteredDoorZone;
-    public event Action LeftDoorZone;
-    
+
     private void Awake()
     { 
         if (Instance == null)
@@ -56,10 +54,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("DoorInteractZone"))
-        {
-            EnteredDoorZone?.Invoke();
-        }
         if (other.gameObject.CompareTag("ShopKeeperInteractZone"))
         {
             EnteredShopZone?.Invoke();
@@ -79,10 +73,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("DoorInteractZone"))
-        {
-            LeftDoorZone?.Invoke();
-        }
         if (other.CompareTag("ShopKeeperInteractZone"))
         {
             LeftShopZone?.Invoke();

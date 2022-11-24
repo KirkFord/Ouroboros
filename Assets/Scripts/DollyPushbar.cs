@@ -32,7 +32,7 @@ public class DollyPushbar : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag("Player") || !_followingPlayer) return;
-        //Debug.Log("Player Hitting Pushbar");
+        Debug.Log("Player Hitting Pushbar");
         _cD.CheckMovement();
     }
 

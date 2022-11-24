@@ -97,6 +97,12 @@ public class GroundController : MonoBehaviour
             Level.ShopLevel
         };
 
+        var images = new Dictionary<Level, Sprite>();
+        images.Add(Level.HealLevel, healIcon);
+        images.Add(Level.PuzzleLevel1, puzzleIcon);
+        images.Add(Level.PuzzleLevel2, puzzleIcon);
+        images.Add(Level.ShopLevel, shopIcon);
+
         var leftSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
         switch (leftSelection)
         {
@@ -110,42 +116,9 @@ public class GroundController : MonoBehaviour
 
         possibleLevels.Remove(leftSelection);
         var rightSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
-        //Debug.Log("Left Selection: "+ leftSelection);
-        //Debug.Log("Right Selection: "+ rightSelection);
-        
-        switch (leftSelection)
-        {
-            case Level.HealLevel:
-                leftDoorImage.sprite = healIcon;
-                break;
-            case Level.PuzzleLevel1:
-                leftDoorImage.sprite = puzzleIcon;
-                break;
-            case Level.PuzzleLevel2:
-                leftDoorImage.sprite = puzzleIcon;
-                break;
-            case Level.ShopLevel:
-                leftDoorImage.sprite = shopIcon;
-                break;
-        }
-        
-        switch (rightSelection)
-        {
-            case Level.HealLevel:
-                rightDoorImage.sprite = healIcon;
-                break;
-            case Level.PuzzleLevel1:
-                rightDoorImage.sprite = puzzleIcon;
-                break;
-            case Level.PuzzleLevel2:
-                rightDoorImage.sprite = puzzleIcon;
-                break;
-            case Level.ShopLevel:
-                rightDoorImage.sprite = shopIcon;
-                break;
-        }
-        
-        
+
+        rightDoorImage.sprite = images[rightSelection];
+        leftDoorImage.sprite = images[leftSelection];
         leftDoor.SetDoorPath(leftSelection);
         rightDoor.SetDoorPath(rightSelection);
     }

@@ -10,33 +10,31 @@ public class Door : MonoBehaviour
     private Player _player;
     private bool _playerInZone;
     [SerializeField] private Level sceneToChangeTo;
-    private bool alreadyTeleporting;
+    private bool _alreadyTeleporting = false;
 
     private void Start()
     {
         _lC = LevelChanger.Instance;
         _iM = InteractionManager.Instance;
         _player = Player.Instance;
-        _player.EnteredDoorZone += PlayerEnteredZone;
-        _player.LeftDoorZone += PlayerLeftZone;
     }
 
     private void Update()
     {
         if (!Input.GetKeyDown(KeyCode.F) || !_playerInZone) return;
-        if (alreadyTeleporting) return;
+        if (_alreadyTeleporting) return;
         _iM.HideInteractText();
         TeleportPlayer();
-        alreadyTeleporting = true;
+        _alreadyTeleporting = true;
     }
 
-    private void PlayerEnteredZone()
+    public void PlayerEnteredZone()
     {
         _iM.ShowInteractText("Press [F] to Leave");
         _playerInZone = true;
     }
 
-    private void PlayerLeftZone()
+    public void PlayerLeftZone()
     {
         _iM.HideInteractText();
         _playerInZone = false;

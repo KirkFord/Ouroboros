@@ -464,6 +464,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2523473601490821782, guid: f5369a84283ad704981127d5403dc991, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 2612477333559132615, guid: f5369a84283ad704981127d5403dc991, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -536,6 +540,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: End
       objectReference: {fileID: 0}
+    - target: {fileID: 6734404393131629772, guid: f5369a84283ad704981127d5403dc991, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 7089465226412449389, guid: f5369a84283ad704981127d5403dc991, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
