@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GroundController : MonoBehaviour
@@ -13,6 +14,13 @@ public class GroundController : MonoBehaviour
 
     [SerializeField] private Door leftDoor;
     [SerializeField] private Door rightDoor;
+
+    [SerializeField] private Sprite shopIcon;
+    [SerializeField] private Sprite puzzleIcon;
+    [SerializeField] private Sprite healIcon;
+
+    [SerializeField] private Image leftDoorImage;
+    [SerializeField] private Image rightDoorImage;
     
     [SerializeField] private CameraDolly cDolly;
     private GameManager _gm;
@@ -89,6 +97,12 @@ public class GroundController : MonoBehaviour
             Level.ShopLevel
         };
 
+        var images = new Dictionary<Level, Sprite>();
+        images.Add(Level.HealLevel, healIcon);
+        images.Add(Level.PuzzleLevel1, puzzleIcon);
+        images.Add(Level.PuzzleLevel2, puzzleIcon);
+        images.Add(Level.ShopLevel, shopIcon);
+
         var leftSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
         switch (leftSelection)
         {
@@ -102,10 +116,9 @@ public class GroundController : MonoBehaviour
 
         possibleLevels.Remove(leftSelection);
         var rightSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
-        //Debug.Log("Left Selection: "+ leftSelection);
-        //Debug.Log("Right Selection: "+ rightSelection);
-        
-        
+
+        rightDoorImage.sprite = images[rightSelection];
+        leftDoorImage.sprite = images[leftSelection];
         leftDoor.SetDoorPath(leftSelection);
         rightDoor.SetDoorPath(rightSelection);
     }

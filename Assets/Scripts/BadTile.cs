@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class BadTile : MonoBehaviour
 {
-    private int breakTimer = 100;
+    private int breakTimer = 30;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject explosion;
+    [SerializeField] private GameObject blocker;
+    [SerializeField] private Vector3 gotoBeginning;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -16,7 +20,7 @@ public class BadTile : MonoBehaviour
     {
         if (breakTimer <= 0)
         {
-            Destroy(gameObject);
+            BrokeTile();
         }
     }
 
@@ -28,7 +32,12 @@ public class BadTile : MonoBehaviour
         }
     }
 
-    //Get parent object
-    //When player stands on tile start timer
-    //When timer runs out, player dies?
+    void BrokeTile()
+    {
+        var explosionObj = Instantiate(explosion, transform.position, transform.rotation);
+        Destroy(explosionObj, 1.5f);
+        player.transform.position = gotoBeginning;
+        Instantiate(blocker, transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
 }
