@@ -11,11 +11,7 @@ public class Player : MonoBehaviour
     public float playerSpeed = 10.0f;
     [SerializeField] float MaxHealth = 100.0f;
     public float CurrentHealth;
-<<<<<<< HEAD
     public bool levelOver;
-=======
-    [SerializeField] private bool _levelOver;
->>>>>>> edab59cc0679c2f2916be307066fcfc69c3c1bc0
     private GroundController _gc;
     private bool _canMove = true;
     public bool canAttack;
