@@ -6728,7 +6728,7 @@ MonoBehaviour:
   cameraAnim: {fileID: 1203404450}
   shopUI: {fileID: 1101476330}
   projSlash: {fileID: 6177861155359807350, guid: 065d0e91dc37c774c82ad3426e02d0e2, type: 3}
-  projWand: {fileID: 0}
+  projWand: {fileID: 4910543440221824915, guid: e6243609d51d11743a1d09333603ca5c, type: 3}
 --- !u!1001 &2000853809
 PrefabInstance:
   m_ObjectHideFlags: 0
