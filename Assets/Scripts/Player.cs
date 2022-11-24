@@ -136,9 +136,9 @@ public class Player : MonoBehaviour
             canAttack = false;
             animator.SetBool("isDead",true);
             Invoke("Death",1.33f);
-            Debug.Log("this dude is dead");
+            //Debug.Log("this dude is dead");
         }
-        Debug.Log("player taking damage");
+        //Debug.Log("player taking damage");
     }
 
     public void Death()

@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
     {
         _player.levelOver = false;
         _player.canAttack = true;
+        TerrainSpeedDecrease();
         InteractionManager.Instance.HideInteractText();
         _loops += 1;
         _enemiesRemaining = 10 * _loops;
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour
 
     private void EnemyDied()
     {
+        Debug.Log("enemies remaining = " + _enemiesRemaining);
         _enemiesRemaining -= 1;
     }
     
@@ -123,6 +125,10 @@ public class GameManager : MonoBehaviour
         timeElapsed = timeEnd - timeStart;
         minutes = (int)timeElapsed / 60;
         seconds = (int)timeElapsed % 60;
+    }
+
+    public int GetLoops() {
+        return _loops;
     }
 }
 

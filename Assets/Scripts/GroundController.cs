@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GroundController : MonoBehaviour
@@ -13,6 +14,13 @@ public class GroundController : MonoBehaviour
 
     [SerializeField] private Door leftDoor;
     [SerializeField] private Door rightDoor;
+
+    [SerializeField] private Sprite shopIcon;
+    [SerializeField] private Sprite puzzleIcon;
+    [SerializeField] private Sprite healIcon;
+
+    [SerializeField] private Image leftDoorImage;
+    [SerializeField] private Image rightDoorImage;
     
     [SerializeField] private CameraDolly cDolly;
     private GameManager _gm;
@@ -102,8 +110,40 @@ public class GroundController : MonoBehaviour
 
         possibleLevels.Remove(leftSelection);
         var rightSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
-        Debug.Log("Left Selection: "+ leftSelection);
-        Debug.Log("Right Selection: "+ rightSelection);
+        //Debug.Log("Left Selection: "+ leftSelection);
+        //Debug.Log("Right Selection: "+ rightSelection);
+        
+        switch (leftSelection)
+        {
+            case Level.HealLevel:
+                leftDoorImage.sprite = healIcon;
+                break;
+            case Level.PuzzleLevel1:
+                leftDoorImage.sprite = puzzleIcon;
+                break;
+            case Level.PuzzleLevel2:
+                leftDoorImage.sprite = puzzleIcon;
+                break;
+            case Level.ShopLevel:
+                leftDoorImage.sprite = shopIcon;
+                break;
+        }
+        
+        switch (rightSelection)
+        {
+            case Level.HealLevel:
+                rightDoorImage.sprite = healIcon;
+                break;
+            case Level.PuzzleLevel1:
+                rightDoorImage.sprite = puzzleIcon;
+                break;
+            case Level.PuzzleLevel2:
+                rightDoorImage.sprite = puzzleIcon;
+                break;
+            case Level.ShopLevel:
+                rightDoorImage.sprite = shopIcon;
+                break;
+        }
         
         
         leftDoor.SetDoorPath(leftSelection);
