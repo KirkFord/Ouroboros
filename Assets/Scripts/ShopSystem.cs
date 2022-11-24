@@ -8,6 +8,9 @@ public class ShopSystem : MonoBehaviour
     private Player _player;
     [SerializeField] private Animator shopKeepAnim;
     [SerializeField] private Animator cameraAnim;
+    [SerializeField] private Canvas shopUI;
+    [SerializeField] private Proj_Slash projSlash;
+    [SerializeField] private Proj_Magic_Shoot projWand;
 
     private bool _isShopOpen;
     private static readonly int ShopView = Animator.StringToHash("ShopView");
@@ -18,6 +21,7 @@ public class ShopSystem : MonoBehaviour
         _player.EnteredShopZone += EnteredZone;
         _player.LeftShopZone += LeftZone;
         _iM = InteractionManager.Instance;
+        CloseShop();
     }
 
     private void OnDestroy()
@@ -48,15 +52,17 @@ public class ShopSystem : MonoBehaviour
         _iM.HideInteractText();
         _isShopOpen = true;
         _player.gameObject.SetActive(false);
+        shopUI.gameObject.SetActive(true);
     }
 
-    private void CloseShop()
+    public void CloseShop()
     {
         _player.gameObject.SetActive(true);
         _isShopOpen = false;
         cameraAnim.SetBool(ShopView, false);
         _player.EnableMovement();
         _iM.ShowInteractText("Press [F] to open the shop");
+        shopUI.gameObject.SetActive(false);
     }
 
     private void EnteredZone()
@@ -70,5 +76,15 @@ public class ShopSystem : MonoBehaviour
     {
         _isInShopZone = false;
         _iM.HideInteractText();
+    }
+
+    public void IncreaseSwordDamageHandler() {
+        // TODO: check if player has enough coins -- 2coins + loops
+        projSlash.IncreaseDamage(10);
+    }
+
+    public void IncreaseWandDamageHandler() {
+        // TODO: check if player has enough coins -- 3coins + loops
+        projWand.IncreaseDamage(15);
     }
 }

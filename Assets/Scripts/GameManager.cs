@@ -62,11 +62,28 @@ public class GameManager : MonoBehaviour
     {
         _loops = 0;
         _eM.EnemiesSpawned = 0;
-        SceneManager.LoadScene("MainHall");
+        enemiesKilled = 0;
+        timeStart = Time.time;
+        timeEnd = 0;
+        timeElapsed = 0;
+        minutes = 0; 
+        seconds = 0;
+        if (_player == null)
+        {
+            return;
+        }
+        TerrainSpeedDecrease();
+        _player.ResetRun();
+
+
+        //SceneManager.LoadScene("MainHall");
     }
 
     private void LoadMainHall()
     {
+        _player.levelOver = false;
+        _player.canAttack = true;
+        InteractionManager.Instance.HideInteractText();
         _loops += 1;
         _enemiesRemaining = 10 * _loops;
         _eM.SetUpNextLevel(_enemiesRemaining); 

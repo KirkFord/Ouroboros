@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Proj_Slash : MonoBehaviour
 {
-    [SerializeField] private float _damage = 500f;
+    [SerializeField] private float _damage = 75f;
     [SerializeField] private float lifeTime = 2.0f;
     //[SerializeField] private GameObject player;
 
@@ -33,5 +33,9 @@ public class Proj_Slash : MonoBehaviour
     void Snap()
     {
         transform.localPosition = new Vector3(0, 0, 0); // Vector value is arbitrary
+    }
+
+    public void IncreaseDamage(float d) {
+        this._damage += d;
     }
 }
