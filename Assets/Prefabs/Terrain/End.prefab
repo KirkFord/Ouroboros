@@ -985,6 +985,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 5574208510220483424, guid: f935df14657c54d4195ea2406c87ced3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574208510954047421, guid: f935df14657c54d4195ea2406c87ced3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620860138458324819, guid: f935df14657c54d4195ea2406c87ced3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620860138798228366, guid: f935df14657c54d4195ea2406c87ced3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f935df14657c54d4195ea2406c87ced3, type: 3}
 --- !u!4 &4035298946675304751 stripped
@@ -1434,6 +1450,22 @@ PrefabInstance:
     - target: {fileID: 2944737759838584895, guid: f935df14657c54d4195ea2406c87ced3, type: 3}
       propertyPath: m_Name
       value: LeftDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574208510220483424, guid: f935df14657c54d4195ea2406c87ced3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574208510954047421, guid: f935df14657c54d4195ea2406c87ced3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620860138458324819, guid: f935df14657c54d4195ea2406c87ced3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620860138798228366, guid: f935df14657c54d4195ea2406c87ced3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f935df14657c54d4195ea2406c87ced3, type: 3}

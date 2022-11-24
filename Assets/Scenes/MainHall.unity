@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finalCameraPos: 0
   followingPlayer: 0
+  _cameraStopped: 0
 --- !u!1 &447879985
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +449,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 683710666393280619, guid: f5369a84283ad704981127d5403dc991, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 683710667261402294, guid: f5369a84283ad704981127d5403dc991, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1405689602634102224, guid: f5369a84283ad704981127d5403dc991, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -461,6 +470,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2047275509732432368, guid: f5369a84283ad704981127d5403dc991, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2289116234793927768, guid: f5369a84283ad704981127d5403dc991, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2289116234999822469, guid: f5369a84283ad704981127d5403dc991, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -539,6 +556,22 @@ PrefabInstance:
     - target: {fileID: 4325458874054525279, guid: f5369a84283ad704981127d5403dc991, type: 3}
       propertyPath: m_Name
       value: End
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187830667006085399, guid: f5369a84283ad704981127d5403dc991, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187830667060196810, guid: f5369a84283ad704981127d5403dc991, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5856778128981634340, guid: f5369a84283ad704981127d5403dc991, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5856778130001007097, guid: f5369a84283ad704981127d5403dc991, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6734404393131629772, guid: f5369a84283ad704981127d5403dc991, type: 3}
       propertyPath: m_Camera
