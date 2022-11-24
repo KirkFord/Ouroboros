@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
         InteractionManager.Instance.HideInteractText();
         _loops += 1;
         _enemiesRemaining = 10 * _loops;
-        _eM.SetUpNextLevel(_enemiesRemaining); 
+        _eM.SetUpNextLevel(_enemiesRemaining); // buggy
         StartCoroutine(CheckEnemiesRemaining());
     }
 

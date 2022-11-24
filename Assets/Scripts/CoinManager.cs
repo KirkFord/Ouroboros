@@ -3,7 +3,8 @@ using UnityEngine;
 public class CoinManager : MonoBehaviour
 {
     public static CoinManager Instance;
-    private int _coins;
+    private InteractionManager _im;
+    private int _coins = 0;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class CoinManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        _im = InteractionManager.Instance;
     }
 
     public void AddCoins(int c) {
@@ -23,6 +25,7 @@ public class CoinManager : MonoBehaviour
             return;
         }
         _coins += c;
+        _im.UpdateCoins();
     }
 
     public void RemoveCoins(int c) {
@@ -30,6 +33,7 @@ public class CoinManager : MonoBehaviour
             return;
         }
         _coins -= c;
+        _im.UpdateCoins();
     }
 
     public int GetCoins() {

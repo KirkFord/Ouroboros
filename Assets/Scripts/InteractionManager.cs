@@ -5,6 +5,10 @@ public class InteractionManager : MonoBehaviour
 {
     public static InteractionManager Instance;
     [SerializeField] private Text interactText;
+    private CoinManager _cm;
+    private Player _player;
+    [SerializeField] private Text coins;
+    [SerializeField] private Slider slider;
     private void Awake()
     {
         if (Instance == null)
@@ -17,6 +21,11 @@ public class InteractionManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
+
+    private void Start() {
+        _cm = CoinManager.Instance;
+        coins.text = "Coins: " + _cm.GetCoins();
+    }
     
     public void ShowInteractText(string text)
     {
@@ -28,5 +37,16 @@ public class InteractionManager : MonoBehaviour
     {
         interactText.enabled = false;
     }
-    
+
+    public void UpdateCoins() {
+        coins.text = "Coins : " + _cm.GetCoins();
+    }
+
+    public void UpdateHealthBar() {
+        slider.value = _player.CurrentHealth / _player.MaxHealth;
+    }
+
+    public void SetPlayer(Player p) {
+        this._player = p;
+    }
 }

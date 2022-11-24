@@ -8,8 +8,9 @@ public class Player : MonoBehaviour
     public static Player Instance;
     private GameManager _gm;
     private Rigidbody _rb;
+    private InteractionManager _im;
     public float playerSpeed = 10.0f;
-    [SerializeField] float MaxHealth = 100.0f;
+    [SerializeField] public float MaxHealth = 100.0f;
     public float CurrentHealth;
     public bool levelOver;
     private GroundController _gc;
@@ -45,6 +46,8 @@ public class Player : MonoBehaviour
         //canAttack = false;
         animator = GetComponent<Animator>();
         _gm = GameManager.Instance;
+        _im = InteractionManager.Instance;
+        _im.SetPlayer(Instance);
         _gm.AllEnemiesKilled += LevelOver;
         bgm = BGM.instance;
         DiedOnce = false;
@@ -129,6 +132,7 @@ public class Player : MonoBehaviour
             //Debug.Log("this dude is dead");
         }
         //Debug.Log("player taking damage");
+        _im.UpdateHealthBar();
     }
 
     public void Death()
@@ -146,6 +150,7 @@ public class Player : MonoBehaviour
             CurrentHealth = MaxHealth;
         }
         Debug.Log("Healing player by " + healAmt + "; New HP: " + CurrentHealth);
+        _im.UpdateHealthBar();
     }
 
     public void EnableMovement()
@@ -166,6 +171,6 @@ public class Player : MonoBehaviour
         canAttack = true;
         levelOver = false;
         CurrentHealth = MaxHealth;
-
+        _im.UpdateHealthBar();
     }
 }
