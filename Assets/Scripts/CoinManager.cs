@@ -17,6 +17,9 @@ public class CoinManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start() {
         _im = InteractionManager.Instance;
     }
 
