@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,14 @@ public class Proj_Magic_Shoot : MonoBehaviour
     private bool hasBeenMade = false;
     private float moveSpeed = 5.0f;
     [SerializeField] private float damage = 20.0f;
+    private GameManager _gm;
+    private Player _player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _gm = GameManager.Instance;
+        _player = Player.Instance;
     }
 
     // Update is called once per frame
@@ -26,13 +30,19 @@ public class Proj_Magic_Shoot : MonoBehaviour
 
     void Move()
     {
-        if (target == null)
-        {
+        float zSpeedAdjustment = 0; // must adjust movement along z axis to make the projectile appear to
+                                    // move relative to the ground
+        if (Math.Abs(_gm.terrainMoveSpeed - _player.playerSpeed) < 0.01) {
+            zSpeedAdjustment = _player.playerSpeed - 3;
+            Debug.Log("Adjusting wand projectile speed: " + zSpeedAdjustment);
+        }
+        if (target == null) {
             Destroy(this.gameObject);
             return;
         }
         transform.LookAt(target.transform);
-        transform.position += transform.forward * moveSpeed * Time.deltaTime;
+        transform.position += transform.forward * moveSpeed * Time.deltaTime 
+                                - new Vector3(0, 0, zSpeedAdjustment) * Time.deltaTime;
     }
 
     public void Created(GameObject passTarget)

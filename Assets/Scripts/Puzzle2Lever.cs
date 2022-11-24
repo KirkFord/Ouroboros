@@ -5,6 +5,7 @@ using UnityEngine;
 public class Puzzle2Lever : MonoBehaviour
 {
     [SerializeField] private int leverNum = 0;
+    private bool playerIn = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,19 +15,27 @@ public class Puzzle2Lever : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.transform.tag == "Player")
+        if (playerIn)
         {
-            if (Input.GetKeyUp(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 Debug.Log("Lever Pressed!");
                 PlayerInteracts();
             }
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            playerIn = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        playerIn = false;
     }
 
     void PlayerInteracts()

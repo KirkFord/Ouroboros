@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
     
     public void TerrainSpeedIncrease()
     {
-        if (Math.Abs(terrainMoveSpeed - _player.playerSpeed) < 0) return;
+        if (Math.Abs(terrainMoveSpeed - _player.playerSpeed) < 0.01) return;
         terrainMoveSpeed = _player.playerSpeed;
     }
     
