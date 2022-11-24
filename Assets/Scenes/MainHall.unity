@@ -430,6 +430,11 @@ MonoBehaviour:
   end: {fileID: 902059100}
   leftDoor: {fileID: 902059099}
   rightDoor: {fileID: 902059097}
+  shopIcon: {fileID: 21300000, guid: 125edf020f328e5479ba8a933d6f9fac, type: 3}
+  puzzleIcon: {fileID: 21300000, guid: 5e5523086eecf5f43a78d6b35d426324, type: 3}
+  healIcon: {fileID: 21300000, guid: 896f0008ead0beb4fbacdaeab119554a, type: 3}
+  leftDoorImage: {fileID: 902059102}
+  rightDoorImage: {fileID: 902059101}
   cDolly: {fileID: 201834986}
   _levelComplete: 0
 --- !u!1001 &902059096
@@ -589,6 +594,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4325458874054525279, guid: f5369a84283ad704981127d5403dc991, type: 3}
   m_PrefabInstance: {fileID: 902059096}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &902059101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2359528888792687663, guid: f5369a84283ad704981127d5403dc991, type: 3}
+  m_PrefabInstance: {fileID: 902059096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &902059102 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4610845550865845406, guid: f5369a84283ad704981127d5403dc991, type: 3}
+  m_PrefabInstance: {fileID: 902059096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
