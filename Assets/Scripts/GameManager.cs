@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
                 _player = Player.Instance;
                 break;
             case "MainHall":
+                _player = Player.Instance;
                 LoadMainHall();
                 break;
         }
@@ -81,8 +82,10 @@ public class GameManager : MonoBehaviour
 
     private void LoadMainHall()
     {
+        
         _player.levelOver = false;
         _player.canAttack = true;
+        _player.EnableMovement();
         TerrainSpeedDecrease();
         InteractionManager.Instance.HideInteractText();
         _loops += 1;
@@ -130,5 +133,12 @@ public class GameManager : MonoBehaviour
     public int GetLoops() {
         return _loops;
     }
+
+    public void ShutPlayerUp()
+    {
+        _player.canAttack = false;
+        _player.DisableMovement();
+    }
+    
 }
 

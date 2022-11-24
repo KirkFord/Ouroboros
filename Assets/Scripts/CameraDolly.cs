@@ -9,7 +9,7 @@ public class CameraDolly : MonoBehaviour
     private GameObject _end;
     private GameObject _endWall;
 
-    private bool _cameraStopped;
+    [SerializeField] private bool _cameraStopped;
 
     public void CheckMovement()
     {

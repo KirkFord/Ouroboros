@@ -76,7 +76,12 @@ public class BGM : MonoBehaviour
                 MusicAudioSource.clip = MusicClips[3];
                 MusicAudioSource.enabled = true;
                 break;
-            case "Puzzle":
+            case "Puzzle1":
+                MusicAudioSource.enabled = false;
+                MusicAudioSource.clip = MusicClips[4];
+                MusicAudioSource.enabled = true;
+                break;
+            case "Puzzle2":
                 MusicAudioSource.enabled = false;
                 MusicAudioSource.clip = MusicClips[4];
                 MusicAudioSource.enabled = true;
