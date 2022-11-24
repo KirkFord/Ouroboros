@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.name == "DEADZONE")
         {
+            //CurrentHealth--;
             Debug.Log("PLAYER ENTER DEADZONE");
         }
         if (other.transform.CompareTag("Pickup") && other.GetComponent<Collider>().GetType() == typeof(CapsuleCollider))
@@ -71,6 +72,15 @@ public class Player : MonoBehaviour
             //add some points or something
             //GetComponent<Player>().PlayerAddPoints();
             Destroy(other.gameObject);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.name == "DEADZONE")
+        {
+            PlayerTakeDamage(1f);
+            Debug.Log("PLAYER ENTER DEADZONE");
         }
     }
 
