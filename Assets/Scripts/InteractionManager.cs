@@ -5,6 +5,8 @@ public class InteractionManager : MonoBehaviour
 {
     public static InteractionManager Instance;
     [SerializeField] private Text interactText;
+    private CoinManager _cm;
+    [SerializeField] private Text coins;
     private void Awake()
     {
         if (Instance == null)
@@ -16,6 +18,11 @@ public class InteractionManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start() {
+        _cm = CoinManager.Instance;
+        coins.text = "Coins: " + _cm.GetCoins();
     }
     
     public void ShowInteractText(string text)
@@ -29,4 +36,7 @@ public class InteractionManager : MonoBehaviour
         interactText.enabled = false;
     }
     
+    public void UpdateCoins() {
+        coins.text = "Coins : " + _cm.GetCoins();
+    }
 }
