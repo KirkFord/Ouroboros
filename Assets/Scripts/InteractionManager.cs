@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private Text interactText;
     private CoinManager _cm;
     private Player _player;
-    [SerializeField] private Text coins;
+    [SerializeField] private TMP_Text coins;
     [SerializeField] private Slider slider;
     private void Awake()
     {
