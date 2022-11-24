@@ -146,6 +146,12 @@ public class Puzzle2 : MonoBehaviour
 
     void GiveReward()
     {
-
+        GameObject[] coins;
+        coins = GameObject.FindGameObjectsWithTag("Loot");
+        foreach (GameObject coin in coins)
+        {
+            var lootScript = coin.GetComponent<SpawnLoot>();
+            lootScript.DropCoin();
+        }
     }
 }
