@@ -5,31 +5,28 @@ using Random = UnityEngine.Random;
 
 public class GroundController : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> segments;
-    private Queue<GameObject> _currentSegments;
-    [SerializeField] private GameObject _lastSpawnedSegment;
-
+    [SerializeField] private CameraDolly cDolly;
+    
     [SerializeField] private GameObject _start;
     [SerializeField] private GameObject end;
-
     [SerializeField] private Door leftDoor;
+    [SerializeField] private Image leftDoorImage;
     [SerializeField] private Door rightDoor;
-
+    [SerializeField] private Image rightDoorImage;
     [SerializeField] private Sprite shopIcon;
     [SerializeField] private Sprite puzzleIcon;
     [SerializeField] private Sprite healIcon;
-
-    [SerializeField] private Image leftDoorImage;
-    [SerializeField] private Image rightDoorImage;
     
-    [SerializeField] private CameraDolly cDolly;
+    [SerializeField] private List<GameObject> segments;
+    
+    private Queue<GameObject> _currentSegments;
+    private GameObject _lastSpawnedSegment;
+    
     private GameManager _gm;
-    [SerializeField]private bool _levelComplete;
 
     private void Start()
     {
         _gm = GameManager.Instance;
-        
         _currentSegments = new Queue<GameObject>();
         _gm.AllEnemiesKilled += LevelComplete;
         AddSegment(_start);
@@ -72,10 +69,8 @@ public class GroundController : MonoBehaviour
         }
     }
     
-
     private void LevelComplete()
     {
-        _levelComplete = true;
         SummonEndPlatform();
         cDolly.FollowPlayer();
     }
@@ -97,26 +92,30 @@ public class GroundController : MonoBehaviour
             Level.ShopLevel
         };
 
-        var images = new Dictionary<Level, Sprite>();
-        images.Add(Level.HealLevel, healIcon);
-        images.Add(Level.PuzzleLevel1, puzzleIcon);
-        images.Add(Level.PuzzleLevel2, puzzleIcon);
-        images.Add(Level.ShopLevel, shopIcon);
+        var images = new Dictionary<Level, Sprite>
+        {
+            {Level.HealLevel, healIcon},
+            {Level.PuzzleLevel1, puzzleIcon},
+            {Level.PuzzleLevel2, puzzleIcon},
+            {Level.ShopLevel, shopIcon}
+        };
 
         var leftSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
         switch (leftSelection)
         {
+            default:
+                possibleLevels.Remove(leftSelection);
+                break;
             case Level.PuzzleLevel2:
                 possibleLevels.Remove(Level.PuzzleLevel1);
                 break;
             case Level.PuzzleLevel1:
                 possibleLevels.Remove(Level.PuzzleLevel2);
                 break;
+            
         }
 
-        possibleLevels.Remove(leftSelection);
         var rightSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
-
         rightDoorImage.sprite = images[rightSelection];
         leftDoorImage.sprite = images[leftSelection];
         leftDoor.SetDoorPath(leftSelection);

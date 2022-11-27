@@ -33,14 +33,14 @@ public class StartScreen : MonoBehaviour
     private void Start()
     {
         _currentResolution = Screen.currentResolution;
-        _bgm = BGM.instance;
+        _bgm = BGM.Instance;
         _lc = LevelChanger.Instance;
         _gm = GameManager.Instance;
         mainCam.transform.position = cameraStartPosition.position;
         mainCam.transform.rotation = cameraStartPosition.rotation;
 
-        fxVolumeSlider.value = _bgm.fxvolume;
-        musicVolumeSlider.value = _bgm.MusicAudioSource.volume;
+        fxVolumeSlider.value = _bgm.fxVolume;
+        musicVolumeSlider.value = _bgm.musicAudioSource.volume;
         
         startObject.SetActive(true);
         settingsObject.SetActive(false);
@@ -48,7 +48,7 @@ public class StartScreen : MonoBehaviour
 
     public void StartButtonPressed()
     {
-        _bgm.PlaySound(BGM.Sound.MenuSelectFX);
+        _bgm.PlaySound(Sound.MenuSelectFX);
         startObject.SetActive(false);
         settingsObject.SetActive(false);
         mainCameraAnimator.Play("CameraToDoor");
@@ -57,14 +57,14 @@ public class StartScreen : MonoBehaviour
 
     public void SettingsButtonPressed()
     {
-        _bgm.PlaySound(BGM.Sound.MenuSelectFX);
+        _bgm.PlaySound(Sound.MenuSelectFX);
         mainCameraAnimator.Play("MainToSettings");
         Debug.Log("Settings Button Pressed");
     }
 
     public void ExitButtonPressed()
     {
-        _bgm.PlaySound(BGM.Sound.MenuSelectFX);
+        _bgm.PlaySound(Sound.MenuSelectFX);
         ExitGame();
     }
 
@@ -106,17 +106,17 @@ public class StartScreen : MonoBehaviour
 
     public void FxVolumeChanged()
     {
-        _bgm.fxvolume = fxVolumeSlider.value;
+        _bgm.fxVolume = fxVolumeSlider.value;
     }
 
     public void MusicVolumeChanged()
     {
-        _bgm.MusicAudioSource.volume = musicVolumeSlider.value;
+        _bgm.musicAudioSource.volume = musicVolumeSlider.value;
     }
 
     public void ExitSettings()
     {
-        _bgm.PlaySound(BGM.Sound.MenuSelectFX);
+        _bgm.PlaySound(Sound.MenuSelectFX);
         mainCameraAnimator.Play("SettingsToMain");
     }
 
@@ -152,7 +152,7 @@ public class StartScreen : MonoBehaviour
 
     public void PlayTestSound()
     {
-        _bgm.PlaySound(BGM.Sound.PlayerSlash);
+        _bgm.PlaySound(Sound.PlayerSlash);
     }
 
     

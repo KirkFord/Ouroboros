@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    
     private Player _player;
     private GroundController _gc;
     private EnemiesManager _eM;
     public event Action AllEnemiesKilled;
-    [SerializeField] private int _enemiesRemaining;
+    [SerializeField] private int enemiesRemaining;
     public float terrainMoveSpeed = 3.0f;
     [SerializeField] private float terrainMoveSpeedNormal = 3.0f;
-    public GameOverScreen GameOver;
+    public GameOverScreen gameOver;
     private int _loops;
     public int enemiesKilled;
     public float timeStart;
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _eM = EnemiesManager.instance;
+        _eM = EnemiesManager.Instance;
         _eM.EnemyKilled += EnemyDied;
         enemiesKilled = 0;
         //GameOver = GameOverScreen.Instance;
@@ -47,12 +48,12 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        switch (scene.name)
+        switch (scene.buildIndex)
         {
-            case "LOADPLAYER":
+            case (int)Level.LoadPlayerLevel:
                 _player = Player.Instance;
                 break;
-            case "MainHall":
+            case (int)Level.MainLevel:
                 _player = Player.Instance;
                 LoadMainHall();
                 break;
@@ -62,22 +63,16 @@ public class GameManager : MonoBehaviour
     public void ResetRun()
     {
         _loops = 0;
-        _eM.EnemiesSpawned = 0;
+        _eM.enemiesSpawned = 0;
         enemiesKilled = 0;
         timeStart = Time.time;
         timeEnd = 0;
         timeElapsed = 0;
         minutes = 0; 
         seconds = 0;
-        if (_player == null)
-        {
-            return;
-        }
+        if (_player == null) return;
         TerrainSpeedDecrease();
         _player.ResetRun();
-
-
-        //SceneManager.LoadScene("MainHall");
     }
 
     private void LoadMainHall()
@@ -89,20 +84,20 @@ public class GameManager : MonoBehaviour
         TerrainSpeedDecrease();
         InteractionManager.Instance.HideInteractText();
         _loops += 1;
-        _enemiesRemaining = 10 * _loops;
-        _eM.SetUpNextLevel(_enemiesRemaining); // buggy
+        enemiesRemaining = 10 * _loops;
+        _eM.SetUpNextLevel(enemiesRemaining); // buggy
         StartCoroutine(CheckEnemiesRemaining());
     }
 
     private void EnemyDied()
     {
-        Debug.Log("enemies remaining = " + _enemiesRemaining);
-        _enemiesRemaining -= 1;
+        Debug.Log("enemies remaining = " + enemiesRemaining);
+        enemiesRemaining -= 1;
     }
     
     private IEnumerator CheckEnemiesRemaining()
     {
-        while (_enemiesRemaining > 0) yield return null;
+        while (enemiesRemaining > 0) yield return null;
         AllEnemiesKilled?.Invoke();
     }
     
@@ -120,7 +115,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowGameOver()
     {
-        GameOver.dead();
+        gameOver.Dead();
     }
 
     public void CalculateTime()

@@ -44,10 +44,10 @@ public class InteractionManager : MonoBehaviour
     }
 
     public void UpdateHealthBar() {
-        slider.value = _player.CurrentHealth / _player.MaxHealth;
+        slider.value = _player.currentHealth / _player.maxHealth;
     }
 
     public void SetPlayer(Player p) {
-        this._player = p;
+        _player = p;
     }
 }

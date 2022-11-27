@@ -1,16 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WarningTile : MonoBehaviour
 {
     [SerializeField] private GameObject effect;
-    private int delay = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int delay;
 
     // Update is called once per frame
     void FixedUpdate()

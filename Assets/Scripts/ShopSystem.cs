@@ -52,10 +52,10 @@ public class ShopSystem : MonoBehaviour
 
     private void OpenShop()
     {
-        int swordCost = 2 + _gm.GetLoops();
-        int wandCost = 3 + _gm.GetLoops();
-        swordUpgradeText.text = "+10 Sword Damage\n(" + swordCost.ToString() + " Coins)";
-        wandUpgradeText.text = "+15 Magic Wand Damage\n(" + wandCost.ToString() + " Coins)";
+        var swordCost = 2 + _gm.GetLoops();
+        var wandCost = 3 + _gm.GetLoops();
+        swordUpgradeText.text = "+10 Sword Damage\n(" + swordCost + " Coins)";
+        wandUpgradeText.text = "+15 Magic Wand Damage\n(" + wandCost + " Coins)";
         shopKeepAnim.Play("Wave",0,0);
         cameraAnim.SetBool(ShopView, true);
         _player.DisableMovement();
@@ -89,20 +89,18 @@ public class ShopSystem : MonoBehaviour
     }
 
     public void IncreaseSwordDamageHandler() {
-        int cost = 2 + _gm.GetLoops();
-        if (_cm.GetCoins() > cost) {
-            projSlash.IncreaseDamage(10);
-            _cm.RemoveCoins(cost);
-            _iM.UpdateCoins();
-        }
+        var cost = 2 + _gm.GetLoops();
+        if (_cm.GetCoins() <= cost) return;
+        projSlash.IncreaseDamage(10);
+        _cm.RemoveCoins(cost);
+        _iM.UpdateCoins();
     }
 
     public void IncreaseWandDamageHandler() {
-        int cost = 3 + _gm.GetLoops();
-        if (_cm.GetCoins() > cost) {
-            projWand.IncreaseDamage(15);
-            _cm.RemoveCoins(cost);
-            _iM.UpdateCoins();
-        }
+        var cost = 3 + _gm.GetLoops();
+        if (_cm.GetCoins() <= cost) return;
+        projWand.IncreaseDamage(15);
+        _cm.RemoveCoins(cost);
+        _iM.UpdateCoins();
     }
 }

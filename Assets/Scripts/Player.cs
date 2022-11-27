@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 
 public class Player : MonoBehaviour
 {
@@ -10,16 +8,18 @@ public class Player : MonoBehaviour
     private Rigidbody _rb;
     private InteractionManager _im;
     public float playerSpeed = 10.0f;
-    [SerializeField] public float MaxHealth = 100.0f;
-    public float CurrentHealth;
+    [SerializeField] public float maxHealth = 100.0f;
+    public float currentHealth;
     public bool levelOver;
     private GroundController _gc;
     private bool _canMove = true;
     public bool canAttack;
-    private Animator animator;
+    private Animator _animator;
     [SerializeField] float rotateSpeed;
-    private BGM bgm;
-    public bool DiedOnce;
+    private BGM _bgm;
+    public bool diedOnce;
+    private static readonly int IsMoving = Animator.StringToHash("isMoving");
+    private static readonly int IsDead = Animator.StringToHash("isDead");
 
 
     public event Action EnteredShopZone;
@@ -38,19 +38,19 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         _rb = GetComponent<Rigidbody>();
-        CurrentHealth = MaxHealth;
+        currentHealth = maxHealth;
     }
     private void Start()
     {
         //_levelOver = true;
         //canAttack = false;
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
         _gm = GameManager.Instance;
         _im = InteractionManager.Instance;
         _im.SetPlayer(Instance);
         _gm.AllEnemiesKilled += LevelOver;
-        bgm = BGM.instance;
-        DiedOnce = false;
+        _bgm = BGM.Instance;
+        diedOnce = false;
         canAttack = true;
         _gm.timeStart = Time.time;
     }
@@ -61,22 +61,13 @@ public class Player : MonoBehaviour
         {
             EnteredShopZone?.Invoke();
         }
-
-        if (other.gameObject.name == "DEADZONE")
-        {
-            //CurrentHealth--;
-            Debug.Log("PLAYER ENTER DEADZONE");
-        }
-        
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "DEADZONE")
-        {
-            PlayerTakeDamage(1f);
-            Debug.Log("PLAYER ENTER DEADZONE");
-        }
+        if (other.gameObject.name != "DEADZONE") return;
+        PlayerTakeDamage(1f);
+        Debug.Log("PLAYER ENTER DEADZONE");
     }
 
     private void OnTriggerExit(Collider other)
@@ -100,23 +91,17 @@ public class Player : MonoBehaviour
 
         if (horizontalInput != 0 || verticalInput != 0)
         {
-            animator.SetBool("isMoving",true);
+            _animator.SetBool(IsMoving,true);
         }
         else if (horizontalInput == 0 && verticalInput == 0)
         {
-            animator.SetBool("isMoving",false);
+            _animator.SetBool(IsMoving,false);
         }
-        
         _rb.velocity = levelOver ? new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed) : new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed - _gm.terrainMoveSpeed);
-
-
-
-        if (_rb.velocity != Vector3.zero)
-        {
-            //transform.forward = _rb.velocity;
-            Quaternion toRotation = Quaternion.LookRotation(_rb.velocity, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
-        }
+        
+        if (_rb.velocity == Vector3.zero) return;
+        var toRotation = Quaternion.LookRotation(_rb.velocity, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
     }
 
     private void LevelOver()
@@ -126,14 +111,14 @@ public class Player : MonoBehaviour
     }
     public void PlayerTakeDamage(float damage)
     {
-        CurrentHealth -= damage;
-        if (CurrentHealth <= 0 && DiedOnce == false)
+        currentHealth -= damage;
+        if (currentHealth <= 0 && diedOnce == false)
         {
-            DiedOnce = true;
+            diedOnce = true;
             DisableMovement();
             canAttack = false;
-            animator.SetBool("isDead",true);
-            Invoke("Death",1.33f);
+            _animator.SetBool(IsDead,true);
+            Invoke(nameof(Death),1.33f);
             //Debug.Log("this dude is dead");
         }
         //Debug.Log("player taking damage");
@@ -144,17 +129,17 @@ public class Player : MonoBehaviour
     {
         _gm.timeEnd = Time.time;
         _gm.CalculateTime();
-        bgm.GameOverSwitch();
+        _bgm.GameOverSwitch();
         _gm.ShowGameOver();
         //_gm.ResetRun();
     }
 
     public void Heal(float healAmt) {
-        CurrentHealth += healAmt;
-        if (CurrentHealth >= MaxHealth) {
-            CurrentHealth = MaxHealth;
+        currentHealth += healAmt;
+        if (currentHealth >= maxHealth) {
+            currentHealth = maxHealth;
         }
-        Debug.Log("Healing player by " + healAmt + "; New HP: " + CurrentHealth);
+        Debug.Log("Healing player by " + healAmt + "; New HP: " + currentHealth);
         _im.UpdateHealthBar();
     }
 
@@ -170,12 +155,12 @@ public class Player : MonoBehaviour
 
     public void ResetRun()
     {
-        animator.SetBool("isDead",false);
+        _animator.SetBool(IsDead,false);
         EnableMovement();
-        DiedOnce = false;
+        diedOnce = false;
         canAttack = true;
         levelOver = false;
-        CurrentHealth = MaxHealth;
+        currentHealth = maxHealth;
         _im.UpdateHealthBar();
     }
 }

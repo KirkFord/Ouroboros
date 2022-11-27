@@ -2,21 +2,19 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private Animator door = null;
-    private bool opened = false;
+    [SerializeField] private Animator door;
+    private bool _opened;
 
     private LevelChanger _lC;
     private InteractionManager _iM;
-    private Player _player;
     private bool _playerInZone;
     [SerializeField] private Level sceneToChangeTo;
-    private bool _alreadyTeleporting = false;
+    private bool _alreadyTeleporting;
 
     private void Start()
     {
         _lC = LevelChanger.Instance;
         _iM = InteractionManager.Instance;
-        _player = Player.Instance;
     }
 
     private void Update()
@@ -41,7 +39,7 @@ public class Door : MonoBehaviour
     }
 
     private void TeleportPlayer() {
-        if (_lC.GetLevel() == Level.HealLevel) {
+        if (LevelChanger.GetLevel() == Level.HealLevel) {
             OpenDoor();
         }
         _lC.FadeToLevel(
@@ -49,11 +47,11 @@ public class Door : MonoBehaviour
             );
     }
 
-    public void OpenDoor() {
-        if (!opened) {
-            door.Play("HealDoorOpen", 0, 0.0f);
-            opened = true;
-        }
+    private void OpenDoor()
+    {
+        if (_opened) return;
+        door.Play("HealDoorOpen", 0, 0.0f);
+        _opened = true;
     }
 
     public void SetDoorPath(Level level)

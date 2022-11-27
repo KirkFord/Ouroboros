@@ -4,14 +4,14 @@ using Random = UnityEngine.Random;
 
 public class EnemiesManager : MonoBehaviour
 {
-    public static EnemiesManager instance;
+    public static EnemiesManager Instance;
     [SerializeField] private GameObject enemy1;
     [SerializeField] private GameObject enemy2;
     [SerializeField] private GameObject enemy3;
     [SerializeField] private GameObject enemy4;
     public event Action EnemyKilled;
 
-    private bool canSpawn;
+    private bool _canSpawn;
 
     public int enemiesToSpawn;
 
@@ -19,20 +19,20 @@ public class EnemiesManager : MonoBehaviour
 
     [SerializeField] private float spawnTimer;
 
-    private float timer;
+    private float _timer;
 
-    [SerializeField] public int EnemiesSpawned;
+    [SerializeField] public int enemiesSpawned;
 
-    [SerializeField] public int EnemiesMaxOnScreen;
+    [SerializeField] private int enemiesMaxOnScreen;
     private GameManager _gM;
     // Start is called before the first frame update
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
@@ -56,52 +56,43 @@ public class EnemiesManager : MonoBehaviour
         SpawnEnemy();
     }
 
-    public void SetUpNextLevel(int enemiesInlevel)
+    public void SetUpNextLevel(int enemiesInLevel)
     {
-        enemiesToSpawn = enemiesInlevel;
-        canSpawn = true;
+        enemiesToSpawn = enemiesInLevel;
+        _canSpawn = true;
     }
 
     private void LevelEnded()
     {
-        canSpawn = false;
+        _canSpawn = false;
     }
 
     private void SpawnEnemy()
     {
-        if (!canSpawn) return;
+        if (!_canSpawn) return;
         if (enemiesToSpawn <= 0) return;
-        timer -= Time.deltaTime;
-        if (!(timer < 0f)) return;
-        if (EnemiesSpawned >= EnemiesMaxOnScreen) return;
+        _timer -= Time.deltaTime;
+        if (!(_timer < 0f)) return;
+        if (enemiesSpawned >= enemiesMaxOnScreen) return;
 
-        var picked = Random.Range(0, 4);
-        Vector3 position = GenerateRandomPosition();
+        var randomEnemyNumber = Random.Range(0, 4);
+        var newEnemyPosition = GenerateRandomPosition();
 
-        GameObject newEnemy = null;
-        switch (picked)
+        var newEnemy = randomEnemyNumber switch
         {
-            case 0:
-                newEnemy = Instantiate(enemy1);
-                break;
-            case 1:
-                newEnemy = Instantiate(enemy2);
-                break;
-            case 2:
-                newEnemy = Instantiate(enemy3);
-                break;
-            case 3:
-                newEnemy = Instantiate(enemy4);
-                break;
+            0 => Instantiate(enemy1),
+            1 => Instantiate(enemy2),
+            2 => Instantiate(enemy3),
+            3 => Instantiate(enemy4),
+            _ => null
+        };
 
-        }
-        
         //GameObject newEnemy = Instantiate(enemy);
-        newEnemy.transform.position = position;
+        if (newEnemy != null) newEnemy.transform.position = newEnemyPosition;
 
-        EnemiesSpawned += 1;
+        enemiesSpawned += 1;
         enemiesToSpawn -= 1;
-        timer = spawnTimer;
+        _timer = spawnTimer;
     }
 
     private static Vector3 GenerateRandomPosition()
@@ -113,14 +104,7 @@ public class EnemiesManager : MonoBehaviour
     public void EnemyDied()
     {
         _gM.enemiesKilled += 1;
-        EnemiesSpawned -= 1;
+        enemiesSpawned -= 1;
         EnemyKilled?.Invoke();
     }
-    // private void killAllChildren()
-    // {
-    //     foreach (Transform child in this.gameObject)
-    //     {
-    //         Destroy(child.gameObject);
-    //     }
-    // }
 }

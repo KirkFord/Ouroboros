@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Weapon_Slash : MonoBehaviour
 {
@@ -10,7 +8,7 @@ public class Weapon_Slash : MonoBehaviour
 
     private void Start()
     {
-        bgm = BGM.instance;
+        bgm = BGM.Instance;
     }
 
     private void FixedUpdate()
@@ -42,6 +40,6 @@ public class Weapon_Slash : MonoBehaviour
     {
         GameObject slashObj = Instantiate(projectile, transform.position, transform.rotation);
         slashObj.transform.parent = this.transform;
-        bgm.PlaySound(BGM.Sound.PlayerSlash);
+        bgm.PlaySound(Sound.PlayerSlash);
     }
 }

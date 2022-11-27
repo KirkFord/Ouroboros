@@ -3,41 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum Sound
+{
+    PlayerSlash,
+    PlayerBolt,
+    PlayerWeapon3,
+    PlayerWeapon4,
+    MenuSelectFX,
+    PauseMenuFX,
+}
 public class BGM : MonoBehaviour
 {
-    public static BGM instance;
-
-    // Drag in the .mp3 files here, in the editor
-    public AudioClip[] MusicClips;
+    public static BGM Instance;
+    
+    [Tooltip("Drag the Sound Files in here")]
+    [SerializeField] private AudioClip[] musicClips;
  
-    public AudioSource MusicAudioSource;
+    public AudioSource musicAudioSource;
 
     [Range(0f, 1f)]
-    public float fxvolume = 0.5f;
+    public float fxVolume = 0.5f;
     
     [Range(0f, 1f)]
     public float musicVolume = 0.5f;
-    
-    public enum Sound
-    {
-        PlayerSlash,
-        PlayerBolt,
-        PlayerWeapon3,
-        PlayerWeapon4,
-        MenuSelectFX,
-        PauseMenuFX,
-    }
 
- 
     // Singelton to keep instance alive through all scenes
     void Awake()
     {
-        if (instance == null) { instance = this; }
+        if (Instance == null) { Instance = this; }
         else { Destroy(this); }
  
         DontDestroyOnLoad(this);
-        MusicAudioSource = GetComponent<AudioSource>();
-        MusicAudioSource.volume = musicVolume;
+        musicAudioSource = GetComponent<AudioSource>();
+        musicAudioSource.volume = musicVolume;
         //Audio.clip = Resources.Load(name) as AudioClip;
         // Hooks up the 'OnSceneLoaded' method to the sceneLoaded event
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -55,41 +53,41 @@ public class BGM : MonoBehaviour
                 int random = Random.Range(0, 2);
                 if (random == 0)
                 {
-                    MusicAudioSource.enabled = false;
-                    MusicAudioSource.clip = MusicClips[0];
-                    MusicAudioSource.enabled = true;
+                    musicAudioSource.enabled = false;
+                    musicAudioSource.clip = musicClips[0];
+                    musicAudioSource.enabled = true;
                 }
                 else if (random == 1)
                 {
-                    MusicAudioSource.enabled = false;
-                    MusicAudioSource.clip = MusicClips[1];
-                    MusicAudioSource.enabled = true;
+                    musicAudioSource.enabled = false;
+                    musicAudioSource.clip = musicClips[1];
+                    musicAudioSource.enabled = true;
                 }
                 break;
             case "Shop":
-                MusicAudioSource.enabled = false;
-                MusicAudioSource.clip = MusicClips[2];
-                MusicAudioSource.enabled = true;
+                musicAudioSource.enabled = false;
+                musicAudioSource.clip = musicClips[2];
+                musicAudioSource.enabled = true;
                 break;
             case "Heal":
-                MusicAudioSource.enabled = false;
-                MusicAudioSource.clip = MusicClips[3];
-                MusicAudioSource.enabled = true;
+                musicAudioSource.enabled = false;
+                musicAudioSource.clip = musicClips[3];
+                musicAudioSource.enabled = true;
                 break;
             case "Puzzle1":
-                MusicAudioSource.enabled = false;
-                MusicAudioSource.clip = MusicClips[4];
-                MusicAudioSource.enabled = true;
+                musicAudioSource.enabled = false;
+                musicAudioSource.clip = musicClips[4];
+                musicAudioSource.enabled = true;
                 break;
             case "Puzzle2":
-                MusicAudioSource.enabled = false;
-                MusicAudioSource.clip = MusicClips[4];
-                MusicAudioSource.enabled = true;
+                musicAudioSource.enabled = false;
+                musicAudioSource.clip = musicClips[4];
+                musicAudioSource.enabled = true;
                 break;
             case "StartScreen":
-                MusicAudioSource.enabled = false;
-                MusicAudioSource.clip = MusicClips[7];
-                MusicAudioSource.enabled = true;
+                musicAudioSource.enabled = false;
+                musicAudioSource.clip = musicClips[7];
+                musicAudioSource.enabled = true;
                 break;
             // default:
             //     source.clip = MusicClips[4];
@@ -107,18 +105,18 @@ public class BGM : MonoBehaviour
 
     public void GameOverSwitch()
     {
-        MusicAudioSource.enabled = false;
-        MusicAudioSource.loop = false;
-        MusicAudioSource.clip = MusicClips[5];
-        MusicAudioSource.enabled = true;
+        musicAudioSource.enabled = false;
+        musicAudioSource.loop = false;
+        musicAudioSource.clip = musicClips[5];
+        musicAudioSource.enabled = true;
     }
 
     public void StatsSwitch()
     {
-        MusicAudioSource.enabled = false;
-        MusicAudioSource.loop = true;
-        MusicAudioSource.clip = MusicClips[6];
-        MusicAudioSource.enabled = true;
+        musicAudioSource.enabled = false;
+        musicAudioSource.loop = true;
+        musicAudioSource.clip = musicClips[6];
+        musicAudioSource.enabled = true;
     }
     
     
@@ -127,13 +125,13 @@ public class BGM : MonoBehaviour
         GameObject soundGameObject = new GameObject("Sound");
         AudioSource audiosource = soundGameObject.AddComponent<AudioSource>();
         var ac = GetAudioClip(sound);
-        audiosource.PlayOneShot(ac, fxvolume);
+        audiosource.PlayOneShot(ac, fxVolume);
         Destroy(soundGameObject,ac.length);
     }
 
     private AudioClip GetAudioClip(Sound sound)
     {
-        foreach (SoundAssets.SoundAudioClip soundAudioClip in SoundAssets.i.FXArray)
+        foreach (SoundAssets.SoundAudioClip soundAudioClip in SoundAssets.i.fxArray)
         {
             if (soundAudioClip.sound == sound)
             {

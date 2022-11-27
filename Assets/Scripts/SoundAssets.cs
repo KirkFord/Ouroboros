@@ -16,12 +16,12 @@ public class SoundAssets : MonoBehaviour
         }
     }
 
-    public SoundAudioClip[] FXArray;
+    public SoundAudioClip[] fxArray;
 
     [Serializable]
     public class SoundAudioClip
     {
-        public BGM.Sound sound;
+        public Sound sound;
         public AudioClip audioClip;
     }
     

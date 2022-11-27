@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//THIS SHOULD MATCH THE BUILD INDEX
 public enum Level
 {
     LoadManagersLevel = 0,
@@ -57,7 +58,7 @@ public class LevelChanger : MonoBehaviour
         SceneManager.LoadScene((int)_levelToLoad);
     }
 
-    public Level GetLevel() 
+    public static Level GetLevel() 
     {
         return (Level)SceneManager.GetActiveScene().buildIndex;
     } 

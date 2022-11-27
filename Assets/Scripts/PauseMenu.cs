@@ -6,52 +6,50 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    private BGM bgm;
-    public static bool GameIsPaused = false;
+    private BGM _bgm;
+    private static bool _gameIsPaused = false;
     public GameObject pauseMenuUI;
-    
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape) && !SceneManager.GetActiveScene().name.Equals("StartScreen"))
-        {
-            if (GameIsPaused){
-                Resume();
-            }
-            else {
-                Pause();
-            }
-            
+
+    private void Update()
+    {
+        if (!Input.GetKeyDown(KeyCode.Escape) || SceneManager.GetActiveScene().name.Equals("StartScreen")) return;
+        if (_gameIsPaused){
+            Resume();
         }
-        
+        else {
+            Pause();
+        }
+
     }
 
     public void Start()
     {
-        bgm = BGM.instance;
+        _bgm = BGM.Instance;
         
     }
 
     public void Resume () {
-        bgm.PlaySound(BGM.Sound.PauseMenuFX);
-        bgm.MusicAudioSource.UnPause();
+        _bgm.PlaySound(Sound.PauseMenuFX);
+        _bgm.musicAudioSource.UnPause();
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = false;
+        _gameIsPaused = false;
 
     }
 
-    void Pause () {
-        bgm.PlaySound(BGM.Sound.PauseMenuFX);
-        bgm.MusicAudioSource.Pause();
+    private void Pause () {
+        _bgm.PlaySound(Sound.PauseMenuFX);
+        _bgm.musicAudioSource.Pause();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        GameIsPaused = true;
+        _gameIsPaused = true;
         
     }
 
     public void LoadMenu(){
         Debug.Log("PRESSING A FUCKING BUTTON");
-        bgm.PlaySound(BGM.Sound.MenuSelectFX);
-        GameIsPaused = false;
+        _bgm.PlaySound(Sound.MenuSelectFX);
+        _gameIsPaused = false;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameManager.Instance.ShutPlayerUp();
@@ -60,7 +58,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void QuitGame(){
-        bgm.PlaySound(BGM.Sound.MenuSelectFX);
+        _bgm.PlaySound(Sound.MenuSelectFX);
         Debug.Log("Quitting game...");
         Application.Quit();
     }

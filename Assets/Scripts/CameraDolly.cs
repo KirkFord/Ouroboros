@@ -5,32 +5,32 @@ using UnityEngine;
 public class CameraDolly : MonoBehaviour
 {
     //private GameManager _gM;
-    [SerializeField] private double _finalCameraPos;
+    [SerializeField] private double finalCameraPos;
     public bool followingPlayer;
     private GameObject _end;
     private GameObject _endWall;
 
-    [SerializeField] private bool _cameraStopped;
+    [SerializeField] private bool cameraStopped;
     public void CheckMovement()
     {
         //Debug.Log("Checking Player Movement");
-        if (transform.position.z >= _finalCameraPos) CameraReachedEnd();
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(0,2,(float)_finalCameraPos),0.2f);
+        if (transform.position.z >= finalCameraPos) CameraReachedEnd();
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(0,2,(float)finalCameraPos),0.2f);
     }
     public void FollowPlayer()
     {
-        _finalCameraPos = Math.Floor(_end.transform.position.z);
+        finalCameraPos = Math.Floor(_end.transform.position.z);
         followingPlayer = true;
     }
 
     private void CameraReachedEnd()
     {
-        switch (_cameraStopped)
+        switch (cameraStopped)
         {
             case true:
                 return;
             case false:
-                _cameraStopped = true;
+                cameraStopped = true;
                 _endWall.SetActive(true);
                 break;
         }
