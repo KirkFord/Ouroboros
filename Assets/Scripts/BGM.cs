@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public enum Sound
 {
@@ -34,13 +33,10 @@ public class BGM : MonoBehaviour
         else { Destroy(this); }
  
         DontDestroyOnLoad(this);
-        musicAudioSource = GetComponent<AudioSource>();
         musicAudioSource.volume = musicVolume;
-        //Audio.clip = Resources.Load(name) as AudioClip;
-        // Hooks up the 'OnSceneLoaded' method to the sceneLoaded event
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
- 
+
     // Called whenever a scene is loaded
     void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {

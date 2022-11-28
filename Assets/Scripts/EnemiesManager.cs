@@ -45,11 +45,6 @@ public class EnemiesManager : MonoBehaviour
         _gM.AllEnemiesKilled += LevelEnded;
     }
 
-    // private void OnDestroy()
-    // {
-    //     _gM.AllEnemiesKilled -= LevelEnded;
-    // }
-
     // Update is called once per frame
     private void Update()
     {
@@ -74,6 +69,7 @@ public class EnemiesManager : MonoBehaviour
         _timer -= Time.deltaTime;
         if (!(_timer < 0f)) return;
         if (enemiesSpawned >= enemiesMaxOnScreen) return;
+
 
         var randomEnemyNumber = Random.Range(0, 4);
         var newEnemyPosition = GenerateRandomPosition();

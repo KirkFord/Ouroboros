@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int enemiesRemaining;
     public float terrainMoveSpeed = 3.0f;
     [SerializeField] private float terrainMoveSpeedNormal = 3.0f;
+    [SerializeField] private float allEnemiesKilledHeartbeatTimer = 1f;
     public GameOverScreen gameOver;
     private int _loops;
     public int enemiesKilled;
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
     public float timeElapsed;
     public int minutes;
     public int seconds;
-    
+    public bool walkingToEnd;
     private void Awake()
     {
         
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadMainHall()
     {
-        
+        walkingToEnd = false;
         _player.levelOver = false;
         _player.canAttack = true;
         _player.EnableMovement();
@@ -97,8 +98,9 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator CheckEnemiesRemaining()
     {
-        while (enemiesRemaining > 0) yield return null;
+        while (enemiesRemaining > 0) yield return new WaitForSeconds(allEnemiesKilledHeartbeatTimer);
         AllEnemiesKilled?.Invoke();
+        walkingToEnd = true;
     }
     
     public void TerrainSpeedIncrease()

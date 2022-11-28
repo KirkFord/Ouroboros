@@ -44,12 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720621bb699f38b42af27e12459d95da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FXArray:
+  fxArray:
   - sound: 0
     audioClip: {fileID: 8300000, guid: 627b8bc19adfb4443892fe8cf54c4414, type: 3}
   - sound: 1
-    audioClip: {fileID: 8300000, guid: 833f1547b9fe476418528da06f433b01, type: 3}
-  - sound: 4
     audioClip: {fileID: 8300000, guid: 96cf30c999b9a9d45816b2be61e79b0e, type: 3}
+  - sound: 2
+    audioClip: {fileID: 0}
+  - sound: 3
+    audioClip: {fileID: 0}
+  - sound: 4
+    audioClip: {fileID: 8300000, guid: bee01415de6309d4a9266d6fb85262cb, type: 3}
   - sound: 5
-    audioClip: {fileID: 8300000, guid: d50f30a4caf290546a914ef72508fb1a, type: 3}
+    audioClip: {fileID: 8300000, guid: 2e030e908b6e7df4cbacd69a7cc92e46, type: 3}

@@ -20,7 +20,7 @@ public class GroundSegment : MonoBehaviour
 
     private void Update()
     {
-        if (!_moving) return;
+        if (!_moving || _gM.walkingToEnd) return;
         transform.Translate(new Vector3(0,0, -_gM.terrainMoveSpeed * Time.deltaTime));
     }
 

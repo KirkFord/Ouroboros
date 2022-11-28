@@ -9,4 +9,8 @@ public class SO_Enemy : ScriptableObject
     public float damageToPlayer = 5.0f;
     public float damageRate = 0.5f;
     public float damageTime;
+    public float damageFlashTimer;
+
+    public float damageScaleFactor;
+    public float healthScaleFactor;
 }

@@ -1,18 +1,24 @@
-using Unity.VisualScripting;
+using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private SO_Enemy enemyData;
     [SerializeField] private GameObject deathEffect;
+    [SerializeField] private Material damageFlash;
     
+
     private Player _player;
     private Rigidbody _rb;
     private EnemiesManager _eM;
     private GameManager _gM;
     private Animator _animator;
     public GameObject lootObject;
-    
+
+    private float _damageFlashTimer;
+    private Material _originalMaterial;
     private float _moveSpeed;
     private float _currentHealth;
     private bool _collected;
@@ -21,6 +27,10 @@ public class Enemy : MonoBehaviour
     private float _damageRate;
     private float _damageTime;
     private bool _stopMoving;
+
+    private float _healthScaleFactor;
+    private float _damageScaleFactor;
+    
     private static readonly int IsDead = Animator.StringToHash("isDead");
 
 
@@ -34,9 +44,12 @@ public class Enemy : MonoBehaviour
     {
         _eM = EnemiesManager.Instance;
         _gM = GameManager.Instance;
+        _originalMaterial = GetComponentInChildren<SkinnedMeshRenderer>().material;
         _animator = GetComponent<Animator>();
         _diedOnce = false;
 
+        
+        _damageFlashTimer = enemyData.damageFlashTimer;
         _currentHealth = enemyData.maxHealth;
         _moveSpeed = enemyData.moveSpeed;
         
@@ -44,9 +57,19 @@ public class Enemy : MonoBehaviour
         _damageRate = enemyData.damageRate;
         _damageTime = enemyData.damageTime;
 
-        
+        _healthScaleFactor = enemyData.healthScaleFactor;
+        _damageScaleFactor = enemyData.damageScaleFactor;
+        ScaleStats();
     }
 
+    private void ScaleStats()
+    {
+        var loops = GameManager.Instance.GetLoops();
+        //Gets Bigger and Bigger.
+        _currentHealth += math.pow(loops, 2) * 3;
+        //Eventually will plateau, just so enemies don't 100% one shot you late game.
+        _damageToPlayer *= 1 * math.pow(math.sqrt(_damageToPlayer * loops),_damageScaleFactor);
+    }
     private void LateUpdate()
     {
         if (_stopMoving) return;
@@ -54,7 +77,6 @@ public class Enemy : MonoBehaviour
             Vector3.MoveTowards(transform.position, _player.transform.position, _moveSpeed * Time.deltaTime);
         transform.LookAt(_player.transform);
         _rb.velocity = new Vector3(0, 0, -_gM.terrainMoveSpeed);
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,6 +104,9 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("enemy taking damage");
         _currentHealth -= damage;
+        StartCoroutine(DamageFlash());
+        
+        //DEATH
         if (!(_currentHealth <= 0) || _diedOnce) return;
         _diedOnce = true;
         _stopMoving = true;
@@ -97,6 +122,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private IEnumerator DamageFlash()
+    {
+        foreach (var smr in  GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            smr.material = damageFlash;
+        }
+        yield return new WaitForSeconds(_damageFlashTimer);
+        
+        foreach (var smr in  GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            smr.material = _originalMaterial;
+        }
+    }
     public void Death()
     {
         _eM.EnemyDied();

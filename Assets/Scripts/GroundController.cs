@@ -103,18 +103,14 @@ public class GroundController : MonoBehaviour
         var leftSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
         switch (leftSelection)
         {
-            default:
-                possibleLevels.Remove(leftSelection);
-                break;
             case Level.PuzzleLevel2:
                 possibleLevels.Remove(Level.PuzzleLevel1);
                 break;
             case Level.PuzzleLevel1:
                 possibleLevels.Remove(Level.PuzzleLevel2);
                 break;
-            
         }
-
+        possibleLevels.Remove(leftSelection);
         var rightSelection = possibleLevels[Random.Range(0,possibleLevels.Count)];
         rightDoorImage.sprite = images[rightSelection];
         leftDoorImage.sprite = images[leftSelection];
