@@ -16,7 +16,7 @@ public class GroundController : MonoBehaviour
     [SerializeField] private Sprite shopIcon;
     [SerializeField] private Sprite puzzleIcon;
     [SerializeField] private Sprite healIcon;
-    
+
     [SerializeField] private List<GameObject> segments;
     
     private Queue<GameObject> _currentSegments;

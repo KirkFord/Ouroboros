@@ -32,6 +32,7 @@ public class CameraDolly : MonoBehaviour
             case false:
                 cameraStopped = true;
                 _endWall.SetActive(true);
+                Player.Instance.PlayerAtEnd();
                 break;
         }
     }

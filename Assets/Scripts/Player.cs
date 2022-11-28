@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -20,6 +21,10 @@ public class Player : MonoBehaviour
     public bool diedOnce;
     private static readonly int IsMoving = Animator.StringToHash("isMoving");
     private static readonly int IsDead = Animator.StringToHash("isDead");
+    [SerializeField] private float invincibilityTimer = 0.75f;
+    [SerializeField] private bool canTakeDamage;
+    private bool _playerAtEnd;
+    public event Action TookDamage; 
 
 
     public event Action EnteredShopZone;
@@ -33,6 +38,7 @@ public class Player : MonoBehaviour
         }
         else if (Instance != this)
         {
+            Debug.Log("Destroying Extra Singleton, name: " + name);
             Destroy(gameObject);
         } 
         DontDestroyOnLoad(gameObject);
@@ -53,6 +59,7 @@ public class Player : MonoBehaviour
         diedOnce = false;
         canAttack = true;
         _gm.timeStart = Time.time;
+        canTakeDamage = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,20 +69,9 @@ public class Player : MonoBehaviour
             EnteredShopZone?.Invoke();
         }
     }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.name != "DEADZONE") return;
-        PlayerTakeDamage(1f);
-        Debug.Log("PLAYER ENTER DEADZONE");
-    }
-
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("ShopKeeperInteractZone"))
-        {
-            LeftShopZone?.Invoke();
-        }
+        if (other.CompareTag("ShopKeeperInteractZone")) LeftShopZone?.Invoke();
     }
     
     private void FixedUpdate()
@@ -104,13 +100,25 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
     }
 
+    public void PlayerAtEnd()
+    {
+        _playerAtEnd = true;
+    }
+
+    public void MainLevelStart()
+    {
+        _playerAtEnd = false; 
+        StartCoroutine(CheckOutOfBounds());
+    }
+
     private void LevelOver()
     {
         levelOver = true;
         canAttack = false;
     }
-    public void PlayerTakeDamage(float damage)
+    public bool PlayerTakeDamage(float damage, bool ignoreInvincibility)
     {
+        if (!canTakeDamage && !ignoreInvincibility) return false;
         currentHealth -= damage;
         if (currentHealth <= 0 && diedOnce == false)
         {
@@ -119,10 +127,27 @@ public class Player : MonoBehaviour
             canAttack = false;
             _animator.SetBool(IsDead,true);
             Invoke(nameof(Death),1.33f);
-            //Debug.Log("this dude is dead");
         }
-        //Debug.Log("player taking damage");
         _im.UpdateHealthBar();
+        StartCoroutine(InvincibilityFrames());
+        TookDamage?.Invoke();
+        return true;
+    }
+
+    private IEnumerator CheckOutOfBounds()
+    {
+        while (!_playerAtEnd)
+        {
+            if (transform.position.z <= -10) PlayerTakeDamage(1f, true);
+            yield return null;
+        }
+    }
+
+    private IEnumerator InvincibilityFrames()
+    {
+        canTakeDamage = false;
+        yield return new WaitForSeconds(invincibilityTimer);
+        canTakeDamage = true;
     }
 
     public void Death()
@@ -162,5 +187,6 @@ public class Player : MonoBehaviour
         levelOver = false;
         currentHealth = maxHealth;
         _im.UpdateHealthBar();
+        canTakeDamage = true;
     }
 }

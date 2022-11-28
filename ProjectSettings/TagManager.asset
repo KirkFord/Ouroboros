@@ -6,7 +6,6 @@ TagManager:
   tags:
   - GroundSegment
   - Enemy
-  - Deadzone
   - Door
   - MaxDistance
   - ShopKeeperInteractZone
@@ -15,6 +14,7 @@ TagManager:
   - GroundSegmentSpawningZone
   - Magnet
   - Loot
+  - EnemyOverflow
   layers:
   - Default
   - TransparentFX
@@ -51,4 +51,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Top
+    uniqueID: 127200103
     locked: 0

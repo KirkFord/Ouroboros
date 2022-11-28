@@ -66,9 +66,11 @@ public class Enemy : MonoBehaviour
     {
         var loops = GameManager.Instance.GetLoops();
         //Gets Bigger and Bigger.
-        _currentHealth += math.pow(loops, 2) * 3;
+        _currentHealth += math.pow(loops, 2) * _healthScaleFactor;
         //Eventually will plateau, just so enemies don't 100% one shot you late game.
         _damageToPlayer *= 1 * math.pow(math.sqrt(_damageToPlayer * loops),_damageScaleFactor);
+        Debug.Log("Enemy damage scaled to: " + _damageToPlayer);
+        Debug.Log("Enemy health scaled to: " + _currentHealth);
     }
     private void LateUpdate()
     {
@@ -81,7 +83,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Deadzone"))
+        if (other.CompareTag("EnemyOverflow"))
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, 38f);
         }
@@ -96,13 +98,16 @@ public class Enemy : MonoBehaviour
     
     private void Attack(Player player)
     {
-        player.PlayerTakeDamage(_damageToPlayer);
-        Debug.Log("Did " + _damageToPlayer + " to the player.");
+        var hit = player.PlayerTakeDamage(_damageToPlayer, false);
+        if (hit)
+        {
+            Debug.Log("Did " + _damageToPlayer + " to the player."); 
+        }
     }
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("enemy taking damage");
+        DamagePopup.Create(transform.position, (int) damage);
         _currentHealth -= damage;
         StartCoroutine(DamageFlash());
         

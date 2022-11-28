@@ -855,11 +855,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
-  MaxHealth: 100
-  CurrentHealth: 0
+  maxHealth: 100
+  currentHealth: 0
+  levelOver: 0
   canAttack: 0
   rotateSpeed: 0
-  DiedOnce: 0
+  diedOnce: 0
+  invincibilityTimer: 1
+  _canTakeDamage: 0
 --- !u!1 &8071792931903516330
 GameObject:
   m_ObjectHideFlags: 0
