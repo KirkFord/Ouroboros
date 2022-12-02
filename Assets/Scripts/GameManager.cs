@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         TerrainSpeedDecrease();
         InteractionManager.Instance.HideInteractText();
         _loops += 1;
-        enemiesRemaining = 10 * _loops;
+        enemiesRemaining = 30 * _loops;
         _eM.SetUpNextLevel(enemiesRemaining); // buggy
         StartCoroutine(CheckEnemiesRemaining());
         _player.MainLevelStart();

@@ -70,8 +70,30 @@ public class EnemiesManager : MonoBehaviour
         if (!(_timer < 0f)) return;
         if (enemiesSpawned >= enemiesMaxOnScreen) return;
 
+        var randomEnemyNumber = -1;
+        if (_gM.GetLoops() <= 2)
+        {
+            randomEnemyNumber = 0;
+        }
+        else if (_gM.GetLoops() > 2 && _gM.GetLoops() <= 4)
+        {
+            randomEnemyNumber = Random.Range(0,2);
+        }
+        else if (_gM.GetLoops() > 4 && _gM.GetLoops() <= 6)
+        {
+            randomEnemyNumber = Random.Range(1,3);
 
-        var randomEnemyNumber = Random.Range(0, 4);
+        }
+        else if (_gM.GetLoops() > 6 && _gM.GetLoops() <= 8)
+        {
+            randomEnemyNumber = Random.Range(2,4);
+        }
+        else if (_gM.GetLoops() > 8)
+        {
+            randomEnemyNumber = Random.Range(0,4);
+            
+        }
+
         var newEnemyPosition = GenerateRandomPosition();
 
         var newEnemy = randomEnemyNumber switch
