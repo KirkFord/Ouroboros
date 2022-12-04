@@ -6,7 +6,7 @@ public class Proj_Magic_Shoot : MonoBehaviour
 {
     private GameObject target;
     private bool hasBeenMade = false;
-    private float moveSpeed = 5.0f;
+    private float moveSpeed = 10.0f;
     [SerializeField] private float damage = 100.0f;
     private float critChance = 0.3f;
     private float minCritBonus = 0.25f;
