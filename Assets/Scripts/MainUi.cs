@@ -29,8 +29,9 @@ public class MainUi : MonoBehaviour
        }
     }
 
-    private void TookDamage()
+    private void TookDamage(float damageTaken)
     {
+        if (damageTaken <= 0) return;
         var tempColor = damageFlash.color;
         tempColor.a = 0.7f;
         damageFlash.color = tempColor;

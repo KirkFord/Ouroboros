@@ -24,9 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float invincibilityTimer = 0.75f;
     [SerializeField] private bool canTakeDamage;
     private bool _playerAtEnd;
-    public event Action TookDamage; 
-
-
+    public event Action<float> TookDamage;
     public event Action EnteredShopZone;
     public event Action LeftShopZone;
 
@@ -130,7 +128,7 @@ public class Player : MonoBehaviour
         }
         _im.UpdateHealthBar();
         StartCoroutine(InvincibilityFrames());
-        TookDamage?.Invoke();
+        TookDamage?.Invoke(damage);
         return true;
     }
 
@@ -139,7 +137,7 @@ public class Player : MonoBehaviour
         while (!_playerAtEnd)
         {
             if (transform.position.z <= -10) PlayerTakeDamage(1f, true);
-            yield return null;
+            yield return null; 
         }
     }
 
