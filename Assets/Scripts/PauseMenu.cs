@@ -53,6 +53,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameManager.Instance.ShutPlayerUp();
+        EnemiesManager.Instance.enemiesToSpawn = 0;
+        EnemiesManager.Instance.Murder();
         SceneManager.LoadScene("StartScreen");
         
     }

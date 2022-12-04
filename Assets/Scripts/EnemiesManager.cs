@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,6 +26,8 @@ public class EnemiesManager : MonoBehaviour
 
     [SerializeField] private int enemiesMaxOnScreen;
     private GameManager _gM;
+
+    private List<GameObject> AliveEnemies;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -43,6 +46,7 @@ public class EnemiesManager : MonoBehaviour
     {
         _gM = GameManager.Instance;
         _gM.AllEnemiesKilled += LevelEnded;
+        AliveEnemies = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -107,7 +111,7 @@ public class EnemiesManager : MonoBehaviour
 
         //GameObject newEnemy = Instantiate(enemy);
         if (newEnemy != null) newEnemy.transform.position = newEnemyPosition;
-
+        AliveEnemies.Add(newEnemy);
         enemiesSpawned += 1;
         enemiesToSpawn -= 1;
         _timer = spawnTimer;
@@ -124,5 +128,13 @@ public class EnemiesManager : MonoBehaviour
         _gM.enemiesKilled += 1;
         enemiesSpawned -= 1;
         EnemyKilled?.Invoke();
+    }
+
+    public void Murder()
+    {
+        foreach (var enemy in AliveEnemies)
+        {
+            Destroy(enemy);
+        }
     }
 }
