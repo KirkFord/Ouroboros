@@ -27,7 +27,7 @@ public class Coin : MonoBehaviour
    private void Magnetize()
    {
        if (!(Vector3.Distance(this.transform.position, _player.transform.position) < 4.0f)) return;
-       moveSpeed += 0.008f; // make coin accelerate
+       moveSpeed += 0.004f; // make coin accelerate
        transform.LookAt(_player.transform.position);
        transform.position += transform.forward * moveSpeed * Time.deltaTime;
    }

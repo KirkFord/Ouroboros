@@ -1,14 +1,16 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Random=UnityEngine.Random;
 
 public class Proj_Magic_Shoot : MonoBehaviour
 {
     private GameObject target;
     private bool hasBeenMade = false;
     private float moveSpeed = 5.0f;
-    [SerializeField] private float damage = 5000.0f;
+    [SerializeField] private float damage = 100.0f;
+    private float critChance = 0.3f;
+    private float minCritBonus = 0.25f;
+    private float maxCritBonus = 0.76f;
     private GameManager _gm;
     private Player _player;
 
@@ -55,7 +57,13 @@ public class Proj_Magic_Shoot : MonoBehaviour
     {
         if (other.transform.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().TakeDamage(damage);
+            float bonusCritDamage = 0;
+            bool isCrit = false;
+            if (Random.Range(0.0f, 1.0f) < critChance) {
+                bonusCritDamage = damage * Random.Range(minCritBonus, maxCritBonus);
+                isCrit = true;
+            }
+            other.GetComponent<Enemy>().TakeDamage(damage + bonusCritDamage, isCrit);
             Destroy(this.gameObject);
         }
     }

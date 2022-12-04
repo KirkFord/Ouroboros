@@ -9,14 +9,13 @@ public class DamagePopup : MonoBehaviour
     private Color _textColor;
     private float _lifeTime = 1f;
     private Vector3 _movement;
-
     private static int _sO;
     
-    public static DamagePopup Create(Vector3 location, int damage)
+    public static DamagePopup Create(Vector3 location, int damage, bool isCrit)
     {
         var damagePopupGameObject = Instantiate(GameAssets.i.damageNumberPrefab, location, quaternion.identity);
         var damagePopup = damagePopupGameObject.GetComponent<DamagePopup>();
-        damagePopup.Setup(damage);
+        damagePopup.Setup(damage, isCrit);
         return damagePopup;
     }
     private void Awake()
@@ -24,9 +23,14 @@ public class DamagePopup : MonoBehaviour
         _text = GetComponent<TextMeshPro>();
     }
 
-    private void Setup(int damageAmount)
+    private void Setup(int damageAmount, bool isCrit)
     {
+        _text.isTextObjectScaleStatic = false;
+        _text.fontSize = 45;
         _text.SetText(damageAmount.ToString());
+        if (isCrit) {
+            _text.fontSize = 70;
+        }
         _textColor = _text.color;
         _movement = new Vector3(0, 1, -1.75f) * 2f;
         _sO++;
