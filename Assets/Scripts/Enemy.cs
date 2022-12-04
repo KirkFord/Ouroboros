@@ -105,9 +105,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isCrit)
     {
-        DamagePopup.Create(transform.position, (int) damage);
+        DamagePopup.Create(transform.position, (int) damage, isCrit);
         _currentHealth -= damage;
         StartCoroutine(DamageFlash());
         

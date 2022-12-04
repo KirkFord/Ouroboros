@@ -6,6 +6,9 @@ public class Proj_Slash : MonoBehaviour
 {
     [SerializeField] private float _damage = 75f;
     [SerializeField] private float lifeTime = 2.0f;
+    private float critChance = 0.3f;
+    private float minCritBonus = 0.25f;
+    private float maxCritBonus = 0.76f;
     //[SerializeField] private GameObject player;
 
     // Start is called before the first frame update
@@ -25,7 +28,13 @@ public class Proj_Slash : MonoBehaviour
     {
         if (other.transform.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().TakeDamage(_damage);
+            float bonusCritDamage = 0;
+            bool isCrit = false;
+            if (Random.Range(0.0f, 1.0f) < critChance) {
+                bonusCritDamage = _damage * Random.Range(minCritBonus, maxCritBonus);
+                isCrit = true;
+            }
+            other.GetComponent<Enemy>().TakeDamage(_damage + bonusCritDamage, isCrit);
         }
     }
 

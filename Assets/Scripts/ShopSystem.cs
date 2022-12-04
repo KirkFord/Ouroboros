@@ -90,7 +90,7 @@ public class ShopSystem : MonoBehaviour
 
     public void IncreaseSwordDamageHandler() {
         var cost = 2 + _gm.GetLoops();
-        if (_cm.GetCoins() <= cost) return;
+        if (_cm.GetCoins() < cost) return;
         projSlash.IncreaseDamage(10);
         _cm.RemoveCoins(cost);
         _iM.UpdateCoins();
@@ -98,7 +98,7 @@ public class ShopSystem : MonoBehaviour
 
     public void IncreaseWandDamageHandler() {
         var cost = 3 + _gm.GetLoops();
-        if (_cm.GetCoins() <= cost) return;
+        if (_cm.GetCoins() < cost) return;
         projWand.IncreaseDamage(15);
         _cm.RemoveCoins(cost);
         _iM.UpdateCoins();
