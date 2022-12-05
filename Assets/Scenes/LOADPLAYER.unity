@@ -269,6 +269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aura_2
       objectReference: {fileID: 0}
+    - target: {fileID: 4423221499863095938, guid: 79b80e69c26e85943b422959f615154f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4423221499863095939, guid: 79b80e69c26e85943b422959f615154f, type: 3}
       propertyPath: m_RootOrder
       value: 5

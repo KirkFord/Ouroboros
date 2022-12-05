@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SO_Enemy enemyData;
     [SerializeField] private GameObject deathEffect;
     [SerializeField] private Material damageFlash;
-    
+    [SerializeField] private LootTable drops;
 
     private Player _player;
     private Rigidbody _rb;
@@ -120,6 +120,15 @@ public class Enemy : MonoBehaviour
         _animator.SetBool(IsDead,true);
         Invoke(nameof(Death),1.33f);
 
+
+        var reward = drops.GetRandomItem();
+        if (reward.itemName.Equals("None"))
+        {
+            return;
+        }
+        var newPosition = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        Instantiate(reward.drop, newPosition, reward.drop.transform.rotation);
+        
         var randomNumber = Random.Range(1,3);
         if(randomNumber == 1)
         {
