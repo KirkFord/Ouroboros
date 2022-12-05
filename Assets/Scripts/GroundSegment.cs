@@ -26,8 +26,15 @@ public class GroundSegment : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.gameObject.CompareTag("GroundSegmentSpawningZone")) return;
-        _gC.SpawnSegment();
+        if (other.gameObject.CompareTag("DeleteSegment"))
+        {
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.CompareTag("GroundSegmentSpawningZone"))
+        {
+            _gC.SpawnSegment(); 
+        }
     }
     private void StopMoving()
     {

@@ -15,6 +15,7 @@ TagManager:
   - Magnet
   - Loot
   - EnemyOverflow
+  - DeleteSegment
   layers:
   - Default
   - TransparentFX

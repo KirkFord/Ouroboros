@@ -19,23 +19,18 @@ public class GroundController : MonoBehaviour
 
     [SerializeField] private List<GameObject> segments;
     
-    private Queue<GameObject> _currentSegments;
     private GameObject _lastSpawnedSegment;
     
-    private GameManager _gm;
 
     private void Start()
     {
-        _gm = GameManager.Instance;
-        _currentSegments = new Queue<GameObject>();
-        _gm.AllEnemiesKilled += LevelComplete;
-        AddSegment(_start);
+        GameManager.Instance.AllEnemiesKilled += LevelComplete;
         _lastSpawnedSegment = _start;
     }
 
     private void OnDestroy()
     {
-        _gm.AllEnemiesKilled -= LevelComplete;
+        GameManager.Instance.AllEnemiesKilled -= LevelComplete;
     }
 
     public void SpawnSegment()
@@ -45,30 +40,9 @@ public class GroundController : MonoBehaviour
         var spawnSpot = new Vector3(0, 0, _lastSpawnedSegment.transform.position.z + _lastSpawnedSegment.transform.localScale.z/2 + segSize/2);
         var segment = Instantiate(segToSpawn, spawnSpot, segToSpawn.transform.rotation);
         segment.transform.SetParent(transform);
-        AddSegment(segment);
+        _lastSpawnedSegment = segment;
     }
 
-    private void AddSegment(GameObject seg)
-    {
-        _currentSegments.Enqueue(seg);
-        _lastSpawnedSegment = seg;
-        CheckQueueSize();
-    }
-
-    private GameObject RemoveSegment()
-    {
-        return _currentSegments.Dequeue();
-    }
-
-    private void CheckQueueSize()
-    {
-        //MAX SEGMENTS ALLOWED
-        if (_currentSegments.Count > 8)
-        {
-            Destroy(RemoveSegment());
-        }
-    }
-    
     private void LevelComplete()
     {
         SummonEndPlatform();
