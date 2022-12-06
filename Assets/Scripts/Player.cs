@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public event Action<float> TookDamage;
     public event Action EnteredShopZone;
     public event Action LeftShopZone;
+    private float _lifesteal;
 
     private void Awake()
     { 
@@ -58,6 +59,7 @@ public class Player : MonoBehaviour
         canAttack = true;
         _gm.timeStart = Time.time;
         canTakeDamage = true;
+        _lifesteal = 0.0f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -130,6 +132,14 @@ public class Player : MonoBehaviour
         StartCoroutine(InvincibilityFrames());
         TookDamage?.Invoke(damage);
         return true;
+    }
+
+    public void IncreaseLifesteal(float incr) {
+        _lifesteal += 0.05f;
+    }
+
+    public float GetLifesteal() {
+        return _lifesteal;
     }
 
     private IEnumerator CheckOutOfBounds()

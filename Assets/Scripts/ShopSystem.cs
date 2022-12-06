@@ -103,4 +103,11 @@ public class ShopSystem : MonoBehaviour
         _cm.RemoveCoins(cost);
         _iM.UpdateCoins();
     }
+
+    public void OuroborosRingHandler(){
+        if (_cm.GetCoins() < 100) return;
+        _player.IncreaseLifesteal(0.05f);
+        _cm.RemoveCoins(100);
+        _iM.UpdateCoins();
+    }
 }
