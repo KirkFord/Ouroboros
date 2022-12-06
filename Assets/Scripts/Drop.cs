@@ -1,31 +1,85 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Drop : MonoBehaviour
 {
-    private Player _player;
-    private float moveSpeed;
+    [SerializeField] private PickupType type;
+    
+    private delegate void OnPickup();
 
-    private void Start() {
-        _player = Player.Instance;
+    private OnPickup _onPickup;
+    public List<PickupType> randomPickups;
+    
+    private void Start()
+    {
+        randomPickups = new List<PickupType>
+        {
+            PickupType.Heal,
+            PickupType.Invinciblility,
+            PickupType.AttackSpeed,
+            PickupType.CoinMultiplier
+        };
+        SetPickupFunction(type);
     }
 
-    private void Update() {
-        //Magnetize();
+    private void Update()
+    {
+        if (!GameManager.Instance.walkingToEnd)
+        {
+            transform.Translate(new Vector3(0,0,-GameManager.Instance.terrainMoveSpeed));
+        }
+    }
+
+    private void SetPickupFunction(PickupType pickupType)
+    {
+        _onPickup = pickupType switch
+        {
+            PickupType.Heal => HealPickUp,
+            PickupType.Invinciblility => InvincibilityPickUp,
+            PickupType.Random => RandomPickUp,
+            PickupType.AttackSpeed => AttackSpeedPickUp,
+            PickupType.CoinMultiplier => CoinMultiplierPickUp,
+            _ => _onPickup
+        };
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.transform.CompareTag("Player")) return;
-        Debug.Log("drop hit by player");
-        Destroy(gameObject);
+        if (other.transform.CompareTag("Player"))
+        {
+            Debug.Log("drop hit by player");
+            _onPickup();
+            Destroy(gameObject);
+            return;
+        }
+        if (other.transform.CompareTag("EnemyOverflow"))
+        {
+            Destroy(gameObject);
+        }
+        
     }
-
-
-    // private void Magnetize()
-    // {
-    //     if (!(Vector3.Distance(this.transform.position, _player.transform.position) < 4.0f)) return;
-    //     moveSpeed += 0.001f; // make coin accelerate
-    //     transform.LookAt(_player.transform.position);
-    //     transform.position += transform.forward * moveSpeed * Time.deltaTime;
-    // }
+    private static void HealPickUp()
+    {
+        Debug.Log("Heal Pickup Grabbed");
+        Player.Instance.Heal(20.0f);
+    }
+    private void RandomPickUp()
+    {
+        Debug.Log("Random Pickup Grabbed");
+        var choice = randomPickups[Random.Range(0, randomPickups.Count)];
+        SetPickupFunction(choice);
+        _onPickup();
+    }
+    private void InvincibilityPickUp()
+    {
+        Debug.Log("Invincibility Pickup Grabbed");
+    }
+    private void AttackSpeedPickUp()
+    {
+        Debug.Log("Attack Speed Pickup Grabbed");
+    }
+    private void CoinMultiplierPickUp()
+    {
+        Debug.Log("Coin Multiplier Pickup Grabbed");
+    }
 }
