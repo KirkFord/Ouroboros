@@ -26,7 +26,7 @@ public class Drop : MonoBehaviour
     {
         if (!GameManager.Instance.walkingToEnd)
         {
-            transform.Translate(new Vector3(0,0,-GameManager.Instance.terrainMoveSpeed));
+            transform.Translate(new Vector3(0,0,-GameManager.Instance.terrainMoveSpeed * Time.deltaTime));
         }
     }
 
