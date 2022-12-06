@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public bool canAttack;
     private Animator _animator;
     [SerializeField] float rotateSpeed;
+<<<<<<< Updated upstream
     private BGM _bgm;
     public bool diedOnce;
     private static readonly int IsMoving = Animator.StringToHash("isMoving");
@@ -28,6 +29,18 @@ public class Player : MonoBehaviour
     public event Action EnteredShopZone;
     public event Action LeftShopZone;
     private float _lifesteal;
+=======
+    private BGM bgm;
+    public bool DiedOnce;
+    public static event Action OnPlayerDeath;
+
+
+
+    public event Action EnteredShopZone;
+    public event Action LeftShopZone;
+    public event Action EnteredDoorZone;
+    public event Action LeftDoorZone;
+>>>>>>> Stashed changes
 
     private void Awake()
     { 
@@ -160,9 +173,14 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
+<<<<<<< Updated upstream
         _gm.timeEnd = Time.time;
         _gm.CalculateTime();
         _bgm.GameOverSwitch();
+=======
+        bgm.GameOverSwitch();
+        //OnPlayerDeath?.Invoke();
+>>>>>>> Stashed changes
         _gm.ShowGameOver();
         //_gm.ResetRun();
     }
