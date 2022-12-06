@@ -11,9 +11,12 @@ public class ObjectBounce : MonoBehaviour
     private float startHeight;
     private float timeOffset;
 
+    private Rigidbody _rb;
+
     // Start is called before the first frame update
     void Start()
     {
+        _rb = GetComponent<Rigidbody>();
         startHeight = transform.localPosition.y;
         timeOffset = Random.value * Mathf.PI * 2;
     }
@@ -21,6 +24,7 @@ public class ObjectBounce : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //animate
         float finalheight = startHeight + Mathf.Sin(Time.time * bounceSpeed + timeOffset) * bounceAmplitude;
         var position = transform.localPosition;
@@ -31,6 +35,11 @@ public class ObjectBounce : MonoBehaviour
         Vector3 rotation = transform.localRotation.eulerAngles;
         rotation.y += rotationSpeed * Time.deltaTime;
         transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
+        
+        if (!GameManager.Instance.walkingToEnd)
+        {
+            _rb.velocity = new Vector3(0, 0, -GameManager.Instance.terrainMoveSpeed);
+        }
         
     }
 }

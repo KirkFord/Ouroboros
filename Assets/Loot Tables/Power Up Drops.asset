@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _items:
   - itemName: None
-    weight: 75
+    weight: 200
     drop: {fileID: 0}
   - itemName: Coin X2
     weight: 5
     drop: {fileID: 6957646852930194030, guid: f24e6170314ba5d45a43bb1e4e46205c, type: 3}
-  - itemName: Exclamation
+  - itemName: Random
     weight: 5
-    drop: {fileID: 1051544765363101970, guid: eb1e569e76eb4dd42a953efbd2e406b3, type: 3}
+    drop: {fileID: 1662002073395586166, guid: cdbfb3f181442cc478e7f9d47756915a, type: 3}
   - itemName: Health
     weight: 5
     drop: {fileID: 7571120873389758494, guid: e972f889e3aedc04192c49fb3ba7850c, type: 3}
-  - itemName: Star
+  - itemName: Invincibility
     weight: 5
     drop: {fileID: 4665403126240695880, guid: 3c2c877a9bff27949a8a9f62ff486b9e, type: 3}
-  - itemName: Rocket
+  - itemName: Attack Speed
     weight: 5
-    drop: {fileID: 6592294785023390472, guid: 7b3d606c9aa57c240a9fd4ab257763b5, type: 3}
+    drop: {fileID: 3866951040315679413, guid: 9d95de9beb893c144bd8c2ca98e54494, type: 3}

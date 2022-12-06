@@ -26,8 +26,6 @@ public class Player : MonoBehaviour
     [SerializeField] private bool canTakeDamage;
     private bool _playerAtEnd;
     public event Action<float> TookDamage;
-    public event Action EnteredShopZone;
-    public event Action LeftShopZone;
     private float _lifesteal;
     
     private float _baseXPperLevel;
@@ -73,20 +71,6 @@ public class Player : MonoBehaviour
         _currentLevel = 0;
         _XPtoNextlevel = 10;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("ShopKeeperInteractZone"))
-        {
-            EnteredShopZone?.Invoke();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("ShopKeeperInteractZone")) LeftShopZone?.Invoke();
-    }
-
     private void FixedUpdate()
     {
         Move();
@@ -124,6 +108,8 @@ public class Player : MonoBehaviour
 
     public void MainLevelStart()
     {
+
+        rotateSpeed = 0;
         _playerAtEnd = false;
         StartCoroutine(CheckOutOfBounds());
     }
@@ -132,6 +118,7 @@ public class Player : MonoBehaviour
     {
         levelOver = true;
         canAttack = false;
+        rotateSpeed = 720;
     }
 
     public bool PlayerTakeDamage(float damage, bool ignoreInvincibility)

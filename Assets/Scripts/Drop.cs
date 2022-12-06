@@ -8,7 +8,7 @@ public class Drop : MonoBehaviour
     private delegate void OnPickup();
 
     private OnPickup _onPickup;
-    public List<PickupType> randomPickups;
+    private List<PickupType> randomPickups;
     
     private void Start()
     {
@@ -20,14 +20,6 @@ public class Drop : MonoBehaviour
             PickupType.CoinMultiplier
         };
         SetPickupFunction(type);
-    }
-
-    private void Update()
-    {
-        if (!GameManager.Instance.walkingToEnd)
-        {
-            transform.Translate(new Vector3(0,0,-GameManager.Instance.terrainMoveSpeed * Time.deltaTime));
-        }
     }
 
     private void SetPickupFunction(PickupType pickupType)

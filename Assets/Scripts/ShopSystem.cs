@@ -22,18 +22,12 @@ public class ShopSystem : MonoBehaviour
     private void Start()
     {
         _player = Player.Instance;
-        _player.EnteredShopZone += EnteredZone;
-        _player.LeftShopZone += LeftZone;
         _iM = InteractionManager.Instance;
         _cm = CoinManager.Instance;
         _gm = GameManager.Instance;
-        CloseShop();
-    }
-
-    private void OnDestroy()
-    {
-        _player.EnteredShopZone -= EnteredZone;
-        _player.LeftShopZone -= LeftZone;
+        shopUI.gameObject.SetActive(false);
+        _isShopOpen = false;
+        _iM.HideInteractText();
     }
 
     private void Update()
@@ -47,7 +41,6 @@ public class ShopSystem : MonoBehaviour
         {
             CloseShop();   
         }
-        
     }
 
     private void OpenShop()
@@ -75,14 +68,14 @@ public class ShopSystem : MonoBehaviour
         shopUI.gameObject.SetActive(false);
     }
 
-    private void EnteredZone()
+    public void EnteredZone()
     {
         if (_isShopOpen) return;
         _isInShopZone = true;
         _iM.ShowInteractText("Press [F] to open the shop");
     }
 
-    private void LeftZone()
+    public void LeftZone()
     {
         _isInShopZone = false;
         _iM.HideInteractText();

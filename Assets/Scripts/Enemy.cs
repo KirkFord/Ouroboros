@@ -75,11 +75,11 @@ public class Enemy : MonoBehaviour
     }
     private void LateUpdate()
     {
+        _rb.velocity = new Vector3(0, 0, -_gM.terrainMoveSpeed);
         if (_stopMoving) return;
         transform.position =
             Vector3.MoveTowards(transform.position, _player.transform.position, _moveSpeed * Time.deltaTime);
         transform.LookAt(_player.transform);
-        _rb.velocity = new Vector3(0, 0, -_gM.terrainMoveSpeed);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -124,9 +124,16 @@ public class Enemy : MonoBehaviour
         _damageToPlayer = 0f;
         _animator.SetBool(IsDead,true);
         Invoke(nameof(Death),1.33f);
-
+        
         Instantiate(XP, transform.position, XP.transform.rotation);
+
+        var randomNumber = Random.Range(1,3);
+        if(randomNumber == 1)
+        {
+            Instantiate(lootObject, transform.position, lootObject.transform.rotation);
+        }
         var reward = drops.GetRandomItem();
+        
         if (reward.itemName.Equals("None"))
         {
             return;
@@ -134,11 +141,7 @@ public class Enemy : MonoBehaviour
         var newPosition = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         Instantiate(reward.drop, newPosition, reward.drop.transform.rotation);
         
-        var randomNumber = Random.Range(1,3);
-        if(randomNumber == 1)
-        {
-            Instantiate(lootObject, transform.position, lootObject.transform.rotation);
-        }
+        
     }
 
     private IEnumerator DamageFlash()

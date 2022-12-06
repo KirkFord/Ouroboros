@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraDolly : MonoBehaviour
@@ -9,6 +8,7 @@ public class CameraDolly : MonoBehaviour
     public bool followingPlayer;
     private GameObject _end;
     private GameObject _endWall;
+    [SerializeField] private GameObject YouShallNotPass;
 
     [SerializeField] private bool cameraStopped;
     public void CheckMovement()
@@ -20,6 +20,14 @@ public class CameraDolly : MonoBehaviour
     public void FollowPlayer()
     {
         finalCameraPos = Math.Floor(_end.transform.position.z);
+        if (Player.Instance.transform.position.z < -6)
+        {
+            var position = Player.Instance.transform.position;
+            var newPos = new Vector3(position.x, position.y, -5);
+            position = newPos;
+            Player.Instance.transform.position = position;
+        }
+        YouShallNotPass.SetActive(true);
         followingPlayer = true;
     }
 
