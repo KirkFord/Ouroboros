@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _items:
   - itemName: None
-    weight: 50
+    weight: 75
     drop: {fileID: 0}
   - itemName: Coin X2
     weight: 5
