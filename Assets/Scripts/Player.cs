@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -28,9 +29,14 @@ public class Player : MonoBehaviour
     public event Action EnteredShopZone;
     public event Action LeftShopZone;
     private float _lifesteal;
+    
+    private float _baseXPperLevel;
+    private float _amountOfXP;
+    private float _XPtoNextlevel;
+    private int _currentLevel;
 
     private void Awake()
-    { 
+    {
         if (Instance == null)
         {
             Instance = this;
@@ -39,12 +45,14 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Destroying Extra Singleton, name: " + name);
             Destroy(gameObject);
-        } 
+        }
+
         DontDestroyOnLoad(gameObject);
-        
+
         _rb = GetComponent<Rigidbody>();
         currentHealth = maxHealth;
     }
+
     private void Start()
     {
         //_levelOver = true;
@@ -60,6 +68,10 @@ public class Player : MonoBehaviour
         _gm.timeStart = Time.time;
         canTakeDamage = true;
         _lifesteal = 0.0f;
+        _amountOfXP = 0.0f;
+        _baseXPperLevel = 10.0f;
+        _currentLevel = 0;
+        _XPtoNextlevel = 10;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,11 +81,12 @@ public class Player : MonoBehaviour
             EnteredShopZone?.Invoke();
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("ShopKeeperInteractZone")) LeftShopZone?.Invoke();
     }
-    
+
     private void FixedUpdate()
     {
         Move();
@@ -87,14 +100,18 @@ public class Player : MonoBehaviour
 
         if (horizontalInput != 0 || verticalInput != 0)
         {
-            _animator.SetBool(IsMoving,true);
+            _animator.SetBool(IsMoving, true);
         }
         else if (horizontalInput == 0 && verticalInput == 0)
         {
-            _animator.SetBool(IsMoving,false);
+            _animator.SetBool(IsMoving, false);
         }
-        _rb.velocity = levelOver ? new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed) : new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed - _gm.terrainMoveSpeed);
-        
+
+        _rb.velocity = levelOver
+            ? new Vector3(horizontalInput * playerSpeed, _rb.velocity.y, verticalInput * playerSpeed)
+            : new Vector3(horizontalInput * playerSpeed, _rb.velocity.y,
+                verticalInput * playerSpeed - _gm.terrainMoveSpeed);
+
         if (_rb.velocity == Vector3.zero) return;
         var toRotation = Quaternion.LookRotation(_rb.velocity, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
@@ -107,7 +124,7 @@ public class Player : MonoBehaviour
 
     public void MainLevelStart()
     {
-        _playerAtEnd = false; 
+        _playerAtEnd = false;
         StartCoroutine(CheckOutOfBounds());
     }
 
@@ -116,6 +133,7 @@ public class Player : MonoBehaviour
         levelOver = true;
         canAttack = false;
     }
+
     public bool PlayerTakeDamage(float damage, bool ignoreInvincibility)
     {
         if (!canTakeDamage && !ignoreInvincibility) return false;
@@ -125,20 +143,23 @@ public class Player : MonoBehaviour
             diedOnce = true;
             DisableMovement();
             canAttack = false;
-            _animator.SetBool(IsDead,true);
-            Invoke(nameof(Death),1.33f);
+            _animator.SetBool(IsDead, true);
+            Invoke(nameof(Death), 1.33f);
         }
+
         _im.UpdateHealthBar();
         StartCoroutine(InvincibilityFrames());
         TookDamage?.Invoke(damage);
         return true;
     }
 
-    public void IncreaseLifesteal(float incr) {
+    public void IncreaseLifesteal(float incr)
+    {
         _lifesteal += 0.05f;
     }
 
-    public float GetLifesteal() {
+    public float GetLifesteal()
+    {
         return _lifesteal;
     }
 
@@ -147,7 +168,7 @@ public class Player : MonoBehaviour
         while (!_playerAtEnd)
         {
             if (transform.position.z <= -10) PlayerTakeDamage(1f, true);
-            yield return null; 
+            yield return null;
         }
     }
 
@@ -167,11 +188,14 @@ public class Player : MonoBehaviour
         //_gm.ResetRun();
     }
 
-    public void Heal(float healAmt) {
+    public void Heal(float healAmt)
+    {
         currentHealth += healAmt;
-        if (currentHealth >= maxHealth) {
+        if (currentHealth >= maxHealth)
+        {
             currentHealth = maxHealth;
         }
+
         Debug.Log("Healing player by " + healAmt + "; New HP: " + currentHealth);
         _im.UpdateHealthBar();
     }
@@ -180,6 +204,7 @@ public class Player : MonoBehaviour
     {
         _canMove = true;
     }
+
     public void DisableMovement()
     {
         _canMove = false;
@@ -188,7 +213,7 @@ public class Player : MonoBehaviour
 
     public void ResetRun()
     {
-        _animator.SetBool(IsDead,false);
+        _animator.SetBool(IsDead, false);
         EnableMovement();
         diedOnce = false;
         canAttack = true;
@@ -196,5 +221,24 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         _im.UpdateHealthBar();
         canTakeDamage = true;
+    }
+
+    public void gainXP(float XPtoGain)
+    {
+        _amountOfXP += XPtoGain;
+        if (_amountOfXP >= _XPtoNextlevel)
+        {
+            _XPtoNextlevel = nextLevel();
+            _amountOfXP = 0;
+            //do some level up type beat here
+            _currentLevel++;
+            Debug.Log("player is now level " + _currentLevel);
+        }
+    }
+
+    public float nextLevel()
+    {
+        var exponent = 1.5f;
+        return math.floor(_baseXPperLevel * (Mathf.Pow(_currentLevel,exponent)));
     }
 }

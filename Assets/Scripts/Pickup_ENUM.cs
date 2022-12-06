@@ -4,5 +4,6 @@ public enum PickupType
     Random,
     Invinciblility,
     AttackSpeed,
-    CoinMultiplier
+    CoinMultiplier,
+    XP,
 }

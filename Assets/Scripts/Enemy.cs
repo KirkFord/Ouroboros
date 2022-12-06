@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private GameManager _gM;
     private Animator _animator;
     public GameObject lootObject;
+    public GameObject XP;
 
     private float _damageFlashTimer;
     private Material _originalMaterial;
@@ -124,7 +125,7 @@ public class Enemy : MonoBehaviour
         _animator.SetBool(IsDead,true);
         Invoke(nameof(Death),1.33f);
 
-
+        Instantiate(XP, transform.position, XP.transform.rotation);
         var reward = drops.GetRandomItem();
         if (reward.itemName.Equals("None"))
         {

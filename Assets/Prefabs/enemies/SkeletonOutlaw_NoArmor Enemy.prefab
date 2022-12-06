@@ -740,6 +740,7 @@ MonoBehaviour:
   damageFlash: {fileID: 2100000, guid: 06d002eca46b8c245af933cdf250da9a, type: 2}
   drops: {fileID: 11400000, guid: 2ecf64a1b98966d4c836d5467fa38a05, type: 2}
   lootObject: {fileID: 1488104876672236656, guid: 7ddbe7375c9bd1949a95a5c93d30a566, type: 3}
+  XP: {fileID: 8998787677226000374, guid: 1de68f5c0c99c0e4a9719a2bf4829e54, type: 3}
 --- !u!54 &2442139614722689537
 Rigidbody:
   m_ObjectHideFlags: 0
