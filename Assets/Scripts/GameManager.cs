@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float allEnemiesKilledHeartbeatTimer = 1f;
     public GameOverScreen gameOver;
     private int _loops;
-<<<<<<< Updated upstream
     public int enemiesKilled;
     public float timeStart;
     public float timeEnd;
@@ -25,10 +24,6 @@ public class GameManager : MonoBehaviour
     public int minutes;
     public int seconds;
     public bool walkingToEnd;
-=======
-
-
->>>>>>> Stashed changes
     private void Awake()
     {
         
@@ -49,7 +44,6 @@ public class GameManager : MonoBehaviour
     {
         _eM = EnemiesManager.Instance;
         _eM.EnemyKilled += EnemyDied;
-<<<<<<< Updated upstream
         enemiesKilled = 0;
         //GameOver = GameOverScreen.Instance;
         StartCoroutine(WaitForPlayer());
@@ -59,8 +53,6 @@ public class GameManager : MonoBehaviour
     {
         while (Player.Instance == null) yield return null;
         _player = Player.Instance;
-=======
->>>>>>> Stashed changes
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

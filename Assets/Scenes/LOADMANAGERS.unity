@@ -140,11 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6829303111755242972, guid: 1628bf39650227e488767978760acd99, type: 3}
       propertyPath: musicVolume
-<<<<<<< Updated upstream
       value: 0.151
-=======
-      value: 0.145
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6829303111755242972, guid: 1628bf39650227e488767978760acd99, type: 3}
       propertyPath: musicAudioSource
