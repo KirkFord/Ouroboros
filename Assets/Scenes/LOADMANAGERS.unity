@@ -622,6 +622,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5114388254838409793, guid: 8339c21000197594aa38e5c550596abc, type: 3}
+      propertyPath: terrainMoveSpeed
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5114388254838409793, guid: 8339c21000197594aa38e5c550596abc, type: 3}
       propertyPath: _enemiesRemaining
       value: 1
       objectReference: {fileID: 0}

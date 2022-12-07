@@ -3,7 +3,7 @@ using UnityEngine;
 public class Weapon_Slash : MonoBehaviour
 {
     private int _slashCooldown = 20;
-    private float _cdMax = 30f;
+    private float _cdMax = 75f;
     [SerializeField] private GameObject projectile;
     private BGM bgm;
 
