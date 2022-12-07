@@ -254,9 +254,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5f);
     }
 
-    public IEnumerator CoinMulitplierPickup()
+    public IEnumerator CoinMultiplierPickup()
     {
+        CoinManager.Instance.multiplier = 2;
         yield return new WaitForSeconds(5f);
+        CoinManager.Instance.multiplier = 1;
     }
     
     
