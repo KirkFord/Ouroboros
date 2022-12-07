@@ -2513,12 +2513,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba02605b2d653347b91effa0b3acae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 484793e1da6daa548a0434c5c0744263, type: 2}
+  enemyData: {fileID: 11400000, guid: ce8f8e90b90e193428e4824a3ecfff9c, type: 2}
   deathEffect: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
   damageFlash: {fileID: 2100000, guid: 06d002eca46b8c245af933cdf250da9a, type: 2}
   drops: {fileID: 11400000, guid: 2ecf64a1b98966d4c836d5467fa38a05, type: 2}
   lootObject: {fileID: 1488104876672236656, guid: 7ddbe7375c9bd1949a95a5c93d30a566, type: 3}
   XP: {fileID: 8998787677226000374, guid: 1de68f5c0c99c0e4a9719a2bf4829e54, type: 3}
+  invincibilityTimer: 0.75
+  canTakeDamage: 0
 --- !u!1 &2696345896571884003
 GameObject:
   m_ObjectHideFlags: 0
