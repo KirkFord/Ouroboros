@@ -32,25 +32,24 @@ public class Player : MonoBehaviour
     public float _amountOfXP;
     public float _XPtoNextlevel;
     public int _currentLevel { get; private set; }
+    
 
     [SerializeField] private Material invincibleMat;
     [SerializeField] private Material normalMat;
     [SerializeField] private SkinnedMeshRenderer playerSMR;
 
-
-    [SerializeField] private GameObject silverlight;
-    [SerializeField] private GameObject winterhorn;
-    [SerializeField] private GameObject lichtorch;
-
-    [SerializeField] private Weapon_Garlic silverlightScript;
-    [SerializeField] private Weapon_Slash winterhornScript;
-    [SerializeField] private Weapon_Magic_Shoot lichTorchScript;
+    
+    public int silverlightUpgradesPurchased;
+    public int winterhornUpgradesPurchased;
+    public int lichTorchUpgradesPurchased;
+    [SerializeField] private Weapon_Garlic silverlight;
+    [SerializeField] private Weapon_Slash winterhorn;
+    [SerializeField] private Weapon_Magic_Shoot lichTorch;
+    public bool hasSilverlight;
+    public bool hasWinterhorn;
+    public bool hasLichTorch;
     
     
-    
-    
-    
-
     private void Awake()
     {
         if (Instance == null)
