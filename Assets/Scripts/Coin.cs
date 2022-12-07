@@ -5,14 +5,17 @@ public class Coin : MonoBehaviour
    private CoinManager _cm;
    private Player _player;
    private float moveSpeed;
-
+   private Rigidbody _rb;
+   
    private void Start() {
     _cm = CoinManager.Instance;
     _player = Player.Instance;
+    _rb = GetComponent<Rigidbody>();
    }
 
    private void Update() {
         Magnetize();
+        _rb.velocity = !GameManager.Instance.walkingToEnd ? new Vector3(0, 0, -GameManager.Instance.terrainMoveSpeed) : new Vector3(0, 0, 0);
     }
 
    private void OnTriggerEnter(Collider other)
