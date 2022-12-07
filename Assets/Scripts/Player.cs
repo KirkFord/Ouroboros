@@ -33,6 +33,13 @@ public class Player : MonoBehaviour
     public float _XPtoNextlevel;
     public int _currentLevel { get; private set; }
 
+    [SerializeField] private Material invincibleMat;
+    [SerializeField] private Material normalMat;
+    [SerializeField] private SkinnedMeshRenderer playerSMR;
+    
+    
+    
+
     private void Awake()
     {
         if (Instance == null)
@@ -232,4 +239,27 @@ public class Player : MonoBehaviour
         var exponent = 1.5f;
         return math.floor(_baseXPperLevel * (Mathf.Pow(_currentLevel,exponent)));
     }
+
+    public IEnumerator InvincibilityPickup()
+    {
+        canTakeDamage = false;
+        playerSMR.material = invincibleMat;
+        yield return new WaitForSeconds(5f);
+        playerSMR.material = normalMat;
+        canTakeDamage = true;
+    }
+
+    public IEnumerator AttackSpeedPickup()
+    {
+        yield return new WaitForSeconds(5f);
+    }
+
+    public IEnumerator CoinMultiplierPickup()
+    {
+        CoinManager.Instance.multiplier = 2;
+        yield return new WaitForSeconds(5f);
+        CoinManager.Instance.multiplier = 1;
+    }
+    
+    
 }

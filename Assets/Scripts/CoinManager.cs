@@ -5,6 +5,7 @@ public class CoinManager : MonoBehaviour
     public static CoinManager Instance;
     private InteractionManager _im;
     private int _coins;
+    public int multiplier = 1;
 
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class CoinManager : MonoBehaviour
         if (c < 0) {
             return;
         }
-        _coins += c;
+        _coins += c * multiplier;
         _im.UpdateCoins();
     }
 

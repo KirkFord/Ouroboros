@@ -31,7 +31,7 @@ public class Drop : MonoBehaviour
             PickupType.Random => RandomPickUp,
             PickupType.AttackSpeed => AttackSpeedPickUp,
             PickupType.CoinMultiplier => CoinMultiplierPickUp,
-            PickupType.XP => XPPickUp,
+            PickupType.XP => XpPickUp,
             _ => _onPickup
 
         };
@@ -67,16 +67,19 @@ public class Drop : MonoBehaviour
     private void InvincibilityPickUp()
     {
         Debug.Log("Invincibility Pickup Grabbed");
+        StartCoroutine(Player.Instance.InvincibilityPickup());
     }
     private void AttackSpeedPickUp()
     {
         Debug.Log("Attack Speed Pickup Grabbed");
+        StartCoroutine(Player.Instance.AttackSpeedPickup());
     }
     private void CoinMultiplierPickUp()
     {
         Debug.Log("Coin Multiplier Pickup Grabbed");
+        StartCoroutine(Player.Instance.CoinMultiplierPickup());
     }
-    private void XPPickUp()
+    private void XpPickUp()
     {
         Player.Instance.gainXP(1);
         Debug.Log("Coin Multiplier Pickup Grabbed");
