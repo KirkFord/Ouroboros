@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
     private void LoadMainHall()
     {
         walkingToEnd = false;
+        _player.gameObject.SetActive(true);
         _player.levelOver = false;
         _player.canAttack = true;
         _player.EnableMovement();
