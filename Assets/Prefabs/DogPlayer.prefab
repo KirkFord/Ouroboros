@@ -5032,7 +5032,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e212e17753daf4b81bd4456edb51bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InMagnet: 0
   speed: 30
 --- !u!1 &8071792931903516288
 GameObject:
@@ -5749,6 +5748,9 @@ MonoBehaviour:
   canTakeDamage: 0
   _amountOfXP: 0
   _XPtoNextlevel: 0
+  invincibleMat: {fileID: 2100000, guid: 085417bf970941e4f8af522ac412f905, type: 2}
+  normalMat: {fileID: 2100000, guid: 421140039854e8c42938a8cb73d3480c, type: 2}
+  playerSMR: {fileID: 8071792931898303440}
 --- !u!1 &8071792931903516330
 GameObject:
   m_ObjectHideFlags: 0

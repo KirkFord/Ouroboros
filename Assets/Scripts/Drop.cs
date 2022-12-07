@@ -67,14 +67,17 @@ public class Drop : MonoBehaviour
     private void InvincibilityPickUp()
     {
         Debug.Log("Invincibility Pickup Grabbed");
+        StartCoroutine(Player.Instance.InvincibilityPickup());
     }
     private void AttackSpeedPickUp()
     {
         Debug.Log("Attack Speed Pickup Grabbed");
+        StartCoroutine(Player.Instance.AttackSpeedPickup());
     }
     private void CoinMultiplierPickUp()
     {
         Debug.Log("Coin Multiplier Pickup Grabbed");
+        StartCoroutine(Player.Instance.CoinMulitplierPickup());
     }
     private void XPPickUp()
     {
