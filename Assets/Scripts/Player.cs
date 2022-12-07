@@ -96,6 +96,12 @@ public class Player : MonoBehaviour
         _baseXPperLevel = 10.0f;
         _currentLevel = 0;
         _XPtoNextlevel = 10;
+        hasSilverlight = false;
+        hasWinterhorn = false;
+        hasLichTorch = false;
+        silverlightUpgradesPurchased = 0;
+        winterhornUpgradesPurchased = 0;
+        lichTorchUpgradesPurchased = 0;
     }
     private void FixedUpdate()
     {
@@ -244,6 +250,13 @@ public class Player : MonoBehaviour
         _baseXPperLevel = 10.0f;
         _currentLevel = 0;
         _XPtoNextlevel = 10;
+        hasSilverlight = false;
+        hasWinterhorn = false;
+        hasLichTorch = false;
+        silverlightUpgradesPurchased = 0;
+        winterhornUpgradesPurchased = 0;
+        lichTorchUpgradesPurchased = 0;
+        UpdateWeapons();
     }
 
     public void gainXP(float XPtoGain)

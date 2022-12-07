@@ -22,21 +22,36 @@ public class WepSelectUI : MonoBehaviour
     public void choice1()
     {
         //change player wep here
-        Time.timeScale = 1f;
+        Player.Instance.hasSilverlight = false;
+        Player.Instance.hasLichTorch = false;
+        Player.Instance.hasWinterhorn = true;
+        Player.Instance.winterhornUpgradesPurchased = 1;
+        Player.Instance.UpdateWeapons();
+        //Time.timeScale = 1f;
         GameManager.Instance.LoadMainHall();
     }
     
     public void choice2()
     {
         //change player wep here
-        Time.timeScale = 1f;
+        Player.Instance.hasLichTorch = true;
+        Player.Instance.hasSilverlight = false;
+        Player.Instance.hasWinterhorn = false;
+        Player.Instance.lichTorchUpgradesPurchased = 1;
+        Player.Instance.UpdateWeapons();
+        //Time.timeScale = 1f;
         GameManager.Instance.LoadMainHall();
     }
     
     public void choice3()
     {
         //change player wep here
-        Time.timeScale = 1f;
+        Player.Instance.hasLichTorch = false;
+        Player.Instance.hasWinterhorn = false;
+        Player.Instance.hasSilverlight = true;
+        Player.Instance.silverlightUpgradesPurchased = 1;
+        Player.Instance.UpdateWeapons();
+        //Time.timeScale = 1f;
         GameManager.Instance.LoadMainHall();
     }
 }

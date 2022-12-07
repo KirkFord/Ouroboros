@@ -52,6 +52,13 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameManager.Instance.ShutPlayerUp();
+        Player.Instance.hasSilverlight = false;
+        Player.Instance.hasWinterhorn = false;
+        Player.Instance.hasLichTorch = false;
+        Player.Instance.silverlightUpgradesPurchased = 0;
+        Player.Instance.winterhornUpgradesPurchased = 0;
+        Player.Instance.lichTorchUpgradesPurchased = 0;
+        Player.Instance.UpdateWeapons();
         EnemiesManager.Instance.enemiesToSpawn = 0;
         EnemiesManager.Instance.Murder();
         SceneManager.LoadScene("StartScreen");
