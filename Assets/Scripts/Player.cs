@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     private bool _playerAtEnd;
     public event Action<float> TookDamage;
     private float _lifesteal;
+    private float _attackSpeedModifier = 0f;
     
     private float _baseXPperLevel;
     public float _amountOfXP;
@@ -293,6 +294,14 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5f);
         CoinManager.Instance.multiplier = 1;
     }
-    
-    
+
+    public void IncreaseAttackSpeed(float amount)
+    {
+        _attackSpeedModifier += amount;
+    }
+
+    public float GetAttackSpeed()
+    {
+        return _attackSpeedModifier;
+    }
 }

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Weapon_Magic_Shoot : MonoBehaviour
 {
-    private int _shootCooldown = 20;
+    private int _shootCooldown = 30;
+    private float _cdMax = 30f;
     [SerializeField] private GameObject projectile;
     private GameObject target;
     [SerializeField] private float range = 300.0f;
@@ -31,7 +32,9 @@ public class Weapon_Magic_Shoot : MonoBehaviour
             {
                 Shoot();
             }
-            _shootCooldown = 30;
+            float attackSpeedMod = Player.Instance.GetAttackSpeed();
+            _shootCooldown = (int)(_cdMax / (1 + attackSpeedMod));
+            // Debug.Log(attackSpeedMod.ToString());
         }
     }
 

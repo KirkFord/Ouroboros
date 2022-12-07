@@ -3,6 +3,7 @@ using UnityEngine;
 public class Weapon_Slash : MonoBehaviour
 {
     private int _slashCooldown = 20;
+    private float _cdMax = 30f;
     [SerializeField] private GameObject projectile;
     private BGM bgm;
 
@@ -26,7 +27,8 @@ public class Weapon_Slash : MonoBehaviour
         else
         {
             Slash();
-            _slashCooldown = 75;
+            float attackSpeedMod = Player.Instance.GetAttackSpeed();
+            _slashCooldown = (int)(_cdMax / (1 + attackSpeedMod));
         }
     }
     
