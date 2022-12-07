@@ -52,14 +52,14 @@ public class StartScreen : MonoBehaviour
         startObject.SetActive(false);
         settingsObject.SetActive(false);
         mainCameraAnimator.Play("CameraToDoor");
-        Debug.Log("Start Button Pressed");
+        //Debug.Log("Start Button Pressed");
     }
 
     public void SettingsButtonPressed()
     {
         _bgm.PlaySound(Sound.MenuSelectFX);
         mainCameraAnimator.Play("MainToSettings");
-        Debug.Log("Settings Button Pressed");
+        //Debug.Log("Settings Button Pressed");
     }
 
     public void ExitButtonPressed()
@@ -141,8 +141,8 @@ public class StartScreen : MonoBehaviour
     }
     private void ResetResolution()
     {
-        Debug.Log("Setting Resolution to: " +_currentResolution.width + "x" + _currentResolution.height);
-        Debug.Log(_isFullscreen ? "Game is in Fullscreen" : "Game is in Windowed");
+        //Debug.Log("Setting Resolution to: " +_currentResolution.width + "x" + _currentResolution.height);
+        //Debug.Log(_isFullscreen ? "Game is in Fullscreen" : "Game is in Windowed");
         Screen.SetResolution(_currentResolution.width, _currentResolution.height, _isFullscreen);
     }
     private static void ExitGame()

@@ -36,6 +36,17 @@ public class Player : MonoBehaviour
     [SerializeField] private Material invincibleMat;
     [SerializeField] private Material normalMat;
     [SerializeField] private SkinnedMeshRenderer playerSMR;
+
+
+    [SerializeField] private GameObject silverlight;
+    [SerializeField] private GameObject winterhorn;
+    [SerializeField] private GameObject lichtorch;
+
+    [SerializeField] private Weapon_Garlic silverlightScript;
+    [SerializeField] private Weapon_Slash winterhornScript;
+    [SerializeField] private Weapon_Magic_Shoot lichTorchScript;
+    
+    
     
     
     
@@ -163,7 +174,7 @@ public class Player : MonoBehaviour
     {
         while (!_playerAtEnd)
         {
-            if (transform.position.z <= -10) PlayerTakeDamage(1f, true);
+            if (transform.position.z <= -7) PlayerTakeDamage(1f, true);
             yield return null;
         }
     }
@@ -229,7 +240,7 @@ public class Player : MonoBehaviour
             //do some level up type beat here
             _currentLevel++;
             _im.UpdateLevelText();
-            Debug.Log("player is now level " + _currentLevel);
+            //Debug.Log("player is now level " + _currentLevel);
         }
         _im.UpdateXpBar();
     }
@@ -240,7 +251,21 @@ public class Player : MonoBehaviour
         return math.floor(_baseXPperLevel * (Mathf.Pow(_currentLevel,exponent)));
     }
 
-    public IEnumerator InvincibilityPickup()
+    public void ActivateInvincibility()
+    {
+        StartCoroutine(InvincibilityPickup());
+    }
+    public void ActivateCoinMulitplier()
+    {
+        StartCoroutine(CoinMultiplierPickup());
+    }
+    public void ActivateAttackSpeed()
+    {
+        StartCoroutine(AttackSpeedPickup());
+    }
+
+
+    private IEnumerator InvincibilityPickup()
     {
         canTakeDamage = false;
         playerSMR.material = invincibleMat;
@@ -251,12 +276,12 @@ public class Player : MonoBehaviour
         canTakeDamage = true;
     }
 
-    public IEnumerator AttackSpeedPickup()
+    private IEnumerator AttackSpeedPickup()
     {
         yield return new WaitForSeconds(5f);
     }
 
-    public IEnumerator CoinMultiplierPickup()
+    private IEnumerator CoinMultiplierPickup()
     {
         CoinManager.Instance.multiplier = 2;
         yield return new WaitForSeconds(5f);

@@ -24,7 +24,7 @@ public class CampFire : MonoBehaviour
 
     private void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.F) || !_playerInArea) return;
+        if (!Input.GetKeyDown(KeyCode.F) || !_playerInArea || _healUsed) return;
         
         Player.Instance.Heal(healAmt);
         _healUsed = true;

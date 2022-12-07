@@ -41,7 +41,7 @@ public class Drop : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
-            Debug.Log("drop hit by player");
+            //Debug.Log("drop hit by player");
             _onPickup();
             Destroy(gameObject);
             return;
@@ -64,22 +64,22 @@ public class Drop : MonoBehaviour
         SetPickupFunction(choice);
         _onPickup();
     }
-    private void InvincibilityPickUp()
+    private static void InvincibilityPickUp()
     {
         Debug.Log("Invincibility Pickup Grabbed");
-        StartCoroutine(Player.Instance.InvincibilityPickup());
+        Player.Instance.ActivateInvincibility();
     }
-    private void AttackSpeedPickUp()
+    private static void AttackSpeedPickUp()
     {
         Debug.Log("Attack Speed Pickup Grabbed");
-        StartCoroutine(Player.Instance.AttackSpeedPickup());
+        Player.Instance.ActivateAttackSpeed();
     }
-    private void CoinMultiplierPickUp()
+    private static void CoinMultiplierPickUp()
     {
         Debug.Log("Coin Multiplier Pickup Grabbed");
-        StartCoroutine(Player.Instance.CoinMultiplierPickup());
+        Player.Instance.ActivateCoinMulitplier();
     }
-    private void XpPickUp()
+    private static void XpPickUp()
     {
         Player.Instance.gainXP(1);
         Debug.Log("Coin Multiplier Pickup Grabbed");

@@ -77,8 +77,8 @@ public class Enemy : MonoBehaviour
         _currentHealth += math.pow(loops, 2) * _healthScaleFactor;
         //Eventually will plateau, just so enemies don't 100% one shot you late game.
         _damageToPlayer *= 1 * math.pow(math.sqrt(_damageToPlayer * loops),_damageScaleFactor);
-        Debug.Log("Enemy damage scaled to: " + _damageToPlayer);
-        Debug.Log("Enemy health scaled to: " + _currentHealth);
+       // Debug.Log("Enemy damage scaled to: " + _damageToPlayer);
+       // Debug.Log("Enemy health scaled to: " + _currentHealth);
     }
     private void LateUpdate()
     {
@@ -109,7 +109,7 @@ public class Enemy : MonoBehaviour
         var hit = player.PlayerTakeDamage(_damageToPlayer, false);
         if (hit)
         {
-            Debug.Log("Did " + _damageToPlayer + " to the player."); 
+           // Debug.Log("Did " + _damageToPlayer + " to the player."); 
         }
     }
 
@@ -118,7 +118,7 @@ public class Enemy : MonoBehaviour
         if (!canTakeDamage) return;
         DamagePopup.Create(transform.position, ((int)damage).ToString(), isCrit);
         if (_player.GetLifesteal() > 0) {
-            Debug.Log("Healing player by " + damage * _player.GetLifesteal());
+           // Debug.Log("Healing player by " + damage * _player.GetLifesteal());
         }
         _player.Heal(damage * _player.GetLifesteal());
         _currentHealth -= damage;

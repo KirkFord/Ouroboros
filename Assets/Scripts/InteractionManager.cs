@@ -56,7 +56,8 @@ public class InteractionManager : MonoBehaviour
 
     public void UpdateHealthBar() {
         healthSlider.value = _player.currentHealth / _player.maxHealth;
-        healthText.text = $"{(int)_player.currentHealth}/{(int)_player.maxHealth}";
+        var currentH = _player.currentHealth < 0 ? 0 : _player.currentHealth;
+        healthText.text = $"{(int)currentH}/{(int)_player.maxHealth}";
         healthFill.color = grad.Evaluate(healthSlider.normalizedValue);
     }
 

@@ -4959,7 +4959,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8071792931903222472}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3935913774442235433
 MonoBehaviour:
@@ -5006,7 +5006,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8071792931903222472}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &8058508045211525745
 SphereCollider:
@@ -5671,8 +5671,8 @@ Transform:
   - {fileID: 8071792931903222650}
   - {fileID: 8071792931903222420}
   - {fileID: 667220629781866408}
-  - {fileID: 85456744650048228}
   - {fileID: 1009670745105824872}
+  - {fileID: 85456744650048228}
   - {fileID: 3022424989986042206}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -5752,6 +5752,12 @@ MonoBehaviour:
   invincibleMat: {fileID: 2100000, guid: 085417bf970941e4f8af522ac412f905, type: 2}
   normalMat: {fileID: 2100000, guid: 421140039854e8c42938a8cb73d3480c, type: 2}
   playerSMR: {fileID: 8071792931898303440}
+  silverlight: {fileID: 151115711945401988}
+  winterhorn: {fileID: 1548410378447000813}
+  lichtorch: {fileID: 4488566050545070028}
+  silverlightScript: {fileID: 7725011730970907976}
+  winterhornScript: {fileID: 5588320590975937880}
+  lichTorchScript: {fileID: 3935913774442235433}
 --- !u!1 &8071792931903516330
 GameObject:
   m_ObjectHideFlags: 0
