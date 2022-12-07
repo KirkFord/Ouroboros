@@ -29,7 +29,7 @@ public class Puzzle2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GenerateColors();
+        UpdateColors();
     }
 
 
@@ -48,13 +48,25 @@ public class Puzzle2 : MonoBehaviour
         colors[1] = 1;
         colors[2] = 1;
         colors[3] = 1;
-        colors[4] = 1;
-        colors[5] = 1;
-        colors[6] = 3;
-        colors[7] = 2;
+        RandomizeColors();
     }
 
-    void GenerateColors()
+    void RandomizeColors()
+    {
+        while (true)
+        {
+            colors[4] = Random.Range(1, 4);
+            colors[5] = Random.Range(1, 4);
+            colors[6] = Random.Range(1, 4);
+            colors[7] = Random.Range(1, 4);
+            if (colors[4] != 1 & colors[5] != 1 & colors[6] != 1 & colors[7] != 1)
+            {
+                break;
+            }
+        }
+    }
+
+    void UpdateColors()
     {
         for (int i = 0; i < 8; i++)
         {
