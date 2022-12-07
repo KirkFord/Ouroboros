@@ -43,5 +43,15 @@ public class MainUi : MonoBehaviour
         }
     }
 
+    public void resetFlash()
+    {
+        var damageFlashColor = damageFlash.color;
+        damageFlashColor.a = 0;
+        damageFlash.color = damageFlashColor;
+    }
 
+    private void OnEnable()
+    {
+        resetFlash();
+    }
 }
