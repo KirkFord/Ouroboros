@@ -8,15 +8,10 @@ public class Weapon_Garlic : MonoBehaviour
     private int cdCurrent = 0;
     [SerializeField] private float damage = 50.0f;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void AddDamage(float extraDamage)
     {
-        
+        damage += extraDamage;
     }
 
     void OnTriggerStay(Collider other)
