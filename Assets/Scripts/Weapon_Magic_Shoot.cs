@@ -31,7 +31,7 @@ public class Weapon_Magic_Shoot : MonoBehaviour
             {
                 Shoot();
             }
-            _shootCooldown = 75;
+            _shootCooldown = 30;
         }
     }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BadTile : MonoBehaviour
 {
-    private int breakTimer = 30;
+    private int breakTimer = 15;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject explosion;
     [SerializeField] private GameObject blocker;
