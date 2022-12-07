@@ -46,6 +46,12 @@ public class BGM : MonoBehaviour
         // Plays different music in different scenes
         switch (scene.name) {
             case "MainHall":
+                if (!GameManager.Instance.firstTimeWep)
+                {
+                    GameManager.Instance.firstTimeWep = true;
+                    wepSelectSwitch();
+                    break;
+                }
                 int random = Random.Range(0, 2);
                 if (random == 0)
                 {
@@ -114,7 +120,31 @@ public class BGM : MonoBehaviour
         musicAudioSource.clip = musicClips[6];
         musicAudioSource.enabled = true;
     }
-    
+
+    public void wepSelectSwitch()
+    {
+        musicAudioSource.enabled = false;
+        musicAudioSource.loop = true;
+        musicAudioSource.clip = musicClips[8];
+        musicAudioSource.enabled = true;
+    }
+
+    public void mainHallSwitch()
+    {
+        int random = Random.Range(0, 2);
+        if (random == 0)
+        {
+            musicAudioSource.enabled = false;
+            musicAudioSource.clip = musicClips[0];
+            musicAudioSource.enabled = true;
+        }
+        else if (random == 1)
+        {
+            musicAudioSource.enabled = false;
+            musicAudioSource.clip = musicClips[1];
+            musicAudioSource.enabled = true;
+        }
+    }
     
     public void PlaySound(Sound sound)
     {

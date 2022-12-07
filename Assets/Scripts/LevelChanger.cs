@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System;
+using System.Collections;
 //THIS SHOULD MATCH THE BUILD INDEX
 public enum Level
 {
@@ -42,12 +43,19 @@ public class LevelChanger : MonoBehaviour
         const int loadPlayer = (int)Level.LoadPlayerLevel;
         if (scene.buildIndex is loadManagers or loadPlayer) return; 
         //if the loaded scene is the manager scene
-        if (anim != null) {
+        if (anim != null)
+        {
             anim.Play("Fade_In");
         }
     }
-    
-    public void FadeToLevel(Level levelName)
+
+    // public void fade()
+    // {
+    //     anim.Play("Fade_In");
+    //     
+    // }
+
+        public void FadeToLevel(Level levelName)
     {
         _levelToLoad = levelName;
         anim.Play("Fade_Out");

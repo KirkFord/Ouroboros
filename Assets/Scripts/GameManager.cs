@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float terrainMoveSpeedNormal = 3.0f;
     [SerializeField] private float allEnemiesKilledHeartbeatTimer = 1f;
     public GameOverScreen gameOver;
+    public MainUi mainUI;
+    public WepSelectUI wepSelect;
     private int _loops;
     public int enemiesKilled;
     public float timeStart;
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
     public int minutes;
     public int seconds;
     public bool walkingToEnd;
+    public bool firstTimeWep = false;
+
     private void Awake()
     {
         
@@ -60,7 +64,16 @@ public class GameManager : MonoBehaviour
         switch (scene.buildIndex)
         {
             case (int)Level.MainLevel:
-                LoadMainHall();
+                if (!firstTimeWep)
+                {
+                    mainUI.Off();
+                    wepSelect.On();
+                    ShutPlayerUp();
+                }
+                else
+                {
+                    LoadMainHall();
+                }
                 break;
         }
     }
@@ -75,13 +88,17 @@ public class GameManager : MonoBehaviour
         timeElapsed = 0;
         minutes = 0; 
         seconds = 0;
+        firstTimeWep = false;
         if (_player == null) return;
         TerrainSpeedDecrease();
         _player.ResetRun();
+        CoinManager.Instance.ResetCoins();
     }
 
-    private void LoadMainHall()
+    public void LoadMainHall()
     {
+        wepSelect.Off();
+        mainUI.On();
         walkingToEnd = false;
         _player.gameObject.SetActive(true);
         _player.levelOver = false;

@@ -43,4 +43,10 @@ public class CoinManager : MonoBehaviour
     public int GetCoins() {
         return _coins;
     }
+
+    public void ResetCoins()
+    {
+        _coins = 0;
+        _im.UpdateCoins();
+    }
 }

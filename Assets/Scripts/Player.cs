@@ -191,6 +191,8 @@ public class Player : MonoBehaviour
         _gm.CalculateTime();
         _bgm.GameOverSwitch();
         _gm.ShowGameOver();
+        EnemiesManager.Instance.enemiesToSpawn = 0;
+        EnemiesManager.Instance.Murder();
     }
 
     public void Heal(float healAmt)
@@ -227,6 +229,11 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         _im.UpdateHealthBar();
         canTakeDamage = true;
+        _lifesteal = 0.0f;
+        _amountOfXP = 0.0f;
+        _baseXPperLevel = 10.0f;
+        _currentLevel = 0;
+        _XPtoNextlevel = 10;
     }
 
     public void gainXP(float XPtoGain)

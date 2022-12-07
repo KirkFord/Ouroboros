@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MainUi : MonoBehaviour
 {
     [SerializeField] private Image damageFlash;
+    public GameObject mainUIOverlay;
     
     private void Start()
     {
@@ -49,6 +50,17 @@ public class MainUi : MonoBehaviour
         damageFlashColor.a = 0;
         damageFlash.color = damageFlashColor;
     }
+
+    public void Off()
+    {
+        mainUIOverlay.SetActive(false);
+    }
+    
+    public void On()
+    {
+        mainUIOverlay.SetActive(true);
+    }
+    
 
     private void OnEnable()
     {
