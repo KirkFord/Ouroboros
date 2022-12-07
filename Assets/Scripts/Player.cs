@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
 
     public void MainLevelStart()
     {
-
+        transform.rotation = new Quaternion(0, 0, 0, transform.rotation.w);
         rotateSpeed = 0;
         _playerAtEnd = false;
         StartCoroutine(CheckOutOfBounds());
@@ -172,7 +172,6 @@ public class Player : MonoBehaviour
         _gm.CalculateTime();
         _bgm.GameOverSwitch();
         _gm.ShowGameOver();
-        //_gm.ResetRun();
     }
 
     public void Heal(float healAmt)

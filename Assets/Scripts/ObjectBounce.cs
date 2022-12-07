@@ -36,10 +36,7 @@ public class ObjectBounce : MonoBehaviour
         rotation.y += rotationSpeed * Time.deltaTime;
         transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
         
-        if (!GameManager.Instance.walkingToEnd)
-        {
-            _rb.velocity = new Vector3(0, 0, -GameManager.Instance.terrainMoveSpeed);
-        }
+        _rb.velocity = !GameManager.Instance.walkingToEnd ? new Vector3(0, 0, -GameManager.Instance.terrainMoveSpeed) : new Vector3(0, 0, 0);
         
     }
 }
