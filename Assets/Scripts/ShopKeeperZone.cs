@@ -9,6 +9,6 @@ public class ShopKeeperZone : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")) ss.LeftZone();
+        if (other.gameObject.CompareTag("Player")) ss.LeftZone();
     }
 }

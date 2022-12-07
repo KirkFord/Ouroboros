@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage, bool isCrit)
     {
-        DamagePopup.Create(transform.position, (int) damage, isCrit);
+        DamagePopup.Create(transform.position, ((int)damage).ToString(), isCrit);
         if (_player.GetLifesteal() > 0) {
             Debug.Log("Healing player by " + damage * _player.GetLifesteal());
         }

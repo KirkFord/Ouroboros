@@ -2,35 +2,32 @@ using UnityEngine;
 
 public class CampFire : MonoBehaviour
 {
-    private Player player;
-    private float healAmt = 5.0f;
-    private float healInterval = 1.0f; // in seconds
-    private float lastHealTime = 0.0f;
-    private float healRange = 6.0f;
-    [SerializeField] private Door door;
+    [SerializeField] private float healAmt = 50.0f;
+    private bool _playerInArea;
+    private bool _healUsed;
 
-    private void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        player = Player.Instance;
+        if (!other.gameObject.CompareTag("Player") || _healUsed) return;
+        
+        InteractionManager.Instance.ShowInteractText($"Press [F] to heal {healAmt} hp");
+        _playerInArea = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Player") || _healUsed) return;
+        
+        InteractionManager.Instance.HideInteractText();
+        _playerInArea = false;
     }
 
     private void Update()
     {
-        Heal();
+        if (!Input.GetKeyDown(KeyCode.F) || !_playerInArea) return;
+        
+        Player.Instance.Heal(healAmt);
+        _healUsed = true;
+        InteractionManager.Instance.HideInteractText();
     }
-
-    public void Heal() {
-        if (Vector3.Distance(transform.position, player.transform.position) < healRange && 
-            Time.time > lastHealTime + healInterval) {
-            player.Heal(healAmt);
-            lastHealTime = Time.time;
-        }
-    }
-
-        // private void OnTriggerEnter(Collider other) {
-        //     if (other.CompareTag("Player")) {
-        //         Debug.Log("Healer collided with player");
-        //         door.OpenDoor();
-        //     }
-        // }
 }

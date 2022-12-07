@@ -177,13 +177,14 @@ public class Player : MonoBehaviour
 
     public void Heal(float healAmt)
     {
+        if (healAmt == 0) return;
         currentHealth += healAmt;
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
         }
-
         Debug.Log("Healing player by " + healAmt + "; New HP: " + currentHealth);
+        DamagePopup.Create(transform.position, "+"+healAmt, true, true);
         _im.UpdateHealthBar();
     }
 
