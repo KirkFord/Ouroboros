@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,17 @@ public class InteractionManager : MonoBehaviour
     private CoinManager _cm;
     private Player _player;
     [SerializeField] private TMP_Text coins;
-    [SerializeField] private Slider slider;
+    
+    [Header("Health Bar")]
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Image healthFill;
+    [SerializeField] private Gradient grad;
+    [SerializeField] private TMP_Text healthText;
+
+    [Header("XpBar")] 
+    [SerializeField] private Slider xpSlider;
+    [SerializeField] private TMP_Text levelText;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -25,7 +36,8 @@ public class InteractionManager : MonoBehaviour
 
     private void Start() {
         _cm = CoinManager.Instance;
-        coins.text = "Coins: " + _cm.GetCoins();
+        coins.text = _cm.GetCoins().ToString();
+        healthFill.color = grad.Evaluate(1f);
     }
     
     public void ShowInteractText(string text)
@@ -40,11 +52,25 @@ public class InteractionManager : MonoBehaviour
     }
 
     public void UpdateCoins() {
-        coins.text = "Coins: " + _cm.GetCoins();
+        coins.text = _cm.GetCoins().ToString();
     }
 
     public void UpdateHealthBar() {
-        slider.value = _player.currentHealth / _player.maxHealth;
+        healthSlider.value = _player.currentHealth / _player.maxHealth;
+        healthText.text = $"{(int)_player.currentHealth}/{(int)_player.maxHealth}";
+        healthFill.color = grad.Evaluate(healthSlider.normalizedValue);
+    }
+
+    public void UpdateXpBar()
+    {
+        var valueOfSlider = _player._amountOfXP / _player._XPtoNextlevel;
+        if (float.IsNaN(valueOfSlider)) valueOfSlider = 0;
+        xpSlider.value = valueOfSlider;
+    }
+
+    public void UpdateLevelText()
+    {
+        levelText.text = $"Lvl: {_player._currentLevel}";
     }
 
     public void SetPlayer(Player p) {

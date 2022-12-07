@@ -13,11 +13,6 @@ public class MainUi : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnDestroy()
-    {
-        Player.Instance.TookDamage -= TookDamage;
-    }
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
        gameObject.SetActive(scene.buildIndex is not ((int) Level.StartScreen or (int) Level.LoadManagersLevel

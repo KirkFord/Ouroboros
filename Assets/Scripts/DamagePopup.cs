@@ -25,10 +25,10 @@ public class DamagePopup : MonoBehaviour
 
     private void Setup(string damageAmount, bool isCrit, bool isHeal)
     {
-        _text.isTextObjectScaleStatic = false;
-        _text.fontSize = isCrit ? 70 : 45;
-        _text.SetText(damageAmount);
         _textColor = isHeal ? Color.red : _text.color;
+        _text.fontSize = isCrit ? 70 : 45;
+        _text.isTextObjectScaleStatic = false;
+        _text.SetText(damageAmount);
         _movement = new Vector3(0, 1, -1.75f) * 2f;
         _sO++;
         _text.sortingOrder = _sO;

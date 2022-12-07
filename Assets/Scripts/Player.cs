@@ -29,9 +29,9 @@ public class Player : MonoBehaviour
     private float _lifesteal;
     
     private float _baseXPperLevel;
-    private float _amountOfXP;
-    private float _XPtoNextlevel;
-    private int _currentLevel;
+    public float _amountOfXP;
+    public float _XPtoNextlevel;
+    public int _currentLevel { get; private set; }
 
     private void Awake()
     {
@@ -112,6 +112,8 @@ public class Player : MonoBehaviour
         rotateSpeed = 0;
         _playerAtEnd = false;
         StartCoroutine(CheckOutOfBounds());
+        _im.UpdateLevelText();
+        _im.UpdateXpBar();
     }
 
     private void LevelOver()
@@ -219,8 +221,10 @@ public class Player : MonoBehaviour
             _amountOfXP = 0;
             //do some level up type beat here
             _currentLevel++;
+            _im.UpdateLevelText();
             Debug.Log("player is now level " + _currentLevel);
         }
+        _im.UpdateXpBar();
     }
 
     public float nextLevel()
