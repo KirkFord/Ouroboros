@@ -32,6 +32,9 @@ public class Enemy : MonoBehaviour
     private float _healthScaleFactor;
     private float _damageScaleFactor;
     
+    [SerializeField] private float invincibilityTimer = 0.75f;
+    [SerializeField] private bool canTakeDamage;
+    
     private static readonly int IsDead = Animator.StringToHash("isDead");
 
 
@@ -60,6 +63,10 @@ public class Enemy : MonoBehaviour
 
         _healthScaleFactor = enemyData.healthScaleFactor;
         _damageScaleFactor = enemyData.damageScaleFactor;
+        
+        canTakeDamage = true;
+
+        
         ScaleStats();
     }
 
@@ -108,6 +115,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage, bool isCrit)
     {
+        if (!canTakeDamage) return;
         DamagePopup.Create(transform.position, ((int)damage).ToString(), isCrit);
         if (_player.GetLifesteal() > 0) {
             Debug.Log("Healing player by " + damage * _player.GetLifesteal());
@@ -115,7 +123,7 @@ public class Enemy : MonoBehaviour
         _player.Heal(damage * _player.GetLifesteal());
         _currentHealth -= damage;
         StartCoroutine(DamageFlash());
-        
+        StartCoroutine(InvincibilityFrames());
         //DEATH
         if (!(_currentHealth <= 0) || _diedOnce) return;
         _diedOnce = true;
@@ -163,5 +171,11 @@ public class Enemy : MonoBehaviour
         var ded = Instantiate(deathEffect,transform.position,transform.rotation);
         Destroy(ded,1.5f);
         Destroy(gameObject);
+    }
+    private IEnumerator InvincibilityFrames()
+    {
+        canTakeDamage = false;
+        yield return new WaitForSeconds(invincibilityTimer);
+        canTakeDamage = true;
     }
 }
