@@ -6,7 +6,7 @@ public class BadTile : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject explosion;
     [SerializeField] private GameObject blocker;
-    [SerializeField] private Vector3 gotoBeginning;
+    [SerializeField] private GameObject beginning;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +35,12 @@ public class BadTile : MonoBehaviour
         var explosionObj = Instantiate(explosion, transform.position, transform.rotation);
         Destroy(explosionObj, 1.5f);
         Instantiate(blocker, transform.position, transform.rotation);
-        player.transform.position = gotoBeginning;
+        GotoBeginning();
         Destroy(gameObject);
+    }
+
+    void GotoBeginning()
+    {
+        player.transform.position = beginning.transform.position;
     }
 }
