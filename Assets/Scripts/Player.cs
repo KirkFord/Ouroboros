@@ -244,7 +244,9 @@ public class Player : MonoBehaviour
     {
         canTakeDamage = false;
         playerSMR.material = invincibleMat;
+        Debug.Log("Enabling Invincibility");
         yield return new WaitForSeconds(5f);
+        Debug.Log("Disabling Invincibility");
         playerSMR.material = normalMat;
         canTakeDamage = true;
     }

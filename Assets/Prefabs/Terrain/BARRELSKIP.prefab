@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 1312170450796682415}
   - component: {fileID: -317988255468955209}
   m_Layer: 6
-  m_Name: PurpleFloor
+  m_Name: BARRELSKIP
   m_TagString: GroundSegment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -18,7 +18,7 @@ public class TeleportPlayerHereOnLoad : MonoBehaviour
         }
         catch (NullReferenceException _)
         {
-            Debug.Log("Player doesn't exist so "+ name +" will be deleted, this should only be happening on the start screen\n");
+            //Debug.Log("Player doesn't exist so "+ name +" will be deleted, this should only be happening on the start screen\n");
             Destroy(gameObject);
         }
 

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -7786200067943789868}
   m_Layer: 0
   m_Name: XP
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 5
-  randomPickups: 
 --- !u!54 &-7641139038544662780
 Rigidbody:
   m_ObjectHideFlags: 0
