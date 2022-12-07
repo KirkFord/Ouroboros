@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -43,12 +44,19 @@ public class Player : MonoBehaviour
     public int silverlightUpgradesPurchased;
     public int winterhornUpgradesPurchased;
     public int lichTorchUpgradesPurchased;
-    [SerializeField] private Weapon_Garlic silverlight;
+    public int ORingUpgradesPurchased;
+    
+    public Weapon_Garlic silverlight;
     [SerializeField] private Weapon_Slash winterhorn;
     [SerializeField] private Weapon_Magic_Shoot lichTorch;
+
+    public Proj_Slash winterhornAttack;
+    public Proj_Magic_Shoot lichTorchAttack;
+    
     public bool hasSilverlight;
     public bool hasWinterhorn;
     public bool hasLichTorch;
+    public bool hasORing;
     
     
     private void Awake()
@@ -125,7 +133,8 @@ public class Player : MonoBehaviour
     }
 
     public void MainLevelStart()
-    {
+    {  
+        UpdateWeapons();
         transform.rotation = new Quaternion(0, 0, 0, transform.rotation.w);
         rotateSpeed = 0;
         _playerAtEnd = false;
@@ -294,7 +303,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5f);
         CoinManager.Instance.multiplier = 1;
     }
-
     public void IncreaseAttackSpeed(float amount)
     {
         _attackSpeedModifier += amount;
@@ -303,5 +311,11 @@ public class Player : MonoBehaviour
     public float GetAttackSpeed()
     {
         return _attackSpeedModifier;
+    }
+    public void UpdateWeapons()
+    {
+        silverlight.gameObject.SetActive(hasSilverlight);
+        lichTorch.gameObject.SetActive(hasLichTorch);
+        silverlight.gameObject.SetActive(hasSilverlight);
     }
 }

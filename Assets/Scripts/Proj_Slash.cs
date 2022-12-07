@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Proj_Slash : MonoBehaviour
 {
-    private float _damage = 150f;
+    private float _damage = 60f;
     [SerializeField] private float lifeTime = 2.0f;
     private float critChance = 0.3f;
     private float minCritBonus = 0.25f;
