@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-   private CoinManager _cm;
-   private Player _player;
-   private float moveSpeed;
+    private float moveSpeed;
    private Rigidbody _rb;
    
    private void Start() {
-    _cm = CoinManager.Instance;
-    _player = Player.Instance;
-    _rb = GetComponent<Rigidbody>();
+       _rb = GetComponent<Rigidbody>();
    }
 
    private void Update() {
@@ -20,20 +16,18 @@ public class Coin : MonoBehaviour
 
    private void OnTriggerEnter(Collider other)
    {
-       if (other.transform.CompareTag("Player"))
+       if (other.gameObject.CompareTag("Player"))
        {
-           _cm.AddCoins(1);
+           CoinManager.Instance.AddCoins(1);
            Destroy(gameObject);
        }
-       
-
    }
    
    private void Magnetize()
    {
-       if (!(Vector3.Distance(this.transform.position, _player.transform.position) < 4.0f)) return;
+       if (!(Vector3.Distance(this.transform.position, Player.Instance.transform.position) < 4.0f)) return;
        moveSpeed += 0.001f; // make coin accelerate
-       transform.LookAt(_player.transform.position);
+       transform.LookAt(Player.Instance.transform.position);
        transform.position += transform.forward * moveSpeed * Time.deltaTime;
    }
 }

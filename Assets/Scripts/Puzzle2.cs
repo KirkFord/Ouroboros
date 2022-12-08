@@ -14,6 +14,8 @@ public class Puzzle2 : MonoBehaviour
     [SerializeField] private GameObject need3;
     [SerializeField] private GameObject need4;
 
+    [SerializeField] private Animator chestAnim;
+
     private GameObject[] cubes = new GameObject[8];
     private int[] colors = new int[8];
 
@@ -126,8 +128,6 @@ public class Puzzle2 : MonoBehaviour
             if(!solved)
             {
                 solved = true;
-                GiveReward();
-                Debug.Log("Puzzle Success!!");
             }
             
         }
@@ -156,10 +156,11 @@ public class Puzzle2 : MonoBehaviour
         return true;
     }
 
-    void GiveReward()
+    public void GiveReward()
     {
         GameObject[] coins;
         coins = GameObject.FindGameObjectsWithTag("Loot");
+        chestAnim.Play("Chest Open");
         foreach (GameObject coin in coins)
         {
             var lootScript = coin.GetComponent<SpawnLoot>();
