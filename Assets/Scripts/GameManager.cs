@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private GroundController _gc;
     private EnemiesManager _eM;
     public event Action AllEnemiesKilled;
+    public event Action LoadingMainLoop;
+    
     [SerializeField] private int enemiesRemaining;
     public float terrainMoveSpeed = 3.0f;
     [SerializeField] private float terrainMoveSpeedNormal = 3.0f;
@@ -114,6 +116,7 @@ public class GameManager : MonoBehaviour
         _eM.SetUpNextLevel(enemiesRemaining); // buggy
         StartCoroutine(CheckEnemiesRemaining());
         _player.MainLevelStart();
+        LoadingMainLoop?.Invoke();
     }
 
     private void EnemyDied()

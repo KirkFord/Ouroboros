@@ -158,13 +158,18 @@ public class Puzzle2 : MonoBehaviour
 
     public void GiveReward()
     {
+        chestAnim.Play("Chest Open");
+    }
+
+    public void SpawnRewardCoins()
+    {
         GameObject[] coins;
         coins = GameObject.FindGameObjectsWithTag("Loot");
-        chestAnim.Play("Chest Open");
         foreach (GameObject coin in coins)
         {
             var lootScript = coin.GetComponent<SpawnLoot>();
             lootScript.DropCoin();
         }
-    }
+    } 
 }
+
