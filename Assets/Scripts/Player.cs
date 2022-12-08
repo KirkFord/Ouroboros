@@ -246,6 +246,7 @@ public class Player : MonoBehaviour
         _im.UpdateHealthBar();
         canTakeDamage = true;
         _lifesteal = 0.0f;
+        _attackSpeedModifier = 0.0f;
         _amountOfXP = 0.0f;
         _baseXPperLevel = 10.0f;
         _currentLevel = 1;

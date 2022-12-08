@@ -115,13 +115,12 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage, bool isCrit, int weaponId)
     {
-        // if (!canTakeDamage) return;
         float now = Time.time;
+        Debug.Log("Attack speed bonus: " + _player.GetAttackSpeed());
         if (now < weaponLastHit[weaponId] + iFrameDuration) {
             return;
         }
         weaponLastHit[weaponId] = now;
-        Debug.Log("new weaponLastHit[weaponId]: " + weaponLastHit[weaponId]);
         DamagePopup.Create(transform.position, ((int)damage).ToString(), isCrit);
         _player.Heal(damage * _player.GetLifesteal());
         _currentHealth -= damage;

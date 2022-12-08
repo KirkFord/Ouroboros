@@ -38,7 +38,7 @@ public class LevelUpUI : MonoBehaviour
     public void choice3()
     {
         BGM.Instance.PlaySound(Sound.MenuSelectFX);
-        Player.Instance.IncreaseAttackSpeed(Player.Instance.GetAttackSpeed() / 10);
+        Player.Instance.IncreaseAttackSpeed(0.1f);
         Time.timeScale = 1f;
         Off();
     }
