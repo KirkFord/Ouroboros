@@ -10,6 +10,7 @@ public enum Sound
     PlayerWeapon4,
     MenuSelectFX,
     PauseMenuFX,
+    LevelUp,
 }
 public class BGM : MonoBehaviour
 {

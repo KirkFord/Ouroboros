@@ -22,6 +22,7 @@ public class WepSelectUI : MonoBehaviour
     public void choice1()
     {
         //change player wep here
+        BGM.Instance.PlaySound(Sound.MenuSelectFX);
         Player.Instance.hasSilverlight = false;
         Player.Instance.hasLichTorch = false;
         Player.Instance.hasWinterhorn = true;
@@ -34,6 +35,7 @@ public class WepSelectUI : MonoBehaviour
     public void choice2()
     {
         //change player wep here
+        BGM.Instance.PlaySound(Sound.MenuSelectFX);
         Player.Instance.hasLichTorch = true;
         Player.Instance.hasSilverlight = false;
         Player.Instance.hasWinterhorn = false;
@@ -46,6 +48,7 @@ public class WepSelectUI : MonoBehaviour
     public void choice3()
     {
         //change player wep here
+        BGM.Instance.PlaySound(Sound.MenuSelectFX);
         Player.Instance.hasLichTorch = false;
         Player.Instance.hasWinterhorn = false;
         Player.Instance.hasSilverlight = true;

@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
         _lifesteal = 0.0f;
         _amountOfXP = 0.0f;
         _baseXPperLevel = 10.0f;
-        _currentLevel = 0;
+        _currentLevel = 1;
         _XPtoNextlevel = 10;
         hasSilverlight = false;
         hasWinterhorn = false;
@@ -248,7 +248,7 @@ public class Player : MonoBehaviour
         _lifesteal = 0.0f;
         _amountOfXP = 0.0f;
         _baseXPperLevel = 10.0f;
-        _currentLevel = 0;
+        _currentLevel = 1;
         _XPtoNextlevel = 10;
         hasSilverlight = false;
         hasWinterhorn = false;
@@ -267,6 +267,8 @@ public class Player : MonoBehaviour
             _XPtoNextlevel = nextLevel();
             _amountOfXP = 0;
             //do some level up type beat here
+            _gm.ShowLevelup();
+            _bgm.PlaySound(Sound.LevelUp);
             _currentLevel++;
             _im.UpdateLevelText();
             //Debug.Log("player is now level " + _currentLevel);

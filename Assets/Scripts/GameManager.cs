@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameOverScreen gameOver;
     public MainUi mainUI;
     public WepSelectUI wepSelect;
+    public LevelUpUI LevelUp;
     private int _loops;
     public int enemiesKilled;
     public float timeStart;
@@ -157,6 +158,11 @@ public class GameManager : MonoBehaviour
     {
         _player.canAttack = false;
         _player.DisableMovement();
+    }
+
+    public void ShowLevelup()
+    {
+        LevelUp.On();
     }
     
 }
