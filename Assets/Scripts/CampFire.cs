@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CampFire : MonoBehaviour
 {
-    [SerializeField] private float healAmt = 50.0f;
+    [SerializeField] private float healAmt = Player.Instance.maxHealth/2;
     private bool _playerInArea;
     private bool _healUsed;
 

@@ -20,16 +20,15 @@ public class Coin : MonoBehaviour
 
    private void OnTriggerEnter(Collider other)
    {
-       if (!other.transform.CompareTag("Player")) return;
-       AddCoin();
+       if (other.transform.CompareTag("Player"))
+       {
+           _cm.AddCoins(1);
+           Destroy(gameObject);
+       }
+       
 
    }
-   private void AddCoin()
-   {
-       _cm.AddCoins(1);
-       Destroy(gameObject);
-   }
-
+   
    private void Magnetize()
    {
        if (!(Vector3.Distance(this.transform.position, _player.transform.position) < 4.0f)) return;
