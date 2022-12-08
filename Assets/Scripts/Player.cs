@@ -161,6 +161,7 @@ public class Player : MonoBehaviour
 
     public bool PlayerTakeDamage(float damage, bool ignoreInvincibility)
     {
+        if (hasInvincibility) return false;
         if (!canTakeDamage && !ignoreInvincibility) return false;
         currentHealth -= damage;
         if (currentHealth <= 0 && diedOnce == false)
