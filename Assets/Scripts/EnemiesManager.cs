@@ -10,6 +10,8 @@ public class EnemiesManager : MonoBehaviour
     [SerializeField] private GameObject enemy2;
     [SerializeField] private GameObject enemy3;
     [SerializeField] private GameObject enemy4;
+    [SerializeField] private GameObject enemy5;
+    public bool spawnedChonk;
     public event Action EnemyKilled;
 
     private bool _canSpawn;
@@ -53,6 +55,7 @@ public class EnemiesManager : MonoBehaviour
     private void Update()
     {
         SpawnEnemy();
+        spawnChonk();
     }
 
     public void SetUpNextLevel(int enemiesInLevel)
@@ -64,8 +67,24 @@ public class EnemiesManager : MonoBehaviour
     private void LevelEnded()
     {
         _canSpawn = false;
+        spawnedChonk = false;
     }
 
+    private void spawnChonk()
+    {
+        if (_gM.GetLoops() % 5 == 0 && !spawnedChonk)
+        {
+            enemiesToSpawn += 1;
+            spawnedChonk = true;
+            var newEnemyPosition = GenerateRandomPosition();
+            var newEnemy = Instantiate(enemy5);
+            if (newEnemy != null) newEnemy.transform.position = newEnemyPosition;
+            AliveEnemies.Add(newEnemy);
+            enemiesSpawned += 1;
+            enemiesToSpawn -= 1;
+        }
+    }
+    
     private void SpawnEnemy()
     {
         if (!_canSpawn) return;
