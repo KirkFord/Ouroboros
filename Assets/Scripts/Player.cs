@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Material normalMat;
     [SerializeField] private SkinnedMeshRenderer playerSMR;
 
+    private bool hasAttackSpeed;
+    private bool hasInvincibility;
+    private bool hasCoinMultiplier;
     
     public int silverlightUpgradesPurchased;
     public int winterhornUpgradesPurchased;
@@ -281,16 +284,22 @@ public class Player : MonoBehaviour
 
     public void ActivateInvincibility()
     {
+        if (hasInvincibility) return;
+        hasInvincibility = true;
         StartCoroutine(InvincibilityPickup());
         DamagePopup.CreatePlayerPopup(transform.position, "Invincibility (5 Seconds)!");
     }
     public void ActivateCoinMultiplier()
     {
+        if (hasCoinMultiplier) return;
+        hasCoinMultiplier = true;
         StartCoroutine(CoinMultiplierPickup());
         DamagePopup.CreatePlayerPopup(transform.position, "2X Coins (5 Seconds)!");
     }
     public void ActivateAttackSpeed()
     {
+        if (hasAttackSpeed) return;
+        hasAttackSpeed = true;
         StartCoroutine(AttackSpeedPickup());
         DamagePopup.CreatePlayerPopup(transform.position, "+50% Atk Speed (5 Seconds)!");
     }
@@ -303,6 +312,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5f);
         playerSMR.material = normalMat;
         canTakeDamage = true;
+        hasInvincibility = false;
     }
 
     private IEnumerator AttackSpeedPickup()
@@ -311,6 +321,7 @@ public class Player : MonoBehaviour
         IncreaseAttackSpeed(.5f);
         yield return new WaitForSeconds(5f);
         _attackSpeedModifier = oldAttackSpeed;
+        hasAttackSpeed = false;
     }
 
     private IEnumerator CoinMultiplierPickup()
@@ -318,6 +329,7 @@ public class Player : MonoBehaviour
         CoinManager.Instance.multiplier = 2;
         yield return new WaitForSeconds(5f);
         CoinManager.Instance.multiplier = 1;
+        hasCoinMultiplier = false;
     }
     public void IncreaseAttackSpeed(float amount)
     {
