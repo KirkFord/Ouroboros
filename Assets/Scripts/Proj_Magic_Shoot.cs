@@ -24,6 +24,11 @@ public class Proj_Magic_Shoot : MonoBehaviour
         _player = Player.Instance;
     }
 
+    public void ResetDamage()
+    {
+        damage = 100f;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

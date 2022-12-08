@@ -19,6 +19,11 @@ public class Proj_Slash : MonoBehaviour
         //transform.SetParent(player.transform, false);
     }
 
+    public void ResetDamage()
+    {
+        _damage = 60f;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

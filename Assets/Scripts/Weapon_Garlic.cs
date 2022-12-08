@@ -21,6 +21,11 @@ public class Weapon_Garlic : MonoBehaviour
         GameManager.Instance.LoadingMainLoop += EnableCircle;
     }
 
+    public void ResetDamage()
+    {
+        damage = 25f;
+    }
+
     private void EnableCircle()
     {
         garlicCircle.SetActive(true);

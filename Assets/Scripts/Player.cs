@@ -101,6 +101,7 @@ public class Player : MonoBehaviour
         hasSilverlight = false;
         hasWinterhorn = false;
         hasLichTorch = false;
+        hasORing = false;
         silverlightUpgradesPurchased = 0;
         winterhornUpgradesPurchased = 0;
         lichTorchUpgradesPurchased = 0;
@@ -254,9 +255,13 @@ public class Player : MonoBehaviour
         hasSilverlight = false;
         hasWinterhorn = false;
         hasLichTorch = false;
+        hasORing = false;
         silverlightUpgradesPurchased = 0;
         winterhornUpgradesPurchased = 0;
         lichTorchUpgradesPurchased = 0;
+        lichTorchAttack.ResetDamage();
+        winterhornAttack.ResetDamage();
+        silverlight.ResetDamage();
         UpdateWeapons();
     }
 
