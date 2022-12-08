@@ -3,7 +3,15 @@ guid: 98bf4890838b2ff43861db93de1b51ad
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - invincibleMat: {instanceID: 0}
+  - normalMat: {instanceID: 0}
+  - playerSMR: {instanceID: 0}
+  - silverlight: {instanceID: 0}
+  - winterhorn: {instanceID: 0}
+  - lichTorch: {instanceID: 0}
+  - winterhornAttack: {instanceID: 0}
+  - lichTorchAttack: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

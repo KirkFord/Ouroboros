@@ -3,7 +3,7 @@ using UnityEngine;
 public class BadTile : MonoBehaviour
 {
     private int breakTimer = 15;
-    [SerializeField] private GameObject player;
+    private GameObject player;
     [SerializeField] private GameObject explosion;
     [SerializeField] private GameObject blocker;
     [SerializeField] private GameObject beginning;
@@ -42,5 +42,6 @@ public class BadTile : MonoBehaviour
     void GotoBeginning()
     {
         player.transform.position = beginning.transform.position;
+        player.GetComponent<Player>().PlayerTakeDamage(5.0f, true);
     }
 }
