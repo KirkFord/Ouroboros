@@ -13,6 +13,7 @@ public class Proj_Magic_Shoot : MonoBehaviour
     private float maxCritBonus = 0.76f;
     private GameManager _gm;
     private Player _player;
+    private int weaponId = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +64,7 @@ public class Proj_Magic_Shoot : MonoBehaviour
                 bonusCritDamage = damage * Random.Range(minCritBonus, maxCritBonus);
                 isCrit = true;
             }
-            other.GetComponent<Enemy>().TakeDamage(damage + bonusCritDamage, isCrit);
+            other.GetComponent<Enemy>().TakeDamage(damage + bonusCritDamage, isCrit, weaponId);
             Destroy(this.gameObject);
         }
     }

@@ -31,8 +31,8 @@ public class Enemy : MonoBehaviour
 
     private float _healthScaleFactor;
     private float _damageScaleFactor;
-    
-    [SerializeField] private float invincibilityTimer = 0.75f;
+    private float[] weaponLastHit; // time in seconds of last attack with each weapon
+    private float iFrameDuration = 0.2f;
     [SerializeField] private bool canTakeDamage;
     
     private static readonly int IsDead = Animator.StringToHash("isDead");
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
         _damageScaleFactor = enemyData.damageScaleFactor;
         
         canTakeDamage = true;
-
+        weaponLastHit = new float[3]{0,0,0}; // 0 - sword, 1 - wand, 2 - garlic
         
         ScaleStats();
     }
@@ -113,17 +113,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage, bool isCrit)
+    public void TakeDamage(float damage, bool isCrit, int weaponId)
     {
-        if (!canTakeDamage) return;
-        DamagePopup.Create(transform.position, ((int)damage).ToString(), isCrit);
-        if (_player.GetLifesteal() > 0) {
-           // Debug.Log("Healing player by " + damage * _player.GetLifesteal());
+        // if (!canTakeDamage) return;
+        float now = Time.time;
+        if (now < weaponLastHit[weaponId] + iFrameDuration) {
+            return;
         }
+        weaponLastHit[weaponId] = now;
+        Debug.Log("new weaponLastHit[weaponId]: " + weaponLastHit[weaponId]);
+        DamagePopup.Create(transform.position, ((int)damage).ToString(), isCrit);
         _player.Heal(damage * _player.GetLifesteal());
         _currentHealth -= damage;
         StartCoroutine(DamageFlash());
-        StartCoroutine(InvincibilityFrames());
         //DEATH
         if (!(_currentHealth <= 0) || _diedOnce) return;
         _diedOnce = true;
@@ -171,11 +173,5 @@ public class Enemy : MonoBehaviour
         var ded = Instantiate(deathEffect,transform.position,transform.rotation);
         Destroy(ded,1.5f);
         Destroy(gameObject);
-    }
-    private IEnumerator InvincibilityFrames()
-    {
-        canTakeDamage = false;
-        yield return new WaitForSeconds(invincibilityTimer);
-        canTakeDamage = true;
     }
 }

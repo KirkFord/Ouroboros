@@ -7,6 +7,7 @@ public class Weapon_Garlic : MonoBehaviour
     private int cdMax = 40;
     private int cdCurrent = 0;
     [SerializeField] private float damage = 50.0f;
+    private int weaponId = 2;
     private List<Collider> collList;
     // Start is called before the first frame update
 
@@ -60,7 +61,7 @@ public class Weapon_Garlic : MonoBehaviour
             }
             else
             {
-                collList[i].GetComponent<Enemy>().TakeDamage(damage, false);
+                collList[i].GetComponent<Enemy>().TakeDamage(damage, false, weaponId);
             }
         }
     }

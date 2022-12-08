@@ -9,6 +9,7 @@ public class Proj_Slash : MonoBehaviour
     private float critChance = 0.3f;
     private float minCritBonus = 0.25f;
     private float maxCritBonus = 0.76f;
+    private int weaponId = 0;
     //[SerializeField] private GameObject player;
 
     // Start is called before the first frame update
@@ -34,7 +35,8 @@ public class Proj_Slash : MonoBehaviour
                 bonusCritDamage = _damage * Random.Range(minCritBonus, maxCritBonus);
                 isCrit = true;
             }
-            other.GetComponent<Enemy>().TakeDamage(_damage + bonusCritDamage, isCrit);
+            Debug.Log("slashing enemy");
+            other.GetComponent<Enemy>().TakeDamage(_damage + bonusCritDamage, isCrit, weaponId);
         }
     }
 
