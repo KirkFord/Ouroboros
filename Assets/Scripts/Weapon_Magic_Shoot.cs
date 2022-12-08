@@ -34,7 +34,7 @@ public class Weapon_Magic_Shoot : MonoBehaviour
             }
             float attackSpeedMod = Player.Instance.GetAttackSpeed();
             _shootCooldown = (int)(_cdMax / (1 + attackSpeedMod));
-            // Debug.Log(attackSpeedMod.ToString());
+            Debug.Log((_cdMax / (1 + attackSpeedMod)).ToString());
         }
     }
 
@@ -59,7 +59,7 @@ public class Weapon_Magic_Shoot : MonoBehaviour
                 }
                 retVal = true;
             }
-            
+
         }
         if (retVal) // a target was found, save it
         {
@@ -67,6 +67,7 @@ public class Weapon_Magic_Shoot : MonoBehaviour
         }
         return retVal;
     }
+
 
     void Shoot()
     {

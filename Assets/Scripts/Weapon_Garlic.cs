@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon_Garlic : MonoBehaviour
 {
-    private int cdMax = 40;
+    private int _cdMax = 40;
     private int cdCurrent = 0;
     [SerializeField] private float damage = 50.0f;
     private int weaponId = 2;
@@ -27,7 +27,8 @@ public class Weapon_Garlic : MonoBehaviour
         if (cdCurrent <= 0)
         {
             DealDamage();
-            cdCurrent = cdMax;
+            float attackSpeedMod = Player.Instance.GetAttackSpeed();
+            cdCurrent = (int)(_cdMax / (1 + attackSpeedMod));
         }
         else
         {

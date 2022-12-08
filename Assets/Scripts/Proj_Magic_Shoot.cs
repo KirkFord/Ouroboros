@@ -15,6 +15,8 @@ public class Proj_Magic_Shoot : MonoBehaviour
     private Player _player;
     private int weaponId = 1;
 
+    [SerializeField] private float range = 300.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,7 @@ public class Proj_Magic_Shoot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(hasBeenMade)
+        if (hasBeenMade)
         {
             Move();
         }
@@ -35,16 +37,18 @@ public class Proj_Magic_Shoot : MonoBehaviour
     {
         float zSpeedAdjustment = 0; // must adjust movement along z axis to make the projectile appear to
                                     // move relative to the ground
-        if (Math.Abs(_gm.terrainMoveSpeed - _player.playerSpeed) < 0.01) {
+        if (Math.Abs(_gm.terrainMoveSpeed - _player.playerSpeed) < 0.01)
+        {
             zSpeedAdjustment = _player.playerSpeed - 3;
             //Debug.Log("Adjusting wand projectile speed: " + zSpeedAdjustment);
         }
-        if (target == null) {
-            Destroy(this.gameObject);
+        if (target == null)
+        {
+            Retarget();
             return;
         }
         transform.LookAt(target.transform);
-        transform.position += transform.forward * moveSpeed * Time.deltaTime 
+        transform.position += transform.forward * moveSpeed * Time.deltaTime
                                 - new Vector3(0, 0, zSpeedAdjustment) * Time.deltaTime;
     }
 
@@ -60,7 +64,8 @@ public class Proj_Magic_Shoot : MonoBehaviour
         {
             float bonusCritDamage = 0;
             bool isCrit = false;
-            if (Random.Range(0.0f, 1.0f) < critChance) {
+            if (Random.Range(0.0f, 1.0f) < critChance)
+            {
                 bonusCritDamage = damage * Random.Range(minCritBonus, maxCritBonus);
                 isCrit = true;
             }
@@ -69,8 +74,40 @@ public class Proj_Magic_Shoot : MonoBehaviour
         }
     }
 
-    public void IncreaseDamage(float d) {
-        
+    public void IncreaseDamage(float d)
+    {
+
         this.damage += d;
+    }
+
+
+    bool Retarget()
+    {
+        bool retVal = false; // return Value
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Enemy"); // All enemies in scene
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < range) // Check within range
+            {
+                if (curDistance < distance) // Check closest within range
+                {
+                    closest = go;
+                    distance = curDistance;
+                }
+                retVal = true;
+            }
+
+        }
+        if (retVal) // a target was found, save it
+        {
+            target = closest;
+        }
+        return retVal;
     }
 }
