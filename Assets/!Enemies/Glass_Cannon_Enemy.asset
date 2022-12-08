@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Glass_Cannon_Enemy
   m_EditorClassIdentifier: 
   maxHealth: 30
-  moveSpeed: 2
+  moveSpeed: 4
   damageToPlayer: 10
   damageRate: 0.5
   damageTime: 0
