@@ -173,4 +173,9 @@ public class Enemy : MonoBehaviour
         Destroy(ded,1.5f);
         Destroy(gameObject);
     }
+
+    public bool HasDied()
+    {
+        return _diedOnce;
+    }
 }
