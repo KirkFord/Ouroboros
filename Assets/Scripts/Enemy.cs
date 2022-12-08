@@ -33,8 +33,6 @@ public class Enemy : MonoBehaviour
     private float _damageScaleFactor;
     private float[] weaponLastHit; // time in seconds of last attack with each weapon
     private float iFrameDuration = 0.2f;
-    
-    [SerializeField] private float invincibilityTimer = 0.75f;
     [SerializeField] private bool canTakeDamage;
     
     private static readonly int IsDead = Animator.StringToHash("isDead");
@@ -129,7 +127,6 @@ public class Enemy : MonoBehaviour
         _player.Heal(damage * _player.GetLifesteal());
         _currentHealth -= damage;
         StartCoroutine(DamageFlash());
-        // StartCoroutine(InvincibilityFrames());
         //DEATH
         if (!(_currentHealth <= 0) || _diedOnce) return;
         _diedOnce = true;
@@ -177,11 +174,5 @@ public class Enemy : MonoBehaviour
         var ded = Instantiate(deathEffect,transform.position,transform.rotation);
         Destroy(ded,1.5f);
         Destroy(gameObject);
-    }
-    private IEnumerator InvincibilityFrames()
-    {
-        canTakeDamage = false;
-        yield return new WaitForSeconds(invincibilityTimer);
-        canTakeDamage = true;
     }
 }
