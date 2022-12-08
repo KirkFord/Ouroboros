@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -41,7 +42,15 @@ public class Drop : MonoBehaviour
     private void OnDestroy()
     {
         if (!pickedUp) return;
-        _onPickup();
+        try
+        {
+            _onPickup();
+        }
+        catch (NullReferenceException _)
+        {
+            Debug.Log("Drop null reference bruh moment");
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
