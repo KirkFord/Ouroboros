@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -283,17 +282,17 @@ public class Player : MonoBehaviour
     public void ActivateInvincibility()
     {
         StartCoroutine(InvincibilityPickup());
-        DamagePopup.CreatePlayerPopup(transform.position, "Invincibility!");
+        DamagePopup.CreatePlayerPopup(transform.position, "Invincibility (5 Seconds)!");
     }
     public void ActivateCoinMultiplier()
     {
         StartCoroutine(CoinMultiplierPickup());
-        DamagePopup.CreatePlayerPopup(transform.position, "2X Coins!");
+        DamagePopup.CreatePlayerPopup(transform.position, "2X Coins (5 Seconds)!");
     }
     public void ActivateAttackSpeed()
     {
         StartCoroutine(AttackSpeedPickup());
-        DamagePopup.CreatePlayerPopup(transform.position, "+50% Atk Speed!");
+        DamagePopup.CreatePlayerPopup(transform.position, "+50% Atk Speed (5 Seconds)!");
     }
 
 
