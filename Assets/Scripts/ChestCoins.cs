@@ -32,7 +32,7 @@ public class ChestCoins : MonoBehaviour
     {
         if (playerTouching && Input.GetKeyDown(KeyCode.F))
         {
-            if (hasOpened) return;
+            if (hasOpened || !puz2.solved) return;
             hasOpened = true;
             puz2.GiveReward();
         }

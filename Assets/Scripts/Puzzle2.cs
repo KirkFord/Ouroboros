@@ -19,7 +19,7 @@ public class Puzzle2 : MonoBehaviour
     private GameObject[] cubes = new GameObject[8];
     private int[] colors = new int[8];
 
-    private bool solved = false;
+    public bool solved = false;
     // Red = 1, Blue = 2, Green = 3, Yellow = 4
 
     // Start is called before the first frame update
