@@ -219,8 +219,6 @@ public class Player : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-        Debug.Log("Healing player by " + healAmt + "; New HP: " + currentHealth);
-        DamagePopup.CreatePlayerPopup(transform.position, $"+{healAmt} HP");
         _im.UpdateHealthBar();
     }
 

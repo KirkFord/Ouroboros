@@ -62,6 +62,7 @@ public class Drop : MonoBehaviour
     {
         Debug.Log("Heal Pickup Grabbed");
         Player.Instance.Heal(20.0f);
+        DamagePopup.CreatePlayerPopup(Player.Instance.transform.position, "+20 HP");
     }
     private void RandomPickUp()
     {

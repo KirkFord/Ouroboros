@@ -27,6 +27,7 @@ public class CampFire : MonoBehaviour
         if (!Input.GetKeyDown(KeyCode.F) || !_playerInArea || _healUsed) return;
         
         Player.Instance.Heal(healAmt);
+        DamagePopup.CreatePlayerPopup(Player.Instance.transform.position, "+20 HP");
         _healUsed = true;
         InteractionManager.Instance.HideInteractText();
     }
