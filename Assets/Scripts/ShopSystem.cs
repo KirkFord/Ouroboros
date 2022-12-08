@@ -199,6 +199,6 @@ public class ShopSystem : MonoBehaviour
         oRingUpgradeText.text = !Player.Instance.hasORing
             ? $"Purchase the Ouroboros Ring\n1% Life Steal ({baseORingPurchaseCost} Coins)"
             : 
-            $"+5% Lifesteal ({ORingUpgradeCost} Coins)";
+            $"+1% Lifesteal ({ORingUpgradeCost} Coins)";
     }
 }
