@@ -268,6 +268,7 @@ public class Player : MonoBehaviour
             _XPtoNextlevel = nextLevel();
             _amountOfXP = 0;
             //do some level up type beat here
+            _bgm.musicAudioSource.Pause();
             _gm.ShowLevelup();
             _bgm.PlaySound(Sound.LevelUp);
             _currentLevel++;

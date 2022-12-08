@@ -12,6 +12,7 @@ public class LevelUpUI : MonoBehaviour
     {
         levelUpOverlay.SetActive(false);
         Time.timeScale = 1f;
+        BGM.Instance.musicAudioSource.UnPause();
     }
     
     public void On()

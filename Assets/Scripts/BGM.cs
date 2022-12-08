@@ -156,7 +156,7 @@ public class BGM : MonoBehaviour
         Destroy(soundGameObject,ac.length);
     }
 
-    private AudioClip GetAudioClip(Sound sound)
+    public AudioClip GetAudioClip(Sound sound)
     {
         foreach (SoundAssets.SoundAudioClip soundAudioClip in SoundAssets.i.fxArray)
         {
