@@ -117,7 +117,6 @@ public class Enemy : MonoBehaviour
     {
         // if (!canTakeDamage) return;
         float now = Time.time;
-        Debug.Log("weaponId " + weaponId + " now: " + now + " last hit: " + weaponLastHit[weaponId]);
         if (now < weaponLastHit[weaponId] + iFrameDuration) {
             return;
         }
