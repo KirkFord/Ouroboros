@@ -4,15 +4,12 @@ public class ShopSystem : MonoBehaviour
 {
     private InteractionManager _iM;
     private CoinManager _cm;
-    private GameManager _gm;
     private bool _isInShopZone;
     private Player _player;
     [SerializeField] private Animator shopKeepAnim;
     [SerializeField] private Animator cameraAnim;
     [SerializeField] private Canvas shopUI;
-    [SerializeField] private Proj_Slash projSlash;
-    [SerializeField] private Proj_Magic_Shoot projWand;
-    
+
     [SerializeField] private TMPro.TextMeshProUGUI swordUpgradeText;
     [SerializeField] private TMPro.TextMeshProUGUI wandUpgradeText;
     [SerializeField] private TMPro.TextMeshProUGUI garlicUpgradeText;
@@ -21,14 +18,12 @@ public class ShopSystem : MonoBehaviour
     private int baseSwordPurchaseCost = 50;
     private int baseWandPurchaseCost = 50;
     private int baseGarlicPurchaseCost = 50;
-    private int baseORingPurchaseCost = 250;
+    private int baseORingPurchaseCost = 300;
 
-    private int SwordUpgradeCost;
-    private int WandUpgradeCost;
-    private int GarlicUpgradeCost;
-    private int ORingUpgradeCost;
+    private int _swordUpgradeCost;
+    private int _wandUpgradeCost;
+    private int _garlicUpgradeCost;
     
-
     private bool _isShopOpen;
     private static readonly int ShopView = Animator.StringToHash("ShopView");
 
@@ -37,7 +32,6 @@ public class ShopSystem : MonoBehaviour
         _player = Player.Instance;
         _iM = InteractionManager.Instance;
         _cm = CoinManager.Instance;
-        _gm = GameManager.Instance;
         shopUI.gameObject.SetActive(false);
         _isShopOpen = false;
         _iM.HideInteractText();
@@ -95,9 +89,9 @@ public class ShopSystem : MonoBehaviour
     {
         if (_player.hasWinterhorn)
         {
-            if (_cm.GetCoins() < SwordUpgradeCost) return;
+            if (_cm.GetCoins() < _swordUpgradeCost) return;
             Player.Instance.winterhornAttack.IncreaseDamage(10);
-            _cm.RemoveCoins(SwordUpgradeCost);
+            _cm.RemoveCoins(_swordUpgradeCost);
             _iM.UpdateCoins();
         }
         else
@@ -115,9 +109,9 @@ public class ShopSystem : MonoBehaviour
     {
         if (_player.hasLichTorch)
         {
-            if (_cm.GetCoins() < WandUpgradeCost) return;
+            if (_cm.GetCoins() < _wandUpgradeCost) return;
             Player.Instance.lichTorchAttack.IncreaseDamage(10);
-            _cm.RemoveCoins(WandUpgradeCost);
+            _cm.RemoveCoins(_wandUpgradeCost);
             _iM.UpdateCoins();
         }
         else
@@ -135,9 +129,9 @@ public class ShopSystem : MonoBehaviour
     {
         if (_player.hasSilverlight)
         {
-            if (_cm.GetCoins() < GarlicUpgradeCost) return;
+            if (_cm.GetCoins() < _garlicUpgradeCost) return;
             Player.Instance.silverlight.AddDamage(10);
-            _cm.RemoveCoins(GarlicUpgradeCost);
+            _cm.RemoveCoins(_garlicUpgradeCost);
             _iM.UpdateCoins();
         }
         else
@@ -151,54 +145,42 @@ public class ShopSystem : MonoBehaviour
         RefreshButtonText();
     }
 
-    public void ORingHandler(){
-
-        if (!_player.hasORing)
-        {
-            if (_cm.GetCoins() < baseORingPurchaseCost) return;
-            _player.IncreaseLifesteal(0.01f);
-            Player.Instance.ORingUpgradesPurchased += 1;
-            Player.Instance.hasORing = true;
-            _cm.RemoveCoins(baseORingPurchaseCost);
-            _iM.UpdateCoins();
-        }
-        else
-        {
-            if (_cm.GetCoins() < ORingUpgradeCost) return;
-            _player.IncreaseLifesteal(0.01f);
-            _cm.RemoveCoins(ORingUpgradeCost);
-            _iM.UpdateCoins(); 
-        }
-        Player.Instance.ORingUpgradesPurchased += 1;
+    public void ORingHandler()
+    {
+        if (_player.hasORing) return;
+        if (_cm.GetCoins() < baseORingPurchaseCost) return;
+        _player.IncreaseLifesteal(0.01f);
+        Player.Instance.hasORing = true;
+        _cm.RemoveCoins(baseORingPurchaseCost);
+        _iM.UpdateCoins();
         RefreshButtonText();
     }
 
 
     private void RefreshButtonText()
     { 
-        SwordUpgradeCost = 5 * Player.Instance.winterhornUpgradesPurchased;
-        WandUpgradeCost = 5 * Player.Instance.lichTorchUpgradesPurchased;
-        GarlicUpgradeCost = 5 * Player.Instance.silverlightUpgradesPurchased;
-        ORingUpgradeCost = 200 * Player.Instance.ORingUpgradesPurchased;
-        
+        _swordUpgradeCost = 5 * Player.Instance.winterhornUpgradesPurchased;
+        _wandUpgradeCost = 5 * Player.Instance.lichTorchUpgradesPurchased;
+        _garlicUpgradeCost = 5 * Player.Instance.silverlightUpgradesPurchased;
+
         swordUpgradeText.text = !Player.Instance.hasWinterhorn ? 
             $"Purchase Winterhorn ({baseSwordPurchaseCost} Coins)" 
             : 
-            $"+7 Winterhorn Damage ({SwordUpgradeCost} Coins)";
+            $"+7 Winterhorn Damage ({_swordUpgradeCost} Coins)";
         
         wandUpgradeText.text = !Player.Instance.hasLichTorch ? 
             $"Purchase The Lich Torch ({baseWandPurchaseCost} Coins)" 
             : 
-            $"+10 Lich Torch Damage ({WandUpgradeCost} Coins)";
+            $"+10 Lich Torch Damage ({_wandUpgradeCost} Coins)";
         
         garlicUpgradeText.text = !Player.Instance.hasSilverlight ? 
             $"Purchase Silverlight ({baseGarlicPurchaseCost} Coins)" 
             : 
-            $"+5 AOE Damage ({GarlicUpgradeCost} Coins)";
+            $"+5 AOE Damage ({_garlicUpgradeCost} Coins)";
 
         oRingUpgradeText.text = !Player.Instance.hasORing
-            ? $"Purchase the Ouroboros Ring\n0.1% Life Steal ({baseORingPurchaseCost} Coins)"
+            ? $"Purchase the Ouroboros Ring\nHeal From Attacks ({baseORingPurchaseCost} Coins)\n 1 Time Purchase"
             : 
-            $"+0.1% Lifesteal ({ORingUpgradeCost} Coins)";
+            "Already Purchased";
     }
 }

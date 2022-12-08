@@ -123,7 +123,7 @@ public class Enemy : MonoBehaviour
         DamagePopup.Create(transform.position, ((int)damage).ToString(), isCrit);
         _player.Heal(damage * _player.GetLifesteal());
         _currentHealth -= damage;
-        StartCoroutine(DamageFlash());
+        if (!_diedOnce) StartCoroutine(DamageFlash());
         //DEATH
         if (!(_currentHealth <= 0) || _diedOnce) return;
         _diedOnce = true;
