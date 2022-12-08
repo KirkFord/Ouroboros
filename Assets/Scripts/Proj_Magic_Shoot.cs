@@ -48,6 +48,11 @@ public class Proj_Magic_Shoot : MonoBehaviour
             Retarget();
             return;
         }
+        else if (target.GetComponent<Enemy>().HasDied())
+        {
+            Retarget();
+            return;
+        }
         transform.LookAt(target.transform);
         transform.position += transform.forward * moveSpeed * Time.deltaTime
                                 - new Vector3(0, 0, zSpeedAdjustment) * Time.deltaTime;
@@ -98,6 +103,13 @@ public class Proj_Magic_Shoot : MonoBehaviour
         Vector3 position = transform.position;
         foreach (GameObject go in gos)
         {
+            if(target != null)
+            {
+                if (go == target)
+                {
+                    continue;
+                }
+            }
             Vector3 diff = go.transform.position - position;
             float curDistance = diff.sqrMagnitude;
             if (curDistance < range) // Check within range
