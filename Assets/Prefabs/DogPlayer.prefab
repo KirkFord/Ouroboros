@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+  garlicCircle: {fileID: 3908761358199455228}
 --- !u!135 &5275816499428857397
 SphereCollider:
   m_ObjectHideFlags: 0

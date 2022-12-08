@@ -9,6 +9,11 @@ public class ChestCoins : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            if (hasOpened)
+            {
+                InteractionManager.Instance.HideInteractText();
+                return;
+            }
             InteractionManager.Instance.ShowInteractText("Press [F] to open Chest");
             playerTouching = true;  
         }
