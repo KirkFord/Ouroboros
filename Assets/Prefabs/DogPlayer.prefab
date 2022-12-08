@@ -5746,7 +5746,7 @@ MonoBehaviour:
   canAttack: 0
   rotateSpeed: 0
   diedOnce: 0
-  invincibilityTimer: 1
+  invincibilityTimer: 0.5
   canTakeDamage: 0
   _amountOfXP: 0
   _XPtoNextlevel: 0
