@@ -32,7 +32,9 @@ public class LevelUpUI : MonoBehaviour
     {
         BGM.Instance.PlaySound(Sound.MenuSelectFX);
         Player.Instance.maxHealth += (Player.Instance.maxHealth / 10);
+        InteractionManager.Instance.UpdateHealthBar();
         Time.timeScale = 1f;
+
         Off();
     }
     
