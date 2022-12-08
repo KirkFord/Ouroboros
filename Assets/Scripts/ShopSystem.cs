@@ -96,7 +96,7 @@ public class ShopSystem : MonoBehaviour
         if (_player.hasWinterhorn)
         {
             if (_cm.GetCoins() < SwordUpgradeCost) return;
-            Player.Instance.winterhornAttack.IncreaseDamage(7);
+            Player.Instance.winterhornAttack.IncreaseDamage(10);
             _cm.RemoveCoins(SwordUpgradeCost);
             _iM.UpdateCoins();
         }
@@ -136,7 +136,7 @@ public class ShopSystem : MonoBehaviour
         if (_player.hasSilverlight)
         {
             if (_cm.GetCoins() < GarlicUpgradeCost) return;
-            Player.Instance.silverlight.AddDamage(5f);
+            Player.Instance.silverlight.AddDamage(10);
             _cm.RemoveCoins(GarlicUpgradeCost);
             _iM.UpdateCoins();
         }
@@ -156,7 +156,7 @@ public class ShopSystem : MonoBehaviour
         if (!_player.hasORing)
         {
             if (_cm.GetCoins() < baseORingPurchaseCost) return;
-            _player.IncreaseLifesteal(0.05f);
+            _player.IncreaseLifesteal(0.01f);
             Player.Instance.ORingUpgradesPurchased += 1;
             _cm.RemoveCoins(baseORingPurchaseCost);
             _iM.UpdateCoins();
@@ -164,7 +164,7 @@ public class ShopSystem : MonoBehaviour
         else
         {
             if (_cm.GetCoins() < ORingUpgradeCost) return;
-            _player.IncreaseLifesteal(0.05f);
+            _player.IncreaseLifesteal(0.01f);
             _cm.RemoveCoins(ORingUpgradeCost);
             _iM.UpdateCoins(); 
         }

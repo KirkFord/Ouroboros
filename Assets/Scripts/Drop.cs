@@ -35,7 +35,6 @@ public class Drop : MonoBehaviour
             PickupType.CoinMultiplier => CoinMultiplierPickUp,
             PickupType.XP => XpPickUp,
             _ => _onPickup
-
         };
     }
 
@@ -47,13 +46,13 @@ public class Drop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
             GameManager.Instance.dropscollected++;
             pickedUp = true;
         }
-        if (other.transform.CompareTag("EnemyOverflow"))
+        if (other.gameObject.CompareTag("EnemyOverflow"))
         {
             Destroy(gameObject);
         }
