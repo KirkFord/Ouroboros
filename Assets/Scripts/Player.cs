@@ -187,7 +187,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator CheckOutOfBounds()
     {
-        while (!_playerAtEnd)
+        while (!levelOver)
         {
             if (transform.position.z <= -7) PlayerTakeDamage(1f, true);
             yield return null;
@@ -220,7 +220,7 @@ public class Player : MonoBehaviour
             currentHealth = maxHealth;
         }
         Debug.Log("Healing player by " + healAmt + "; New HP: " + currentHealth);
-        DamagePopup.Create(transform.position, "+"+healAmt, true, true);
+        DamagePopup.CreatePlayerPopup(transform.position, $"+{healAmt} HP");
         _im.UpdateHealthBar();
     }
 
@@ -283,14 +283,17 @@ public class Player : MonoBehaviour
     public void ActivateInvincibility()
     {
         StartCoroutine(InvincibilityPickup());
+        DamagePopup.CreatePlayerPopup(transform.position, "Invincibility!");
     }
     public void ActivateCoinMulitplier()
     {
         StartCoroutine(CoinMultiplierPickup());
+        DamagePopup.CreatePlayerPopup(transform.position, "2X Coins!");
     }
     public void ActivateAttackSpeed()
     {
         StartCoroutine(AttackSpeedPickup());
+        DamagePopup.CreatePlayerPopup(transform.position, "+50% Atk Speed!");
     }
 
 
@@ -298,16 +301,17 @@ public class Player : MonoBehaviour
     {
         canTakeDamage = false;
         playerSMR.material = invincibleMat;
-        Debug.Log("Enabling Invincibility");
         yield return new WaitForSeconds(5f);
-        Debug.Log("Disabling Invincibility");
         playerSMR.material = normalMat;
         canTakeDamage = true;
     }
 
     private IEnumerator AttackSpeedPickup()
     {
+        var oldAttackSpeed = GetAttackSpeed();
+        IncreaseAttackSpeed(.5f);
         yield return new WaitForSeconds(5f);
+        _attackSpeedModifier = oldAttackSpeed;
     }
 
     private IEnumerator CoinMultiplierPickup()
