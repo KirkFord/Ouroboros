@@ -42,6 +42,7 @@ public class Proj_Magic_Shoot : MonoBehaviour
             zSpeedAdjustment = _player.playerSpeed - 3;
             //Debug.Log("Adjusting wand projectile speed: " + zSpeedAdjustment);
         }
+        //  | target.GetComponent<Enemy>().HasDied() == true
         if (target == null)
         {
             Retarget();
@@ -86,6 +87,12 @@ public class Proj_Magic_Shoot : MonoBehaviour
         bool retVal = false; // return Value
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Enemy"); // All enemies in scene
+        // Suicide if no enemies on screen
+        if (gos.Length == 0)
+        {
+            Destroy(this.gameObject);
+            return false;
+        }
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
