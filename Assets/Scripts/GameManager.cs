@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public LevelUpUI LevelUp;
     private int _loops;
     public int enemiesKilled;
+    public int dropscollected;
     public float timeStart;
     public float timeEnd;
     public float timeElapsed;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         _eM = EnemiesManager.Instance;
         _eM.EnemyKilled += EnemyDied;
         enemiesKilled = 0;
+        dropscollected = 0;
         //GameOver = GameOverScreen.Instance;
         StartCoroutine(WaitForPlayer());
     }
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetRun()
     {
+        dropscollected = 0;
         _loops = 0;
         _eM.enemiesSpawned = 0;
         enemiesKilled = 0;

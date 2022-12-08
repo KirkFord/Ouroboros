@@ -50,6 +50,7 @@ public class Drop : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             Destroy(gameObject);
+            GameManager.Instance.dropscollected++;
             pickedUp = true;
         }
         if (other.transform.CompareTag("EnemyOverflow"))
