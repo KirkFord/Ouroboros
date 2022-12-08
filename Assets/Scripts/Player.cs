@@ -284,21 +284,30 @@ public class Player : MonoBehaviour
 
     public void ActivateInvincibility()
     {
-        if (hasInvincibility) return;
+        if (hasInvincibility)
+        {
+            StopCoroutine(InvincibilityPickup());
+        }
         hasInvincibility = true;
         StartCoroutine(InvincibilityPickup());
         DamagePopup.CreatePlayerPopup(transform.position, "Invincibility (5 Seconds)!");
     }
     public void ActivateCoinMultiplier()
     {
-        if (hasCoinMultiplier) return;
+        if (hasCoinMultiplier)
+        { 
+            StopCoroutine(CoinMultiplierPickup());
+        }
         hasCoinMultiplier = true;
         StartCoroutine(CoinMultiplierPickup());
         DamagePopup.CreatePlayerPopup(transform.position, "2X Coins (5 Seconds)!");
     }
     public void ActivateAttackSpeed()
     {
-        if (hasAttackSpeed) return;
+        if (hasAttackSpeed)
+        {
+            StopCoroutine(AttackSpeedPickup());
+        }
         hasAttackSpeed = true;
         StartCoroutine(AttackSpeedPickup());
         DamagePopup.CreatePlayerPopup(transform.position, "+50% Atk Speed (5 Seconds)!");
