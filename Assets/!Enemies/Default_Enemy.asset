@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   moveSpeed: 1.5
-  damageToPlayer: 1
+  damageToPlayer: 2.5
   damageRate: 0.5
   damageTime: 0
   damageFlashTimer: 0.2
