@@ -73,7 +73,7 @@ public class EnemiesManager : MonoBehaviour
 
     private void spawnChonk()
     {
-        if (_gM.GetLoops() % 4 == 0 && !spawnedChonk)
+        if (_gM.GetLoops() != 0 && _gM.GetLoops() % 4 == 0 && !spawnedChonk)
         {
             enemiesToSpawn += 1;
             spawnedChonk = true;
