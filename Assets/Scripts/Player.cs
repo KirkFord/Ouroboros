@@ -329,6 +329,6 @@ public class Player : MonoBehaviour
     {
         silverlight.gameObject.SetActive(hasSilverlight);
         lichTorch.gameObject.SetActive(hasLichTorch);
-        silverlight.gameObject.SetActive(hasSilverlight);
+        winterhorn.gameObject.SetActive(hasWinterhorn);
     }
 }

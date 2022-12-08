@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour
 
     private float _healthScaleFactor;
     private float _damageScaleFactor;
+    private float[] weaponLastHit; // time in seconds of last attack with each weapon
+    private float iFrameDuration = 0.2f;
     
     [SerializeField] private float invincibilityTimer = 0.75f;
     [SerializeField] private bool canTakeDamage;
@@ -65,7 +67,7 @@ public class Enemy : MonoBehaviour
         _damageScaleFactor = enemyData.damageScaleFactor;
         
         canTakeDamage = true;
-
+        weaponLastHit = new float[3]{0,0,0}; // 0 - sword, 1 - wand, 2 - garlic
         
         ScaleStats();
     }
@@ -113,17 +115,21 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage, bool isCrit)
+    public void TakeDamage(float damage, bool isCrit, int weaponId)
     {
-        if (!canTakeDamage) return;
-        DamagePopup.Create(transform.position, ((int)damage).ToString(), isCrit);
-        if (_player.GetLifesteal() > 0) {
-           // Debug.Log("Healing player by " + damage * _player.GetLifesteal());
+        // if (!canTakeDamage) return;
+        float now = Time.time;
+        Debug.Log("weaponId " + weaponId + " now: " + now + " last hit: " + weaponLastHit[weaponId]);
+        if (now < weaponLastHit[weaponId] + iFrameDuration) {
+            return;
         }
+        weaponLastHit[weaponId] = now;
+        Debug.Log("new weaponLastHit[weaponId]: " + weaponLastHit[weaponId]);
+        DamagePopup.Create(transform.position, ((int)damage).ToString(), isCrit);
         _player.Heal(damage * _player.GetLifesteal());
         _currentHealth -= damage;
         StartCoroutine(DamageFlash());
-        StartCoroutine(InvincibilityFrames());
+        // StartCoroutine(InvincibilityFrames());
         //DEATH
         if (!(_currentHealth <= 0) || _diedOnce) return;
         _diedOnce = true;

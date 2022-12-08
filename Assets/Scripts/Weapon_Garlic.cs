@@ -7,6 +7,7 @@ public class Weapon_Garlic : MonoBehaviour
     private int cdMax = 40;
     private int cdCurrent = 0;
     [SerializeField] private float damage = 50.0f;
+    private int weaponId = 2;
     // Start is called before the first frame update
 
     public void AddDamage(float extraDamage)
@@ -32,6 +33,6 @@ public class Weapon_Garlic : MonoBehaviour
 
     void DealDamage(Collider other)
     {
-        other.GetComponent<Enemy>().TakeDamage(damage, false);
+        other.GetComponent<Enemy>().TakeDamage(damage, false, weaponId);
     }
 }
