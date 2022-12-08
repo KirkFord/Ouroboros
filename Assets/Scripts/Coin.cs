@@ -21,7 +21,11 @@ public class Coin : MonoBehaviour
    private void OnTriggerEnter(Collider other)
    {
        if (!other.transform.CompareTag("Player")) return;
-       Debug.Log("coin hit by player");
+       AddCoin();
+
+   }
+   private void AddCoin()
+   {
        _cm.AddCoins(1);
        Destroy(gameObject);
    }

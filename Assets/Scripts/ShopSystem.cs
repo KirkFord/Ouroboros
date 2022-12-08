@@ -157,6 +157,7 @@ public class ShopSystem : MonoBehaviour
         {
             if (_cm.GetCoins() < baseORingPurchaseCost) return;
             _player.IncreaseLifesteal(0.05f);
+            Player.Instance.ORingUpgradesPurchased += 1;
             _cm.RemoveCoins(baseORingPurchaseCost);
             _iM.UpdateCoins();
         }
