@@ -83,7 +83,7 @@ public class Drop : MonoBehaviour
     private void CoinMultiplierPickUp()
     {
         Debug.Log("Coin Multiplier Pickup Grabbed");
-        Player.Instance.ActivateCoinMulitplier();
+        Player.Instance.ActivateCoinMultiplier();
     }
     private void XpPickUp()
     {
