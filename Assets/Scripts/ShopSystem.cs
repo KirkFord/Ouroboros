@@ -21,7 +21,7 @@ public class ShopSystem : MonoBehaviour
     private int baseSwordPurchaseCost = 50;
     private int baseWandPurchaseCost = 50;
     private int baseGarlicPurchaseCost = 50;
-    private int baseORingPurchaseCost = 100;
+    private int baseORingPurchaseCost = 500;
 
     private int SwordUpgradeCost;
     private int WandUpgradeCost;
@@ -197,8 +197,8 @@ public class ShopSystem : MonoBehaviour
             $"+5 AOE Damage ({GarlicUpgradeCost} Coins)";
 
         oRingUpgradeText.text = !Player.Instance.hasORing
-            ? $"Purchase the Ouroboros Ring\n1% Life Steal ({baseORingPurchaseCost} Coins)"
+            ? $"Purchase the Ouroboros Ring\n0.1% Life Steal ({baseORingPurchaseCost} Coins)"
             : 
-            $"+1% Lifesteal ({ORingUpgradeCost} Coins)";
+            $"+0.1% Lifesteal ({ORingUpgradeCost} Coins)";
     }
 }
