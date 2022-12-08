@@ -179,7 +179,7 @@ public class ShopSystem : MonoBehaviour
             $"+5 AOE Damage ({_garlicUpgradeCost} Coins)";
 
         oRingUpgradeText.text = !Player.Instance.hasORing
-            ? $"Purchase the Ouroboros Ring\nHeal From Attacks ({baseORingPurchaseCost} Coins)\n 1 Time Purchase"
+            ? $"Purchase the Ouroboros Ring\nHeal From Attacks ({baseORingPurchaseCost} Coins)"
             : 
             "Already Purchased";
     }
