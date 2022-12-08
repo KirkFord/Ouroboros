@@ -285,7 +285,7 @@ public class Player : MonoBehaviour
         StartCoroutine(InvincibilityPickup());
         DamagePopup.CreatePlayerPopup(transform.position, "Invincibility!");
     }
-    public void ActivateCoinMulitplier()
+    public void ActivateCoinMultiplier()
     {
         StartCoroutine(CoinMultiplierPickup());
         DamagePopup.CreatePlayerPopup(transform.position, "2X Coins!");
