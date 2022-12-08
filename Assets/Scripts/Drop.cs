@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Drop : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Drop : MonoBehaviour
 
     private OnPickup _onPickup;
     private List<PickupType> randomPickups;
+    private bool pickedUp;
     
     private void Start()
     {
@@ -37,14 +39,18 @@ public class Drop : MonoBehaviour
         };
     }
 
+    private void OnDestroy()
+    {
+        if (!pickedUp) return;
+        _onPickup();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Player"))
         {
-            //Debug.Log("drop hit by player");
-            _onPickup();
             Destroy(gameObject);
-            return;
+            pickedUp = true;
         }
         if (other.transform.CompareTag("EnemyOverflow"))
         {
@@ -52,7 +58,7 @@ public class Drop : MonoBehaviour
         }
         
     }
-    private static void HealPickUp()
+    private void HealPickUp()
     {
         Debug.Log("Heal Pickup Grabbed");
         Player.Instance.Heal(20.0f);
@@ -64,22 +70,22 @@ public class Drop : MonoBehaviour
         SetPickupFunction(choice);
         _onPickup();
     }
-    private static void InvincibilityPickUp()
+    private void InvincibilityPickUp()
     {
         Debug.Log("Invincibility Pickup Grabbed");
         Player.Instance.ActivateInvincibility();
     }
-    private static void AttackSpeedPickUp()
+    private void AttackSpeedPickUp()
     {
         Debug.Log("Attack Speed Pickup Grabbed");
         Player.Instance.ActivateAttackSpeed();
     }
-    private static void CoinMultiplierPickUp()
+    private void CoinMultiplierPickUp()
     {
         Debug.Log("Coin Multiplier Pickup Grabbed");
         Player.Instance.ActivateCoinMulitplier();
     }
-    private static void XpPickUp()
+    private void XpPickUp()
     {
         Player.Instance.gainXP(1);
         Debug.Log("Coin Multiplier Pickup Grabbed");

@@ -26,7 +26,6 @@ public class Coin : MonoBehaviour
        Destroy(gameObject);
    }
 
-
    private void Magnetize()
    {
        if (!(Vector3.Distance(this.transform.position, _player.transform.position) < 4.0f)) return;

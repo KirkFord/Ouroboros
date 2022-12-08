@@ -58,7 +58,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.7
+  m_Radius: 3.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1548410378447000813
 GameObject:
@@ -5755,6 +5755,7 @@ MonoBehaviour:
   silverlightUpgradesPurchased: 0
   winterhornUpgradesPurchased: 0
   lichTorchUpgradesPurchased: 0
+  ORingUpgradesPurchased: 0
   silverlight: {fileID: 7725011730970907976}
   winterhorn: {fileID: 5588320590975937880}
   lichTorch: {fileID: 3935913774442235433}
@@ -5763,6 +5764,7 @@ MonoBehaviour:
   hasSilverlight: 0
   hasWinterhorn: 0
   hasLichTorch: 0
+  hasORing: 0
 --- !u!1 &8071792931903516330
 GameObject:
   m_ObjectHideFlags: 0
