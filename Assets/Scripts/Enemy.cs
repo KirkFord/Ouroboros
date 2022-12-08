@@ -84,8 +84,7 @@ public class Enemy : MonoBehaviour
     {
         _rb.velocity = new Vector3(0, 0, -_gM.terrainMoveSpeed);
         if (_stopMoving) return;
-        transform.position =
-            Vector3.MoveTowards(transform.position, _player.transform.position, _moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _moveSpeed * Time.deltaTime);
         transform.LookAt(_player.transform);
     }
 
