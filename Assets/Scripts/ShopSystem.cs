@@ -158,6 +158,7 @@ public class ShopSystem : MonoBehaviour
             if (_cm.GetCoins() < baseORingPurchaseCost) return;
             _player.IncreaseLifesteal(0.01f);
             Player.Instance.ORingUpgradesPurchased += 1;
+            Player.Instance.hasORing = true;
             _cm.RemoveCoins(baseORingPurchaseCost);
             _iM.UpdateCoins();
         }
@@ -196,7 +197,7 @@ public class ShopSystem : MonoBehaviour
             $"+5 AOE Damage ({GarlicUpgradeCost} Coins)";
 
         oRingUpgradeText.text = !Player.Instance.hasORing
-            ? $"Purchase the Ouroboros Ring\n5% Life Steal ({baseORingPurchaseCost} Coins)"
+            ? $"Purchase the Ouroboros Ring\n1% Life Steal ({baseORingPurchaseCost} Coins)"
             : 
             $"+5% Lifesteal ({ORingUpgradeCost} Coins)";
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +7,28 @@ public class Weapon_Garlic : MonoBehaviour
 {
     private int _cdMax = 40;
     private int cdCurrent = 0;
-    [SerializeField] private float damage = 50.0f;
+    [SerializeField] private float damage = 25.0f;
     private int weaponId = 2;
     private List<Collider> collList;
+
+    [SerializeField] private GameObject garlicCircle;
     // Start is called before the first frame update
 
     void Start()
     {
         collList = new List<Collider>();
+        GameManager.Instance.AllEnemiesKilled += DisableCircle;
+        GameManager.Instance.LoadingMainLoop += EnableCircle;
+    }
+
+    private void EnableCircle()
+    {
+        garlicCircle.SetActive(true);
+    }
+
+    private void DisableCircle()
+    {
+        garlicCircle.SetActive(false);
     }
 
 

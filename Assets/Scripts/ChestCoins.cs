@@ -3,6 +3,7 @@ using UnityEngine;
 public class ChestCoins : MonoBehaviour
 {
     private bool playerTouching;
+    private bool hasOpened;
     [SerializeField] private Puzzle2 puz2;
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,6 +27,8 @@ public class ChestCoins : MonoBehaviour
     {
         if (playerTouching && Input.GetKeyDown(KeyCode.F))
         {
+            if (hasOpened) return;
+            hasOpened = true;
             puz2.GiveReward();
         }
     }
