@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c50e86f4ba2a8c439dac8cc9f8a8f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 33
   garlicCircle: {fileID: 3908761358199455228}
 --- !u!135 &5275816499428857397
 SphereCollider:
