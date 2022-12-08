@@ -21,7 +21,7 @@ public class ShopSystem : MonoBehaviour
     private int baseSwordPurchaseCost = 50;
     private int baseWandPurchaseCost = 50;
     private int baseGarlicPurchaseCost = 50;
-    private int baseORingPurchaseCost = 500;
+    private int baseORingPurchaseCost = 250;
 
     private int SwordUpgradeCost;
     private int WandUpgradeCost;
@@ -179,7 +179,7 @@ public class ShopSystem : MonoBehaviour
         SwordUpgradeCost = 5 * Player.Instance.winterhornUpgradesPurchased;
         WandUpgradeCost = 5 * Player.Instance.lichTorchUpgradesPurchased;
         GarlicUpgradeCost = 5 * Player.Instance.silverlightUpgradesPurchased;
-        ORingUpgradeCost = 100 * Player.Instance.ORingUpgradesPurchased;
+        ORingUpgradeCost = 200 * Player.Instance.ORingUpgradesPurchased;
         
         swordUpgradeText.text = !Player.Instance.hasWinterhorn ? 
             $"Purchase Winterhorn ({baseSwordPurchaseCost} Coins)" 

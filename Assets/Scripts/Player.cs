@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public bool diedOnce;
     private static readonly int IsMoving = Animator.StringToHash("isMoving");
     private static readonly int IsDead = Animator.StringToHash("isDead");
-    private float invincibilityTimer = 0.5f;
+    private float invincibilityTimer = 0.25f;
     [SerializeField] private bool canTakeDamage;
     private bool _playerAtEnd;
     public event Action<float> TookDamage;

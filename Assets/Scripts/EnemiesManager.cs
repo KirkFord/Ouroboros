@@ -61,18 +61,19 @@ public class EnemiesManager : MonoBehaviour
     public void SetUpNextLevel(int enemiesInLevel)
     {
         enemiesToSpawn = enemiesInLevel;
+        enemiesMaxOnScreen = 10 * _gM.GetLoops();
         _canSpawn = true;
+        spawnedChonk = false;
     }
 
     private void LevelEnded()
     {
         _canSpawn = false;
-        spawnedChonk = false;
     }
 
     private void spawnChonk()
     {
-        if (_gM.GetLoops() % 5 == 0 && !spawnedChonk)
+        if (_gM.GetLoops() % 4 == 0 && !spawnedChonk)
         {
             enemiesToSpawn += 1;
             spawnedChonk = true;

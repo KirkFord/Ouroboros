@@ -407,8 +407,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2696337318380092373, guid: 1c24647725a1f6e44be17defca9b41b6, type: 3}
     - target: {fileID: 2199532408515287660, guid: f5a21bdab534da749ae0cfe165069685, type: 3}
+      propertyPath: enemy5
+      value: 
+      objectReference: {fileID: 2696337318380092373, guid: 32bbf6691cbb199448cc4f457bc9e905, type: 3}
+    - target: {fileID: 2199532408515287660, guid: f5a21bdab534da749ae0cfe165069685, type: 3}
       propertyPath: spawnTimer
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2199532408515287660, guid: f5a21bdab534da749ae0cfe165069685, type: 3}
       propertyPath: EnemiesSpawned
@@ -420,7 +424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2199532408515287660, guid: f5a21bdab534da749ae0cfe165069685, type: 3}
       propertyPath: enemiesMaxOnScreen
-      value: 30
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2199532408515287661, guid: f5a21bdab534da749ae0cfe165069685, type: 3}
       propertyPath: m_Name

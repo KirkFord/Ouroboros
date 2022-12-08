@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator CheckEnemiesRemaining()
     {
-        while (enemiesRemaining > 0) yield return new WaitForSeconds(allEnemiesKilledHeartbeatTimer);
+        while (enemiesRemaining > 0 || EnemiesManager.Instance.enemiesSpawned > 0) yield return new WaitForSeconds(allEnemiesKilledHeartbeatTimer);
         AllEnemiesKilled?.Invoke();
         walkingToEnd = true;
     }

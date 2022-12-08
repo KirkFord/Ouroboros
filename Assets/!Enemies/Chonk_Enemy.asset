@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11fc2d7235944a44a64d9aee1332761, type: 3}
   m_Name: Chonk_Enemy
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 5000
   moveSpeed: 0.5
   damageToPlayer: 90
   damageRate: 0.5

@@ -2422,6 +2422,7 @@ GameObject:
   - component: {fileID: 2696879253271741222}
   - component: {fileID: 2696879253271741241}
   - component: {fileID: 2696879253271741223}
+  - component: {fileID: 7796867308668779661}
   m_Layer: 0
   m_Name: Chonk
   m_TagString: Enemy
@@ -2520,6 +2521,18 @@ MonoBehaviour:
   lootObject: {fileID: 1488104876672236656, guid: 7ddbe7375c9bd1949a95a5c93d30a566, type: 3}
   XP: {fileID: 8998787677226000374, guid: 1de68f5c0c99c0e4a9719a2bf4829e54, type: 3}
   canTakeDamage: 0
+--- !u!114 &7796867308668779661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696337318380092373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed99604767464d4099f19f50c852e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2696345896571884003
 GameObject:
   m_ObjectHideFlags: 0
